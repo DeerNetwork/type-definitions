@@ -1,7 +1,9 @@
 import * as utils from "@open-web3/orml-type-definitions/utils";
+import nft from "./nft";
 import nftOrder from "./nftOrder";
 
 export const nodeTypes = {
+  nft,
   nftOrder,
 };
 
