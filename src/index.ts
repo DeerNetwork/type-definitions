@@ -1,12 +1,12 @@
 import * as utils from "@open-web3/orml-type-definitions/utils";
 import nft from "./nft";
 import nftOrder from "./nftOrder";
-import storage from "./storage";
+import fileStorage from "./fileStorage";
 
 export const nodeTypes = {
   nft,
   nftOrder,
-  storage,
+  fileStorage,
 };
 
 export const types = {...utils.typesFromDefs(nodeTypes)};
