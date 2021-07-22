@@ -33,13 +33,12 @@ export default {
     },
     StashInfo: {
       stasher: "AccountId",
-      register: "Option<RegisterInfo>",
       deposit: "Balance",
+      machine_id: "Option<MachineId>",
     },
     RegisterInfo: {
       key: "PubKey",
       enclave: "EnclaveId",
-      machine_id: "MachineId",
     },
   },
 };
