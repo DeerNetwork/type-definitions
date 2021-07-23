@@ -40,5 +40,13 @@ export default {
       key: "PubKey",
       enclave: "EnclaveId",
     },
+    NodeStats: {
+      power: "u64",
+      used: "u64",
+    },
+    SummaryStats: {
+      power: "u128",
+      used: "u128",
+    },
   },
 };
