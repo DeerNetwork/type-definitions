@@ -6,6 +6,3 @@ yarn.lock
 types.json
 tmp
 nft360.json
-src/interfaces/**/index.ts
-src/interfaces/**/types.ts
-src/interfaces/augment**
