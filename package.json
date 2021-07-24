@@ -10,10 +10,15 @@
     "dist"
   ],
   "scripts": {
+    "generate": "yarn generate:defs && yarn generate:meta",
+    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package '.' --input ./src/interfaces",
+    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package '.' --endpoint ./nft360.json --output ./src/interfaces",
     "build:types": "node scripts/generate.js",
     "lint": "eslint . --ext js --ext ts",
     "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
+    "verify": "node ./scripts/verify.js",
+    "genTypes": "node ./scripts/genTypes.js",
     "prepublish": "npm run -s clean && npm run -s build"
   },
   "dependencies": {
@@ -21,6 +26,8 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.14.6",
+    "@polkadot/api": "^5.1.1",
+    "@polkadot/typegen": "^5.1.1",
     "@types/node": "^14.14.31",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",

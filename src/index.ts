@@ -1,13 +1,7 @@
 import * as utils from "@open-web3/orml-type-definitions/utils";
-import nft from "./nft";
-import nftOrder from "./nftOrder";
-import fileStorage from "./fileStorage";
+import * as nodeTypes from "./interfaces/definitions";
 
-export const nodeTypes = {
-  nft,
-  nftOrder,
-  fileStorage,
-};
+export { nodeTypes };
 
 export const types = {...utils.typesFromDefs(nodeTypes)};
 export const rpc = utils.jsonrpcFromDefs(nodeTypes);

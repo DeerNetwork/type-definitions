@@ -1,10 +1,16 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./src",
     "module": "commonjs",
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "target": "es6",
     "sourceMap": false,
     "lib": ["ES2018"],
+    "paths": {
+      "@polkadot/api/augment": ["./interfaces/augment-api.ts"],
+      "@polkadot/types/augment": ["./interfaces/augment-types.ts"]
+    },
   }
 }
