@@ -29,7 +29,7 @@ export interface NodeInfo extends Struct {
   readonly rid: u64;
   readonly used: u64;
   readonly power: u64;
-  readonly last_round: RoundIndex;
+  readonly reported_at: BlockNumber;
 }
 
 /** @name NodeStats */
