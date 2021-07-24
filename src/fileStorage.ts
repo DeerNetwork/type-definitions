@@ -3,7 +3,7 @@ export default {
   types: {
     FileId: "Vec<u8>",
     EnclaveId: "Vec<u8>",
-    PutKey: "Vec<u8>",
+    PubKey: "Vec<u8>",
     MachineId: "Vec<u8>",
     BalanceOf: "Balance",
     RoundIndex: "u32",
