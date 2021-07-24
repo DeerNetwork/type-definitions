@@ -11,7 +11,7 @@ export default {
       rid: "u64",
       used: "u64",
       power: "u64",
-      last_round: "RoundIndex",
+      reported_at: "BlockNumber",
     },
     RewardInfo: {
       mine_reward: "Balance",

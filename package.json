@@ -1,6 +1,6 @@
 {
   "name": "@nft360/type-definitions",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Polkadot.js type definations for Nft360 Network",
   "publishConfig": {
     "access": "public"
