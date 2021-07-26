@@ -22,9 +22,10 @@ You will also need to update the `tsconfig.json` of your project to include the 
 ```
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "paths": {
-      "@polkadot/api/augment": ["./node_modules/@nft360/type-definitions/dist/interfaces/augment-api.d.ts"],
-      "@polkadot/types/augment": ["./node_modules/@nft360/type-definitions/dist/interfaces/augment-types.d.ts"],
+      "@polkadot/api/augment": ["../node_modules/@nft360/type-definitions/dist/interfaces/augment-api.d.ts"],
+      "@polkadot/types/augment": ["../node_modules/@nft360/type-definitions/dist/interfaces/augment-types.d.ts"],
     }
   }
 }
