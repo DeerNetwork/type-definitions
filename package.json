@@ -1,6 +1,6 @@
 {
   "name": "@nft360/type-definitions",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Polkadot.js type definations for Nft360 Network",
   "publishConfig": {
     "access": "public"
@@ -21,9 +21,7 @@
     "genTypes": "node ./scripts/genTypes.js",
     "prepublish": "npm run -s clean && npm run -s build"
   },
-  "dependencies": {
-    "@open-web3/orml-type-definitions": "^0.9.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/runtime": "^7.14.6",
     "@polkadot/api": "^5.1.1",

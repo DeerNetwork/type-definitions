@@ -1,7 +1,7 @@
 const { typesBundleForPolkadot } = require("../dist");
 const { WsProvider, ApiPromise } = require("@polkadot/api");
 
-const account = "";
+const account = "13UVJyLnbVp9RBZYFwFGyDvVd1y27Tt8tkntv6Q7JVPhFsTB";
 
 const urls = {
   "mainnet": "ws://localhost:9944",
