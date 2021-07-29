@@ -14,7 +14,7 @@ export function jsonrpcFromDefs(
           isSubscription,
           jsonrpc: `${section}_${method}`,
           method,
-          section
+          section,
         };
       });
     });
@@ -29,7 +29,7 @@ export function typesFromDefs(
   return Object.values(definitions).reduce(
     (res: Record<string, any>, { types }): Record<string, any> => ({
       ...res,
-      ...types
+      ...types,
     }),
     initTypes
   );
