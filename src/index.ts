@@ -3,11 +3,13 @@ import { typesFromDefs, jsonrpcFromDefs } from "./utils";
 
 export { nodeTypes };
 
-export const types = {
-  Address: "MultiAddress",
-  LookupSource: "MultiAddress",
-  ...typesFromDefs(nodeTypes),
-};
+export const types = Object.assign(
+  {
+    Address: "MultiAddress",
+    LookupSource: "MultiAddress",
+  },
+  typesFromDefs(nodeTypes)
+);
 
 export const rpc = jsonrpcFromDefs(nodeTypes);
 const bundle = {
