@@ -21,6 +21,6 @@ const bundle = {
 };
 export const typesBundleForPolkadot = {
   spec: {
-    nft360: bundle,
+    deer: bundle,
   },
 };

@@ -1,7 +1,7 @@
 {
-  "name": "@nft360/type-definitions",
-  "version": "0.3.1",
-  "description": "Polkadot.js type definations for Nft360 Network",
+  "name": "@deernetwork/type-definitions",
+  "version": "0.1.0",
+  "description": "Polkadot.js type definations for Deer Network",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
   "scripts": {
     "generate": "yarn generate:defs && yarn generate:meta",
     "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package '.' --input ./src/interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package '.' --endpoint ./nft360.json --output ./src/interfaces",
+    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package '.' --endpoint ./deer.json --output ./src/interfaces",
     "build:types": "node scripts/generate.js",
     "lint": "eslint . --ext js --ext ts",
     "build": "tsc -p tsconfig.build.json",
