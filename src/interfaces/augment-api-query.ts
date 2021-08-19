@@ -55,9 +55,10 @@ declare module '@polkadot/api/types/storage' {
        **/
       authorities: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[AuthorityId, BabeAuthorityWeight]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * Temporary value (cleared at block finalization) that includes the VRF output generated
-       * at this block. This field should always be populated during block processing unless
+       * This field should always be populated during block processing unless
        * secondary plain slots are enabled (which don't contain a VRF output).
+       * 
+       * It is set in `on_initialize`, before it will contain the value from the last block.
        **/
       authorVrfRandomness: AugmentedQuery<ApiType, () => Observable<MaybeRandomness>, []> & QueryableStorageEntry<ApiType, []>;
       /**
@@ -799,7 +800,7 @@ declare module '@polkadot/api/types/storage' {
       /**
        * The last planned session scheduled by the session pallet.
        * 
-       * This is basically in sync with the call to [`SessionManager::new_session`].
+       * This is basically in sync with the call to [`pallet_session::SessionManager::new_session`].
        **/
       currentPlannedSession: AugmentedQuery<ApiType, () => Observable<SessionIndex>, []> & QueryableStorageEntry<ApiType, []>;
       /**
@@ -941,7 +942,7 @@ declare module '@polkadot/api/types/storage' {
        * True if network has been upgraded to this version.
        * Storage version of the pallet.
        * 
-       * This is set to v6.0.0 for new networks.
+       * This is set to v7.0.0 for new networks.
        **/
       storageVersion: AugmentedQuery<ApiType, () => Observable<Releases>, []> & QueryableStorageEntry<ApiType, []>;
       /**

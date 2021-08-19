@@ -157,9 +157,9 @@ declare module '@polkadot/api/types/events' {
        **/
       Delegated: AugmentedEvent<ApiType, [AccountId, AccountId]>;
       /**
-       * A proposal has been enacted. \[ref_index, is_ok\]
+       * A proposal has been enacted. \[ref_index, result\]
        **/
-      Executed: AugmentedEvent<ApiType, [ReferendumIndex, bool]>;
+      Executed: AugmentedEvent<ApiType, [ReferendumIndex, DispatchResult]>;
       /**
        * An external proposal has been tabled.
        **/
@@ -213,10 +213,6 @@ declare module '@polkadot/api/types/events' {
        **/
       Undelegated: AugmentedEvent<ApiType, [AccountId]>;
       /**
-       * An \[account\] has been unlocked successfully.
-       **/
-      Unlocked: AugmentedEvent<ApiType, [AccountId]>;
-      /**
        * An external proposal has been vetoed. \[who, proposal_hash, until\]
        **/
       Vetoed: AugmentedEvent<ApiType, [AccountId, Hash, BlockNumber]>;
@@ -234,7 +230,7 @@ declare module '@polkadot/api/types/events' {
       /**
        * An account has been rewarded for their signed submission being finalized.
        **/
-      Rewarded: AugmentedEvent<ApiType, [AccountId]>;
+      Rewarded: AugmentedEvent<ApiType, [AccountId, Balance]>;
       /**
        * The signed phase of the given round has started.
        **/
@@ -242,7 +238,7 @@ declare module '@polkadot/api/types/events' {
       /**
        * An account has been slashed for submitting an invalid signed submission.
        **/
-      Slashed: AugmentedEvent<ApiType, [AccountId]>;
+      Slashed: AugmentedEvent<ApiType, [AccountId, Balance]>;
       /**
        * A solution was stored with the given compute.
        * 
@@ -305,6 +301,10 @@ declare module '@polkadot/api/types/events' {
       [key: string]: AugmentedEvent<ApiType>;
     };
     fileStorage: {
+      /**
+       * A file was deleted by admin, \[file_id\]
+       **/
+      FileForceDeleted: AugmentedEvent<ApiType, [FileId]>;
       /**
        * A node was registerd, \[node, machine_id\]
        **/
@@ -598,11 +598,16 @@ declare module '@polkadot/api/types/events' {
        **/
       Bonded: AugmentedEvent<ApiType, [AccountId, Balance]>;
       /**
+       * An account has stopped participating as either a validator or nominator.
+       * \[stash\]
+       **/
+      Chilled: AugmentedEvent<ApiType, [AccountId]>;
+      /**
        * The era payout has been set; the first balance is the validator-payout; the second is
        * the remainder from the maximum amount of reward.
        * \[era_index, validator_payout, remainder\]
        **/
-      EraPayout: AugmentedEvent<ApiType, [EraIndex, Balance, Balance]>;
+      EraPaid: AugmentedEvent<ApiType, [EraIndex, Balance, Balance]>;
       /**
        * A nominator has been kicked from a validator. \[nominator, stash\]
        **/
@@ -613,18 +618,22 @@ declare module '@polkadot/api/types/events' {
        **/
       OldSlashingReportDiscarded: AugmentedEvent<ApiType, [SessionIndex]>;
       /**
-       * The staker has been rewarded by this amount. \[stash, amount\]
+       * The stakers' rewards are getting paid. \[era_index, validator_stash\]
        **/
-      Reward: AugmentedEvent<ApiType, [AccountId, Balance]>;
+      PayoutStarted: AugmentedEvent<ApiType, [EraIndex, AccountId]>;
+      /**
+       * The nominator has been rewarded by this amount. \[stash, amount\]
+       **/
+      Rewarded: AugmentedEvent<ApiType, [AccountId, Balance]>;
       /**
        * One validator (and its nominators) has been slashed by the given amount.
        * \[validator, amount\]
        **/
-      Slash: AugmentedEvent<ApiType, [AccountId, Balance]>;
+      Slashed: AugmentedEvent<ApiType, [AccountId, Balance]>;
       /**
        * A new set of stakers was elected.
        **/
-      StakingElection: AugmentedEvent<ApiType, []>;
+      StakersElected: AugmentedEvent<ApiType, []>;
       /**
        * The election failed. No new era is planned.
        **/
@@ -853,6 +862,10 @@ declare module '@polkadot/api/types/events' {
        * well as the error. \[index, error\]
        **/
       BatchInterrupted: AugmentedEvent<ApiType, [u32, DispatchError]>;
+      /**
+       * A single item within a Batch of dispatches has completed with no error.
+       **/
+      ItemCompleted: AugmentedEvent<ApiType, []>;
       /**
        * Generic event
        **/

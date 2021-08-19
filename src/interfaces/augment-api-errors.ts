@@ -198,10 +198,6 @@ declare module '@polkadot/api/types/errors' {
        **/
       AlreadyVetoed: AugmentedError<ApiType>;
       /**
-       * Unknown index
-       **/
-      BadIndex: AugmentedError<ApiType>;
-      /**
        * Preimage already noted
        **/
       DuplicatePreimage: AugmentedError<ApiType>;
@@ -226,10 +222,6 @@ declare module '@polkadot/api/types/errors' {
        **/
       InvalidHash: AugmentedError<ApiType>;
       /**
-       * The provided witness data is wrong.
-       **/
-      InvalidWitness: AugmentedError<ApiType>;
-      /**
        * Maximum number of votes reached.
        **/
       MaxVotesReached: AugmentedError<ApiType>;
@@ -250,25 +242,13 @@ declare module '@polkadot/api/types/errors' {
        **/
       NoProposal: AugmentedError<ApiType>;
       /**
-       * Not delegated
-       **/
-      NotDelegated: AugmentedError<ApiType>;
-      /**
        * The account is not currently delegating.
        **/
       NotDelegating: AugmentedError<ApiType>;
       /**
-       * The lock on the account to be unlocked has not yet expired.
-       **/
-      NotExpired: AugmentedError<ApiType>;
-      /**
        * Not imminent
        **/
       NotImminent: AugmentedError<ApiType>;
-      /**
-       * The target account does not have a lock.
-       **/
-      NotLocked: AugmentedError<ApiType>;
       /**
        * Next external proposal not simple majority
        **/
@@ -504,6 +484,10 @@ declare module '@polkadot/api/types/errors' {
        * Report files or power exceed limit
        **/
       ReportExceedLimit: AugmentedError<ApiType>;
+      /**
+       * Unable to delete file
+       **/
+      UnableToDeleteFile: AugmentedError<ApiType>;
       /**
        * Node is unregisterd
        **/
@@ -1188,6 +1172,16 @@ declare module '@polkadot/api/types/errors' {
        * Too many approvals in the queue.
        **/
       TooManyApprovals: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    utility: {
+      /**
+       * Too many calls batched.
+       **/
+      TooManyCalls: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
