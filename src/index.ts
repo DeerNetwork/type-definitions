@@ -7,6 +7,9 @@ export const types = Object.assign(
   {
     Address: "MultiAddress",
     LookupSource: "MultiAddress",
+    ElectionCompute: { // will removed when new polkadot api is released
+      _enum: ["OnChain", "Signed", "Unsigned", "Emergency"],
+    },
   },
   typesFromDefs(nodeTypes)
 );
