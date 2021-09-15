@@ -1,5 +1,8 @@
 import * as nodeTypes from "./interfaces/definitions";
+import { OverrideVersionedType } from "@polkadot/types/types";
 import { typesFromDefs, jsonrpcFromDefs } from "./utils";
+
+import v100 from "./spec/v100";
 
 export { nodeTypes };
 
@@ -19,10 +22,13 @@ const bundle = {
   rpc,
   types: [
     {
-      minmax: [undefined, undefined] as any,
+      minmax: [0, 100],
+      types: v100.types,
+    }, {
+      minmax: [100, undefined],
       types,
     },
-  ],
+  ] as OverrideVersionedType[],
 };
 export const typesBundleForPolkadot = {
   spec: {

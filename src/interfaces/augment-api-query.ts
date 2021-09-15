@@ -626,6 +626,12 @@ declare module '@polkadot/api/types/storage' {
        **/
       class: AugmentedQuery<ApiType, (arg: ClassId | AnyNumber | Uint8Array) => Observable<Option<ClassDetails>>, [ClassId]> & QueryableStorageEntry<ApiType, [ClassId]>;
       /**
+       * Storage version of the pallet.
+       * 
+       * New networks start with last version.
+       **/
+      storageVersion: AugmentedQuery<ApiType, () => Observable<Releases>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
        * Generic query
        **/
       [key: string]: QueryableStorageEntry<ApiType>;

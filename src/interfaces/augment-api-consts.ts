@@ -433,6 +433,10 @@ declare module '@polkadot/api/types/consts' {
        **/
       keyLimit: u32 & AugmentedConst<ApiType>;
       /**
+       * The maximum of royalty rate
+       **/
+      royaltyRateLimit: Perbill & AugmentedConst<ApiType>;
+      /**
        * The maximum length of an attribute value.
        **/
       valueLimit: u32 & AugmentedConst<ApiType>;
@@ -450,6 +454,10 @@ declare module '@polkadot/api/types/consts' {
        * The basic amount of funds that must be reserved for an asset class.
        **/
       orderDeposit: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * The amount of trade fee as tax
+       **/
+      tradeFeeTaxRatio: Perbill & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

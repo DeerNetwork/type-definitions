@@ -950,7 +950,7 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Report storage work.
        **/
-      report: AugmentedSubmittable<(machineId: MachineId | string | Uint8Array, rid: u64 | AnyNumber | Uint8Array, sig: Bytes | string | Uint8Array, addFiles: Vec<ITuple<[FileId, u64]>> | ([FileId | string | Uint8Array, u64 | AnyNumber | Uint8Array])[], delFiles: Vec<FileId> | (FileId | string | Uint8Array)[], power: u64 | AnyNumber | Uint8Array, settleFiles: Vec<FileId> | (FileId | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [MachineId, u64, Bytes, Vec<ITuple<[FileId, u64]>>, Vec<FileId>, u64, Vec<FileId>]>;
+      report: AugmentedSubmittable<(rid: Compact<u64> | AnyNumber | Uint8Array, power: Compact<u64> | AnyNumber | Uint8Array, sig: Bytes | string | Uint8Array, addFiles: Vec<ITuple<[FileId, u64]>> | ([FileId | string | Uint8Array, u64 | AnyNumber | Uint8Array])[], delFiles: Vec<FileId> | (FileId | string | Uint8Array)[], settleFiles: Vec<FileId> | (FileId | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Compact<u64>, Compact<u64>, Bytes, Vec<ITuple<[FileId, u64]>>, Vec<FileId>, Vec<FileId>]>;
       /**
        * Add or change expire of TEE enclave
        **/
@@ -1619,7 +1619,7 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * Weight: `O(1)`
        **/
-      create: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>]>;
+      create: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, royaltyRate: Compact<Perbill> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<Perbill>]>;
       /**
        * Mint an asset instance of a particular class.
        * 
@@ -1632,7 +1632,7 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * Weight: `O(1)`
        **/
-      mint: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, instance: Compact<InstanceId> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<InstanceId>]>;
+      mint: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, instance: Compact<InstanceId> | AnyNumber | Uint8Array, royaltyRate: Option<Perbill> | null | object | string | Uint8Array, royaltyBeneficiary: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<InstanceId>, Option<Perbill>, Option<AccountId>]>;
       /**
        * Ready to transfer an asset from the sender account to another.
        * 

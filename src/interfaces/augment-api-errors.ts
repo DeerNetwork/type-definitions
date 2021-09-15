@@ -735,6 +735,10 @@ declare module '@polkadot/api/types/errors' {
        **/
       NotTranserTarget: AugmentedError<ApiType>;
       /**
+       * Royalty rate great than RoyaltyRateLimit
+       **/
+      RoyaltyRateTooHigh: AugmentedError<ApiType>;
+      /**
        * Unknown error
        **/
       Unknown: AugmentedError<ApiType>;
@@ -761,10 +765,6 @@ declare module '@polkadot/api/types/errors' {
        **/
       InvalidDeadline: AugmentedError<ApiType>;
       /**
-       * Asset not found
-       **/
-      NotFound: AugmentedError<ApiType>;
-      /**
        * Not own the asset
        **/
       NotOwn: AugmentedError<ApiType>;
@@ -776,6 +776,10 @@ declare module '@polkadot/api/types/errors' {
        * Order not found
        **/
       OrderNotFound: AugmentedError<ApiType>;
+      /**
+       * Token not found
+       **/
+      TokenNotFound: AugmentedError<ApiType>;
       /**
        * To many order exceed T::MaxOrders
        **/
