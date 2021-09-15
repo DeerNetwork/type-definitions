@@ -8,15 +8,15 @@ export default {
     ClassDetails: {
       owner: "AccountId",
       deposit: "DepositBalance",
-      instances: "u32",
-      royalty_rate: "Perbill",
+      instances: "Compact<u32>",
+      royalty_rate: "Compact<Perbill>",
     },
     InstanceDetails: {
       owner: "AccountId",
       deposit: "DepositBalance",
       reserved: "bool",
       ready_transfer: "Option<AccountId>",
-      royalty_rate: "Perbill",
+      royalty_rate: "Compact<Perbill>",
       royalty_beneficiary: "AccountId",
     },
   },

@@ -2,6 +2,7 @@ const { typesBundleForPolkadot } = require("../dist");
 const { WsProvider, ApiPromise } = require("@polkadot/api");
 
 const account = "13UVJyLnbVp9RBZYFwFGyDvVd1y27Tt8tkntv6Q7JVPhFsTB";
+const nftToken = { classId: 1, instanceId: 1 };
 
 const urls = {
   "mainnet": "ws://localhost:9944",
@@ -41,6 +42,14 @@ const verify = async (url, blockNumber) => {
     console.log("Querying balance...");
     const bal = await api.query.system.account(account);
     console.log(`Got balance results: ${JSON.stringify(bal.toHuman())}.`);
+
+    console.log("Query nft class detail...");
+    const nftClassDetail = await api.query.nft.class(nftToken.classId);
+    console.log(`Got nft class results: ${JSON.stringify(nftClassDetail.toHuman())}.`);
+
+    console.log("Query nft token detail...");
+    const nftTokenDetail = await api.query.nft.asset(nftToken.classId, nftToken.instanceId);
+    console.log(`Got nft token results: ${JSON.stringify(nftTokenDetail.toHuman())}.`);
   }
 };
 
