@@ -1,15 +1,15 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Option, Struct, bool, u32 } from '@polkadot/types';
+import type { Compact, Option, Struct, bool, u32 } from '@polkadot/types';
 import type { AccountId, Balance, Perbill } from '@polkadot/types/interfaces/runtime';
 
 /** @name ClassDetails */
 export interface ClassDetails extends Struct {
   readonly owner: AccountId;
   readonly deposit: DepositBalance;
-  readonly instances: u32;
-  readonly royalty_rate: Perbill;
+  readonly instances: Compact<u32>;
+  readonly royalty_rate: Compact<Perbill>;
 }
 
 /** @name ClassId */
@@ -27,7 +27,7 @@ export interface InstanceDetails extends Struct {
   readonly deposit: DepositBalance;
   readonly reserved: bool;
   readonly ready_transfer: Option<AccountId>;
-  readonly royalty_rate: Perbill;
+  readonly royalty_rate: Compact<Perbill>;
   readonly royalty_beneficiary: AccountId;
 }
 

@@ -719,6 +719,10 @@ declare module '@polkadot/api/types/errors' {
        **/
       AlreadyReserved: AugmentedError<ApiType>;
       /**
+       * The class id is not in (MaxClassId, MaxClassId + T::ClassIdIncLimit]
+       **/
+      ClassIdTooLarge: AugmentedError<ApiType>;
+      /**
        * The given asset ID is nof found.
        **/
       NotFound: AugmentedError<ApiType>;
@@ -760,6 +764,10 @@ declare module '@polkadot/api/types/errors' {
        * Assert is reserved
        **/
       AssertReserved: AugmentedError<ApiType>;
+      /**
+       * Insufficient account balance.
+       **/
+      InsufficientFunds: AugmentedError<ApiType>;
       /**
        * Invalid deaeline
        **/

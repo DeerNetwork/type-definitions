@@ -9,7 +9,7 @@ import type { EraIndex } from '@polkadot/types/interfaces/staking';
 import type { RuntimeVersion } from '@polkadot/types/interfaces/state';
 import type { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
 import type { BlockLength, BlockWeights } from '@polkadot/types/interfaces/system';
-import type { DepositBalanceOf } from '@polkadot/types/interfaces/uniques';
+import type { ClassId, DepositBalanceOf } from '@polkadot/types/interfaces/uniques';
 import type { ApiTypes } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/consts' {
@@ -415,6 +415,10 @@ declare module '@polkadot/api/types/consts' {
        * The basic amount of funds that must be reserved for an asset class.
        **/
       classDeposit: DepositBalanceOf & AugmentedConst<ApiType>;
+      /**
+       * The new class id must in (MaxClassId, MaxClassId + T::ClassIdIncLimit]
+       */
+      classIdIncLimit: ClassId & AugmentedConst<ApiType>;
       /**
        * The basic amount of funds that must be reserved when adding an attribute to an asset.
        **/
