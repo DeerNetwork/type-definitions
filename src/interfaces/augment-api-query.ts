@@ -4,6 +4,7 @@
 import type { Bytes, Data, Option, U8aFixed, Vec, bool, u32, u64 } from '@polkadot/types';
 import type { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
 import type { EnclaveId, FileId, FileOrder, MachineId, NodeInfo, NodeStats, RegisterInfo, RewardInfo, RoundIndex, StashInfo, StoreFile, SummaryStats } from './fileStorage';
+import type { AuctionBidOf, AuctionId, DutchAuctionOf, EnglishAuctionOf } from './nftAuction';
 import type { ClassIdOf, InstanceIdOf, OrderDetails } from './nftOrder';
 import type { UncleEntryItem } from '@polkadot/types/interfaces/authorship';
 import type { BabeAuthorityWeight, BabeEpochConfiguration, MaybeRandomness, NextConfigDescriptor, Randomness } from '@polkadot/types/interfaces/babe';
@@ -635,6 +636,36 @@ declare module '@polkadot/api/types/storage' {
        * New networks start with last version.
        **/
       storageVersion: AugmentedQuery<ApiType, () => Observable<Releases>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
+    nftAuction: {
+      /**
+       * An index mapping from token to order.
+       **/
+      auctions: AugmentedQuery<ApiType, (arg1: ClassId | AnyNumber | Uint8Array, arg2: InstanceId | AnyNumber | Uint8Array) => Observable<Option<AuctionId>>, [ClassId, InstanceId]> & QueryableStorageEntry<ApiType, [ClassId, InstanceId]>;
+      /**
+       * Current auction id, automate incr
+       **/
+      currentAuctionId: AugmentedQuery<ApiType, () => Observable<AuctionId>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * An index mapping from auction_id to dutch auction bid.
+       **/
+      dutchAuctionBids: AugmentedQuery<ApiType, (arg: AuctionId | AnyNumber | Uint8Array) => Observable<Option<AuctionBidOf>>, [AuctionId]> & QueryableStorageEntry<ApiType, [AuctionId]>;
+      /**
+       * An index mapping from auction_id to dutch auction.
+       **/
+      dutchAuctions: AugmentedQuery<ApiType, (arg: AuctionId | AnyNumber | Uint8Array) => Observable<Option<DutchAuctionOf>>, [AuctionId]> & QueryableStorageEntry<ApiType, [AuctionId]>;
+      /**
+       * An index mapping from auction_id to english auction bid.
+       **/
+      englishAuctionBids: AugmentedQuery<ApiType, (arg: AuctionId | AnyNumber | Uint8Array) => Observable<Option<AuctionBidOf>>, [AuctionId]> & QueryableStorageEntry<ApiType, [AuctionId]>;
+      /**
+       * An index mapping from auction_id to english auction.
+       **/
+      englishAuctions: AugmentedQuery<ApiType, (arg: AuctionId | AnyNumber | Uint8Array) => Observable<Option<EnglishAuctionOf>>, [AuctionId]> & QueryableStorageEntry<ApiType, [AuctionId]>;
       /**
        * Generic query
        **/

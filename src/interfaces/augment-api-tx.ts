@@ -4,6 +4,7 @@
 import type { Bytes, Compact, Data, Option, U8aFixed, Vec, bool, u16, u32, u64 } from '@polkadot/types';
 import type { AnyNumber, ITuple } from '@polkadot/types/types';
 import type { EnclaveId, FileId, MachineId } from './fileStorage';
+import type { AuctionId } from './nftAuction';
 import type { BabeEquivocationProof, NextConfigDescriptor } from '@polkadot/types/interfaces/babe';
 import type { MemberCount, ProposalIndex } from '@polkadot/types/interfaces/collective';
 import type { AccountVote, Conviction, PropIndex, Proposal, ReferendumIndex } from '@polkadot/types/interfaces/democracy';
@@ -13,7 +14,7 @@ import type { GrandpaEquivocationProof, KeyOwnerProof } from '@polkadot/types/in
 import type { IdentityFields, IdentityInfo, IdentityJudgement, RegistrarIndex } from '@polkadot/types/interfaces/identity';
 import type { Heartbeat } from '@polkadot/types/interfaces/imOnline';
 import type { ProxyType } from '@polkadot/types/interfaces/proxy';
-import type { AccountId, AccountIndex, Balance, BalanceOf, BlockNumber, Call, CallHashOf, ChangesTrieConfiguration, Hash, Header, KeyValue, LookupSource, Moment, OpaqueCall, Perbill, Percent, TransactionStorageProof, Weight } from '@polkadot/types/interfaces/runtime';
+import type { AccountId, AccountIndex, Balance, BalanceOf, BlockNumber, BlockNumberFor, Call, CallHashOf, ChangesTrieConfiguration, Hash, Header, KeyValue, LookupSource, Moment, OpaqueCall, Perbill, Percent, TransactionStorageProof, Weight } from '@polkadot/types/interfaces/runtime';
 import type { Period, Priority } from '@polkadot/types/interfaces/scheduler';
 import type { Keys } from '@polkadot/types/interfaces/session';
 import type { ElectionScore, EraIndex, RawSolution, RewardDestination, SolutionOrSnapshotSize, Supports, ValidatorPrefs } from '@polkadot/types/interfaces/staking';
@@ -806,7 +807,7 @@ declare module '@polkadot/api/types/submittable' {
        * Queue size must be provided as witness data.
        * # </weight>
        **/
-      submit: AugmentedSubmittable<(solution: RawSolution | { compact?: any; score?: any; round?: any } | string | Uint8Array, numSignedSubmissions: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [RawSolution, u32]>;
+      submit: AugmentedSubmittable<(rawSolution: RawSolution | { compact?: any; score?: any; round?: any } | string | Uint8Array, numSignedSubmissions: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [RawSolution, u32]>;
       /**
        * Submit a solution for the unsigned phase.
        * 
@@ -823,7 +824,7 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * No deposit or reward is associated with this submission.
        **/
-      submitUnsigned: AugmentedSubmittable<(solution: RawSolution | { compact?: any; score?: any; round?: any } | string | Uint8Array, witness: SolutionOrSnapshotSize | { voters?: any; targets?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [RawSolution, SolutionOrSnapshotSize]>;
+      submitUnsigned: AugmentedSubmittable<(rawSolution: RawSolution | { compact?: any; score?: any; round?: any } | string | Uint8Array, witness: SolutionOrSnapshotSize | { voters?: any; targets?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [RawSolution, SolutionOrSnapshotSize]>;
       /**
        * Generic tx
        **/
@@ -1663,6 +1664,46 @@ declare module '@polkadot/api/types/submittable' {
        * Weight: `O(1)`
        **/
       setAttribute: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, maybeInstance: Option<InstanceId> | null | object | string | Uint8Array, key: Bytes | string | Uint8Array, value: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Option<InstanceId>, Bytes, Bytes]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    nftAuction: {
+      /**
+       * Bid dutch auction
+       * 
+       * - `price`: bid price. If none, use current reduction price.
+       **/
+      bidDutch: AugmentedSubmittable<(auctionId: Compact<AuctionId> | AnyNumber | Uint8Array, price: Option<BalanceOf> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<AuctionId>, Option<BalanceOf>]>;
+      /**
+       * Bid english auction
+       **/
+      bidEnglish: AugmentedSubmittable<(auctionId: Compact<AuctionId> | AnyNumber | Uint8Array, price: Compact<BalanceOf> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<AuctionId>, Compact<BalanceOf>]>;
+      /**
+       * Cancel auction, only auction without any bid can be canceled
+       **/
+      cancelDutch: AugmentedSubmittable<(auctionId: Compact<AuctionId> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<AuctionId>]>;
+      /**
+       * Cancel auction, only auction without any bid can be canceled
+       **/
+      cancelEnglish: AugmentedSubmittable<(auctionId: Compact<AuctionId> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<AuctionId>]>;
+      /**
+       * Create an dutch auction.
+       **/
+      createDutch: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, instance: Compact<InstanceId> | AnyNumber | Uint8Array, minPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, maxPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, deadline: Compact<BlockNumberFor> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<InstanceId>, Compact<BalanceOf>, Compact<BalanceOf>, Compact<BlockNumberFor>]>;
+      /**
+       * Create an english auction.
+       **/
+      createEnglish: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, instance: Compact<InstanceId> | AnyNumber | Uint8Array, initPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, minRaisePrice: Compact<BalanceOf> | AnyNumber | Uint8Array, deadline: Compact<BlockNumberFor> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<InstanceId>, Compact<BalanceOf>, Compact<BalanceOf>, Compact<BlockNumberFor>]>;
+      /**
+       * Redeem duction
+       **/
+      redeemDutch: AugmentedSubmittable<(auctionId: Compact<AuctionId> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<AuctionId>]>;
+      /**
+       * Redeem duction
+       **/
+      redeemEnglish: AugmentedSubmittable<(auctionId: Compact<AuctionId> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<AuctionId>]>;
       /**
        * Generic tx
        **/

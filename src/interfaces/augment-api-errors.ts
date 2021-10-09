@@ -433,6 +433,10 @@ declare module '@polkadot/api/types/errors' {
        **/
       DuplicateReport: AugmentedError<ApiType>;
       /**
+       * Insufficient stash
+       **/
+      InsufficientStash: AugmentedError<ApiType>;
+      /**
        * Enclave id incorrenct
        **/
       InvalidEnclave: AugmentedError<ApiType>;
@@ -759,11 +763,28 @@ declare module '@polkadot/api/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    nftOrder: {
+    nftAuction: {
+      AuctionBidNotFound: AugmentedError<ApiType>;
+      AuctionClosed: AugmentedError<ApiType>;
+      AuctionNotFound: AugmentedError<ApiType>;
+      CannotRedeemNow: AugmentedError<ApiType>;
+      CannotRemoveAuction: AugmentedError<ApiType>;
+      InsufficientFunds: AugmentedError<ApiType>;
+      InvalidBidPrice: AugmentedError<ApiType>;
+      InvalidDeadline: AugmentedError<ApiType>;
+      InvalidNextAuctionId: AugmentedError<ApiType>;
+      InvalidNFT: AugmentedError<ApiType>;
+      InvalidPrice: AugmentedError<ApiType>;
+      MissDutchBidPrice: AugmentedError<ApiType>;
+      NotBidAccount: AugmentedError<ApiType>;
+      NotOwnerAccount: AugmentedError<ApiType>;
+      SelfBid: AugmentedError<ApiType>;
       /**
-       * Assert is reserved
+       * Generic error
        **/
-      AssertReserved: AugmentedError<ApiType>;
+      [key: string]: AugmentedError<ApiType>;
+    };
+    nftOrder: {
       /**
        * Insufficient account balance.
        **/
@@ -772,6 +793,10 @@ declare module '@polkadot/api/types/errors' {
        * Invalid deaeline
        **/
       InvalidDeadline: AugmentedError<ApiType>;
+      /**
+       * Invalid NFt
+       **/
+      InvalidNFT: AugmentedError<ApiType>;
       /**
        * Not own the asset
        **/
@@ -784,10 +809,6 @@ declare module '@polkadot/api/types/errors' {
        * Order not found
        **/
       OrderNotFound: AugmentedError<ApiType>;
-      /**
-       * Token not found
-       **/
-      TokenNotFound: AugmentedError<ApiType>;
       /**
        * To many order exceed T::MaxOrders
        **/

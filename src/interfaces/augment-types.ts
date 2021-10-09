@@ -3,6 +3,7 @@
 
 import type { BitVec, Bool, Bytes, Data, I128, I16, I256, I32, I64, I8, Json, Null, Raw, StorageKey, Text, Type, U128, U16, U256, U32, U64, U8, USize, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types';
 import type { EnclaveId, FileId, FileOrder, MachineId, NodeInfo, NodeStats, PubKey, RegisterInfo, RewardInfo, RoundIndex, StashInfo, StoreFile, SummaryStats } from './fileStorage';
+import type { AuctionBid, AuctionBidOf, AuctionId, DutchAuction, DutchAuctionOf, EnglishAuction, EnglishAuctionOf } from './nftAuction';
 import type { ClassIdOf, InstanceIdOf, OrderDetails } from './nftOrder';
 import type { AssetApproval, AssetApprovalKey, AssetBalance, AssetDestroyWitness, AssetDetails, AssetMetadata, TAssetBalance, TAssetDepositBalance } from '@polkadot/types/interfaces/assets';
 import type { BlockAttestations, IncludedBlocks, MoreAttestations } from '@polkadot/types/interfaces/attestations';
@@ -112,6 +113,9 @@ declare module '@polkadot/types/types/registry' {
     AssignmentId: AssignmentId;
     AssignmentKind: AssignmentKind;
     AttestedCandidate: AttestedCandidate;
+    AuctionBid: AuctionBid;
+    AuctionBidOf: AuctionBidOf;
+    AuctionId: AuctionId;
     AuctionIndex: AuctionIndex;
     AuthIndex: AuthIndex;
     AuthorityDiscoveryId: AuthorityDiscoveryId;
@@ -286,6 +290,8 @@ declare module '@polkadot/types/types/registry' {
     DoubleEncodedCall: DoubleEncodedCall;
     DoubleVoteReport: DoubleVoteReport;
     DownwardMessage: DownwardMessage;
+    DutchAuction: DutchAuction;
+    DutchAuctionOf: DutchAuctionOf;
     EcdsaSignature: EcdsaSignature;
     Ed25519Signature: Ed25519Signature;
     ElectionCompute: ElectionCompute;
@@ -297,6 +303,8 @@ declare module '@polkadot/types/types/registry' {
     EnclaveId: EnclaveId;
     EncodedFinalityProofs: EncodedFinalityProofs;
     EncodedJustification: EncodedJustification;
+    EnglishAuction: EnglishAuction;
+    EnglishAuctionOf: EnglishAuctionOf;
     EpochAuthorship: EpochAuthorship;
     Era: Era;
     EraIndex: EraIndex;

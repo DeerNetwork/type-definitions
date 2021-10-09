@@ -4,6 +4,7 @@
 import type { Bytes, Option, Vec, bool, u16, u32 } from '@polkadot/types';
 import type { ITuple } from '@polkadot/types/types';
 import type { EnclaveId, FileId, MachineId } from './fileStorage';
+import type { AuctionId } from './nftAuction';
 import type { BalanceStatus } from '@polkadot/types/interfaces/balances';
 import type { MemberCount, ProposalIndex } from '@polkadot/types/interfaces/collective';
 import type { AuthorityId } from '@polkadot/types/interfaces/consensus';
@@ -506,6 +507,44 @@ declare module '@polkadot/api/types/events' {
        * An asset `instace` was transferred. \[ class, instance, from, to \]
        **/
       Transferred: AugmentedEvent<ApiType, [ClassId, InstanceId, AccountId, AccountId]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    nftAuction: {
+      /**
+       * Bid dutch auction \[who auction_id\]
+       **/
+      BidDutchAuction: AugmentedEvent<ApiType, [AccountId, AuctionId]>;
+      /**
+       * Bid english auction \[who auction_id\]
+       **/
+      BidEnglishAuction: AugmentedEvent<ApiType, [AccountId, AuctionId]>;
+      /**
+       * Canceled dutch auction \[who, auction_id\]
+       **/
+      CanceledDutchAuction: AugmentedEvent<ApiType, [AccountId, AuctionId]>;
+      /**
+       * Canceled english auction \[who, auction_id\]
+       **/
+      CanceledEnglishAuction: AugmentedEvent<ApiType, [AccountId, AuctionId]>;
+      /**
+       * Created ductch auction \[who, auction_id\]
+       **/
+      CreatedDutchAuction: AugmentedEvent<ApiType, [AccountId, AuctionId]>;
+      /**
+       * Created ductch auction \[who, auction_id\]
+       **/
+      CreatedEnglishAuction: AugmentedEvent<ApiType, [AccountId, AuctionId]>;
+      /**
+       * Redeemed dutch auction \[who, auction_id\]
+       **/
+      RedeemedDutchAuction: AugmentedEvent<ApiType, [AccountId, AuctionId]>;
+      /**
+       * Redeemed english auction \[who, auction_id\]
+       **/
+      RedeemedEnglishAuction: AugmentedEvent<ApiType, [AccountId, AuctionId]>;
       /**
        * Generic event
        **/

@@ -417,7 +417,7 @@ declare module '@polkadot/api/types/consts' {
       classDeposit: DepositBalanceOf & AugmentedConst<ApiType>;
       /**
        * The new class id must in (MaxClassId, MaxClassId + T::ClassIdIncLimit]
-       */
+       **/
       classIdIncLimit: ClassId & AugmentedConst<ApiType>;
       /**
        * The basic amount of funds that must be reserved when adding an attribute to an asset.
@@ -449,13 +449,35 @@ declare module '@polkadot/api/types/consts' {
        **/
       [key: string]: Codec;
     };
+    nftAuction: {
+      /**
+       * The basic amount of funds that must be reserved for an order.
+       **/
+      auctionDeposit: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * The amount of auction fee as tax
+       **/
+      auctionFeeTaxRatio: Perbill & AugmentedConst<ApiType>;
+      /**
+       * Delay of auction after bidding
+       **/
+      delayOfAuction: BlockNumberFor & AugmentedConst<ApiType>;
+      /**
+       * Minimum deadline of auction
+       **/
+      minDeadline: BlockNumberFor & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     nftOrder: {
       /**
        * The maximum amount of order an account owned
        **/
       maxOrders: u32 & AugmentedConst<ApiType>;
       /**
-       * The basic amount of funds that must be reserved for an asset class.
+       * The basic amount of funds that must be reserved for an order.
        **/
       orderDeposit: BalanceOf & AugmentedConst<ApiType>;
       /**

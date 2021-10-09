@@ -3,4 +3,5 @@
 
 export * from './nft/types';
 export * from './nftOrder/types';
+export * from './nftAuction/types';
 export * from './fileStorage/types';
