@@ -13,6 +13,7 @@ export default {
       max_price: "Balance",
       deposit: "Balance",
       created_at: "BlockNumber",
+      open_at: "Option<BlockNumber>",
       deadline: "BlockNumber",
     },
     EnglishAuction: {
@@ -23,6 +24,7 @@ export default {
       min_raise_price: "Balance",
       deposit: "Balance",
       created_at: "BlockNumber",
+      open_at: "Option<BlockNumber>",
       deadline: "BlockNumber",
     },
     AuctionBid: {

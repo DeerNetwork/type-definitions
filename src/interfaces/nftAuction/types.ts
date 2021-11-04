@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Struct, u64 } from '@polkadot/types';
+import type { Option, Struct, u64 } from '@polkadot/types';
 import type { AccountId, Balance, BlockNumber } from '@polkadot/types/interfaces/runtime';
 import type { ClassId, InstanceId } from '@polkadot/types/interfaces/uniques';
 
@@ -27,6 +27,7 @@ export interface DutchAuction extends Struct {
   readonly max_price: Balance;
   readonly deposit: Balance;
   readonly created_at: BlockNumber;
+  readonly open_at: Option<BlockNumber>;
   readonly deadline: BlockNumber;
 }
 
@@ -42,6 +43,7 @@ export interface EnglishAuction extends Struct {
   readonly min_raise_price: Balance;
   readonly deposit: Balance;
   readonly created_at: BlockNumber;
+  readonly open_at: Option<BlockNumber>;
   readonly deadline: BlockNumber;
 }
 

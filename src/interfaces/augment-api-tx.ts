@@ -1691,11 +1691,11 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Create an dutch auction.
        **/
-      createDutch: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, instance: Compact<InstanceId> | AnyNumber | Uint8Array, minPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, maxPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, deadline: Compact<BlockNumberFor> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<InstanceId>, Compact<BalanceOf>, Compact<BalanceOf>, Compact<BlockNumberFor>]>;
+      createDutch: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, instance: Compact<InstanceId> | AnyNumber | Uint8Array, minPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, maxPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, deadline: Compact<BlockNumberFor> | AnyNumber | Uint8Array, openAt: Option<BlockNumberFor> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<InstanceId>, Compact<BalanceOf>, Compact<BalanceOf>, Compact<BlockNumberFor>, Option<BlockNumberFor>]>;
       /**
        * Create an english auction.
        **/
-      createEnglish: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, instance: Compact<InstanceId> | AnyNumber | Uint8Array, initPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, minRaisePrice: Compact<BalanceOf> | AnyNumber | Uint8Array, deadline: Compact<BlockNumberFor> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<InstanceId>, Compact<BalanceOf>, Compact<BalanceOf>, Compact<BlockNumberFor>]>;
+      createEnglish: AugmentedSubmittable<(clazz: Compact<ClassId> | AnyNumber | Uint8Array, instance: Compact<InstanceId> | AnyNumber | Uint8Array, initPrice: Compact<BalanceOf> | AnyNumber | Uint8Array, minRaisePrice: Compact<BalanceOf> | AnyNumber | Uint8Array, deadline: Compact<BlockNumberFor> | AnyNumber | Uint8Array, openAt: Option<BlockNumberFor> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ClassId>, Compact<InstanceId>, Compact<BalanceOf>, Compact<BalanceOf>, Compact<BlockNumberFor>, Option<BlockNumberFor>]>;
       /**
        * Redeem duction
        **/

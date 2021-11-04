@@ -767,6 +767,7 @@ declare module '@polkadot/api/types/errors' {
       AuctionBidNotFound: AugmentedError<ApiType>;
       AuctionClosed: AugmentedError<ApiType>;
       AuctionNotFound: AugmentedError<ApiType>;
+      AuctionNotOpen: AugmentedError<ApiType>;
       CannotRedeemNow: AugmentedError<ApiType>;
       CannotRemoveAuction: AugmentedError<ApiType>;
       InsufficientFunds: AugmentedError<ApiType>;
