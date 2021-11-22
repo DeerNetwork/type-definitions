@@ -1,36 +1,4 @@
 export default {
   rpc: {},
-  types: {
-    AuctionId: "u64",
-    DutchAuctionOf: "DutchAuction",
-    EnglishAuctionOf: "EnglishAuction",
-    AuctionBidOf: "AuctionBid",
-    DutchAuction: {
-      owner: "AccountId",
-      class: "Compact<ClassId>",
-      instance: "Compact<InstanceId>",
-      min_price: "Compact<Balance>",
-      max_price: "Compact<Balance>",
-      deposit: "Compact<Balance>",
-      created_at: "Compact<BlockNumber>",
-      open_at: "Compact<BlockNumber>",
-      deadline: "Compact<BlockNumber>",
-    },
-    EnglishAuction: {
-      owner: "AccountId",
-      class: "Compact<ClassId>",
-      instance: "Compact<InstanceId>",
-      init_price: "Compact<Balance>",
-      min_raise_price: "Compact<Balance>",
-      deposit: "Compact<Balance>",
-      created_at: "Compact<BlockNumber>",
-      open_at: "Compact<BlockNumber>",
-      deadline: "Compact<BlockNumber>",
-    },
-    AuctionBid: {
-      account: "AccountId",
-      price: "Compact<Balance>",
-      bid_at: "Compact<BlockNumber>",
-    },
-  },
+  types: {},
 };

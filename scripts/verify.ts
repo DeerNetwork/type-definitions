@@ -1,5 +1,5 @@
-const { typesBundleForPolkadot } = require("../dist");
-const { WsProvider, ApiPromise } = require("@polkadot/api");
+import { WsProvider, ApiPromise } from "@polkadot/api";
+import { typesBundleForPolkadot }  from "../src";
 
 const account = "13UVJyLnbVp9RBZYFwFGyDvVd1y27Tt8tkntv6Q7JVPhFsTB";
 const nftToken = { classId: 1, instanceId: 1 };

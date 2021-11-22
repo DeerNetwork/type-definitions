@@ -4,6 +4,7 @@
     "baseUrl": "./src",
     "module": "commonjs",
     "declaration": true,
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "target": "es6",
     "sourceMap": false,
