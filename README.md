@@ -28,6 +28,7 @@ You will also need to update the `tsconfig.json` of your project to include the 
     "paths": {
       "@polkadot/api/augment": ["../node_modules/@deernetwork/type-definitions/dist/interfaces/augment-api.d.ts"],
       "@polkadot/types/augment": ["../node_modules/@deernetwork/type-definitions/dist/interfaces/augment-types.d.ts"],
+      "@polkadot/types/lookup": ["../node_modules/@deernetwork/type-definitions/dist/interfaces/types-lookup.d.ts"],
     }
   }
 }
