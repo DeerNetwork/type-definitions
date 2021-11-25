@@ -363,6 +363,10 @@ declare module '@polkadot/api/types/consts' {
        **/
       maxFileSize: u64 & AugmentedConst<ApiType>;
       /**
+       * The maximum number of deer the storage mine in each report round
+       **/
+      maxMine: u128 & AugmentedConst<ApiType>;
+      /**
        * The maximum power of node
        **/
       maxPower: u64 & AugmentedConst<ApiType>;
@@ -370,6 +374,10 @@ declare module '@polkadot/api/types/consts' {
        * The maximum number of files in each report
        **/
       maxReportFiles: u32 & AugmentedConst<ApiType>;
+      /**
+       * Mine factor
+       **/
+      mineFactor: Perbill & AugmentedConst<ApiType>;
       /**
        * Number of blocks that node's need report its work
        **/

@@ -4,7 +4,7 @@ import { typesFromDefs, jsonrpcFromDefs } from "./utils";
 
 import v100 from "./spec/v100";
 import v230 from "./spec/v229";
-import v249 from "./spec/v249";
+import v299 from "./spec/v299";
 
 export { nodeTypes };
 
@@ -22,10 +22,10 @@ const bundle = {
       minmax: [100, 229],
       types: v230.types,
     }, {
-      minmax: [230, 249],
-      types: v249.types,
+      minmax: [230, 299],
+      types: v299.types,
     }, {
-      minmax: [250, undefined],
+      minmax: [300, undefined],
       types,
     },
   ] as OverrideVersionedType[],
