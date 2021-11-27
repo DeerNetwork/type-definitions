@@ -151,6 +151,26 @@ declare module '@polkadot/api/types/consts' {
        **/
       [key: string]: Codec;
     };
+    bridge: {
+      /**
+       * The identifier for this chain.
+       * This must be unique and must not collide with existing IDs within a set of bridged
+       * chains.
+       **/
+      bridgeChainId: u8 & AugmentedConst<ApiType>;
+      proposalLifetime: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    bridgeTransfer: {
+      nativeTokenResourceId: U8aFixed & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     democracy: {
       /**
        * Period in blocks where an external proposal may not be re-submitted after being vetoed.
@@ -363,10 +383,6 @@ declare module '@polkadot/api/types/consts' {
        **/
       maxFileSize: u64 & AugmentedConst<ApiType>;
       /**
-       * The maximum number of deer the storage mine in each report round
-       **/
-      maxMine: u128 & AugmentedConst<ApiType>;
-      /**
        * The maximum power of node
        **/
       maxPower: u64 & AugmentedConst<ApiType>;
@@ -374,10 +390,6 @@ declare module '@polkadot/api/types/consts' {
        * The maximum number of files in each report
        **/
       maxReportFiles: u32 & AugmentedConst<ApiType>;
-      /**
-       * Mine factor
-       **/
-      mineFactor: Perbill & AugmentedConst<ApiType>;
       /**
        * Number of blocks that node's need report its work
        **/

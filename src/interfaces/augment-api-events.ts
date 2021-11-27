@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 import type { ApiTypes } from '@polkadot/api/types';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64 } from '@polkadot/types';
+import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types';
 import type { AccountId32, H256 } from '@polkadot/types/interfaces/runtime';
 import type { DeerRuntimeProxyType, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletStakingExposure, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError } from '@polkadot/types/lookup';
 import type { ITuple } from '@polkadot/types/types';
@@ -89,6 +89,88 @@ declare module '@polkadot/api/types/events' {
        * A bounty proposal was rejected; funds were slashed. \[index, bond\]
        **/
       BountyRejected: AugmentedEvent<ApiType, [u32, u128]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    bridge: {
+      /**
+       * Chain now available for transfers (chain_id)
+       **/
+      ChainWhitelisted: AugmentedEvent<ApiType, [u8]>;
+      /**
+       * FungibleTransfer is for relaying fungibles (dest_id, nonce, resource_id, amount,
+       * recipient)
+       **/
+      FungibleTransfer: AugmentedEvent<ApiType, [u8, u64, U8aFixed, U256, Bytes]>;
+      /**
+       * GenericTransfer is for a generic data payload (dest_id, nonce, resource_id, metadata)
+       **/
+      GenericTransfer: AugmentedEvent<ApiType, [u8, u64, U8aFixed, Bytes]>;
+      /**
+       * NonFungibleTransfer is for relaying NFTs (dest_id, nonce, resource_id, token_id,
+       * recipient, metadata)
+       **/
+      NonFungibleTransfer: AugmentedEvent<ApiType, [u8, u64, U8aFixed, Bytes, Bytes, Bytes]>;
+      /**
+       * Voting successful for a proposal
+       **/
+      ProposalApproved: AugmentedEvent<ApiType, [u8, u64]>;
+      /**
+       * Execution of call failed
+       **/
+      ProposalFailed: AugmentedEvent<ApiType, [u8, u64]>;
+      /**
+       * Voting rejected a proposal
+       **/
+      ProposalRejected: AugmentedEvent<ApiType, [u8, u64]>;
+      /**
+       * Execution of call succeeded
+       **/
+      ProposalSucceeded: AugmentedEvent<ApiType, [u8, u64]>;
+      /**
+       * Relayer added to set
+       **/
+      RelayerAdded: AugmentedEvent<ApiType, [AccountId32]>;
+      /**
+       * Relayer removed from set
+       **/
+      RelayerRemoved: AugmentedEvent<ApiType, [AccountId32]>;
+      /**
+       * Vote threshold has changed (new_threshold)
+       **/
+      RelayerThresholdChanged: AugmentedEvent<ApiType, [u32]>;
+      /**
+       * Vot submitted against proposal
+       **/
+      VoteAgainst: AugmentedEvent<ApiType, [u8, u64, AccountId32]>;
+      /**
+       * Vote submitted in favour of proposal
+       **/
+      VoteFor: AugmentedEvent<ApiType, [u8, u64, AccountId32]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    bridgeTransfer: {
+      /**
+       * [resource_id, amount]
+       **/
+      AssetBurned: AugmentedEvent<ApiType, [U8aFixed, u128]>;
+      /**
+       * [resource_id, amount]
+       **/
+      AssetMinted: AugmentedEvent<ApiType, [U8aFixed, u128]>;
+      /**
+       * [chainId, asset_identity, resource_id]
+       **/
+      AssetRegistered: AugmentedEvent<ApiType, [u8, Bytes, U8aFixed]>;
+      /**
+       * [chainId, min_fee, fee_scale]
+       **/
+      FeeUpdated: AugmentedEvent<ApiType, [u8, u128, u32]>;
       /**
        * Generic event
        **/

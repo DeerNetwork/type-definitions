@@ -301,6 +301,132 @@ declare module '@polkadot/api/types/submittable' {
        **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
+    bridge: {
+      /**
+       * Commits a vote in favour of the provided proposal.
+       * 
+       * If a proposal with the given nonce and source chain ID does not already exist, it will
+       * be created with an initial vote in favour from the caller.
+       * 
+       * # <weight>
+       * - weight of proposed call, regardless of whether execution is performed
+       * # </weight>
+       **/
+      acknowledgeProposal: AugmentedSubmittable<(nonce: u64 | AnyNumber | Uint8Array, srcId: u8 | AnyNumber | Uint8Array, rId: U8aFixed | string | Uint8Array, call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u64, u8, U8aFixed, Call]>;
+      /**
+       * Adds a new relayer to the relayer set.
+       * 
+       * # <weight>
+       * - O(1) lookup and insert
+       * # </weight>
+       **/
+      addRelayer: AugmentedSubmittable<(v: AccountId32 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32]>;
+      /**
+       * Evaluate the state of a proposal given the current vote threshold.
+       * 
+       * A proposal with enough votes will be either executed or cancelled, and the status
+       * will be updated accordingly.
+       * 
+       * # <weight>
+       * - weight of proposed call, regardless of whether execution is performed
+       * # </weight>
+       **/
+      evalVoteState: AugmentedSubmittable<(nonce: u64 | AnyNumber | Uint8Array, srcId: u8 | AnyNumber | Uint8Array, prop: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u64, u8, Call]>;
+      /**
+       * Commits a vote against a provided proposal.
+       * 
+       * # <weight>
+       * - Fixed, since execution of proposal should not be included
+       * # </weight>
+       **/
+      rejectProposal: AugmentedSubmittable<(nonce: u64 | AnyNumber | Uint8Array, srcId: u8 | AnyNumber | Uint8Array, rId: U8aFixed | string | Uint8Array, call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u64, u8, U8aFixed, Call]>;
+      /**
+       * Removes an existing relayer from the set.
+       * 
+       * # <weight>
+       * - O(1) lookup and removal
+       * # </weight>
+       **/
+      removeRelayer: AugmentedSubmittable<(v: AccountId32 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32]>;
+      /**
+       * Removes a resource ID from the resource mapping.
+       * 
+       * After this call, bridge transfers with the associated resource ID will
+       * be rejected.
+       * 
+       * # <weight>
+       * - O(1) removal
+       * # </weight>
+       **/
+      removeResource: AugmentedSubmittable<(id: U8aFixed | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [U8aFixed]>;
+      /**
+       * Stores a method name on chain under an associated resource ID.
+       * 
+       * # <weight>
+       * - O(1) write
+       * # </weight>
+       **/
+      setResource: AugmentedSubmittable<(id: U8aFixed | string | Uint8Array, method: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [U8aFixed, Bytes]>;
+      /**
+       * Sets the vote threshold for proposals.
+       * 
+       * This threshold is used to determine how many votes are required
+       * before a proposal is executed.
+       * 
+       * # <weight>
+       * - O(1) lookup and insert
+       * # </weight>
+       **/
+      setThreshold: AugmentedSubmittable<(threshold: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * Enables a chain ID as a source or destination for a bridge transfer.
+       * 
+       * # <weight>
+       * - O(1) lookup and insert
+       * # </weight>
+       **/
+      whitelistChain: AugmentedSubmittable<(id: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u8]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    bridgeTransfer: {
+      /**
+       * Do burn operation on specific asset
+       **/
+      burnAsset: AugmentedSubmittable<(asset: U8aFixed | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [U8aFixed, u128]>;
+      /**
+       * Change extra bridge transfer fee that user should pay
+       **/
+      changeFee: AugmentedSubmittable<(minFee: u128 | AnyNumber | Uint8Array, feeScale: u32 | AnyNumber | Uint8Array, destId: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128, u32, u8]>;
+      /**
+       * Do mint operation on specific asset
+       **/
+      mintAsset: AugmentedSubmittable<(asset: U8aFixed | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [U8aFixed, u128]>;
+      /**
+       * Register an asset.
+       **/
+      registerAsset: AugmentedSubmittable<(assetIdentity: Bytes | string | Uint8Array, destId: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, u8]>;
+      /**
+       * Executes a simple currency transfer using the bridge account as the source
+       **/
+      transfer: AugmentedSubmittable<(to: AccountId32 | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array, rid: U8aFixed | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32, u128, U8aFixed]>;
+      /**
+       * Transfer some amount of specific asset to some recipient on a (whitelisted) distination
+       * chain.
+       **/
+      transferAssets: AugmentedSubmittable<(asset: U8aFixed | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array, recipient: Bytes | string | Uint8Array, destId: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [U8aFixed, u128, Bytes, u8]>;
+      /**
+       * Transfers some amount of the native token to some recipient on a (whitelisted)
+       * destination chain.
+       **/
+      transferNative: AugmentedSubmittable<(amount: u128 | AnyNumber | Uint8Array, recipient: Bytes | string | Uint8Array, destId: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128, Bytes, u8]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
     council: {
       /**
        * Close a vote that is either approved, disapproved or whose voting period has ended.

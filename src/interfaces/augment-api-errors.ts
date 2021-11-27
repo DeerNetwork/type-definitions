@@ -138,6 +138,88 @@ declare module '@polkadot/api/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    bridge: {
+      /**
+       * Chain has already been enabled
+       **/
+      ChainAlreadyWhitelisted: AugmentedError<ApiType>;
+      /**
+       * Interactions with this chain is not permitted
+       **/
+      ChainNotWhitelisted: AugmentedError<ApiType>;
+      /**
+       * Provided chain Id is not valid
+       **/
+      InvalidChainId: AugmentedError<ApiType>;
+      /**
+       * Relayer threshold cannot be 0
+       **/
+      InvalidThreshold: AugmentedError<ApiType>;
+      /**
+       * Protected operation, must be performed by relayer
+       **/
+      MustBeRelayer: AugmentedError<ApiType>;
+      /**
+       * Proposal has either failed or succeeded
+       **/
+      ProposalAlreadyComplete: AugmentedError<ApiType>;
+      /**
+       * A proposal with these parameters has already been submitted
+       **/
+      ProposalAlreadyExists: AugmentedError<ApiType>;
+      /**
+       * No proposal with the ID was found
+       **/
+      ProposalDoesNotExist: AugmentedError<ApiType>;
+      /**
+       * Lifetime of proposal has been exceeded
+       **/
+      ProposalExpired: AugmentedError<ApiType>;
+      /**
+       * Cannot complete proposal, needs more votes
+       **/
+      ProposalNotComplete: AugmentedError<ApiType>;
+      /**
+       * Relayer already in set
+       **/
+      RelayerAlreadyExists: AugmentedError<ApiType>;
+      /**
+       * Relayer has already submitted some vote for this proposal
+       **/
+      RelayerAlreadyVoted: AugmentedError<ApiType>;
+      /**
+       * Provided accountId is not a relayer
+       **/
+      RelayerInvalid: AugmentedError<ApiType>;
+      /**
+       * Resource ID provided isn't mapped to anything
+       **/
+      ResourceDoesNotExist: AugmentedError<ApiType>;
+      /**
+       * Relayer threshold not set
+       **/
+      ThresholdNotSet: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    bridgeTransfer: {
+      AccountNotExist: AugmentedError<ApiType>;
+      AssetNotRegistered: AugmentedError<ApiType>;
+      BalanceOverflow: AugmentedError<ApiType>;
+      FeeOptionsMissing: AugmentedError<ApiType>;
+      InsufficientBalance: AugmentedError<ApiType>;
+      InvalidCommand: AugmentedError<ApiType>;
+      InvalidFeeOption: AugmentedError<ApiType>;
+      InvalidPayload: AugmentedError<ApiType>;
+      InvalidTransfer: AugmentedError<ApiType>;
+      ResourceIdInUse: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     council: {
       /**
        * Members are already initialized!
