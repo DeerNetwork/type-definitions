@@ -25,7 +25,8 @@ declare module '@polkadot/api/types/events' {
        **/
       BalanceSet: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
       /**
-       * Some amount was deposited (e.g. for transaction fees). \[who, deposit\]
+       * Some amount was deposited into the account (e.g. for transaction fees). \[who,
+       * deposit\]
        **/
       Deposit: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
@@ -48,6 +49,11 @@ declare module '@polkadot/api/types/events' {
        **/
       ReserveRepatriated: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, FrameSupportTokensMiscBalanceStatus]>;
       /**
+       * Some amount was removed from the account (e.g. for misbehavior). \[who,
+       * amount_slashed\]
+       **/
+      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
        * Transfer succeeded. \[from, to, value\]
        **/
       Transfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
@@ -55,6 +61,10 @@ declare module '@polkadot/api/types/events' {
        * Some balance was unreserved (moved from reserved to free). \[who, value\]
        **/
       Unreserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Some amount was withdrawn from the account (e.g. for transaction fees). \[who, value\]
+       **/
+      Withdraw: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * Generic event
        **/
@@ -155,18 +165,6 @@ declare module '@polkadot/api/types/events' {
       [key: string]: AugmentedEvent<ApiType>;
     };
     bridgeTransfer: {
-      /**
-       * [resource_id, amount]
-       **/
-      AssetBurned: AugmentedEvent<ApiType, [U8aFixed, u128]>;
-      /**
-       * [resource_id, amount]
-       **/
-      AssetMinted: AugmentedEvent<ApiType, [U8aFixed, u128]>;
-      /**
-       * [chainId, asset_identity, resource_id]
-       **/
-      AssetRegistered: AugmentedEvent<ApiType, [u8, Bytes, U8aFixed]>;
       /**
        * [chainId, min_fee, fee_scale]
        **/
@@ -550,39 +548,21 @@ declare module '@polkadot/api/types/events' {
     };
     nft: {
       /**
-       * Attribute metadata has been cleared for an asset class or instance.
-       * \[ class, maybe_instance, key, maybe_value \]
+       * An asset `instance` was burned. \[ class_id, token_id, quantity, owner \]
        **/
-      AttributeCleared: AugmentedEvent<ApiType, [u32, Option<u32>, Bytes]>;
+      BurnedToken: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32]>;
       /**
-       * New attribute metadata has been set for an asset class or instance.
-       * \[ class, maybe_instance, key, value \]
+       * An asset class was created. \[ class_id, owner \]
        **/
-      AttributeSet: AugmentedEvent<ApiType, [u32, Option<u32>, Bytes, Bytes]>;
+      CreatedClass: AugmentedEvent<ApiType, [u32, AccountId32]>;
       /**
-       * An asset `instance` was destroyed. \[ class, instance, owner \]
+       * An asset `instace` was minted. \[ class_id, token_id, quantity, owner, who \]
        **/
-      Burned: AugmentedEvent<ApiType, [u32, u32, AccountId32]>;
+      MintedToken: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, AccountId32]>;
       /**
-       * An asset `instace` was ready to transfer. \[ class, instance, owner \]
+       * An asset `instace` was transferred. \[ class_id, token_id, quantity, from, to \]
        **/
-      CancelTransfer: AugmentedEvent<ApiType, [u32, u32, AccountId32]>;
-      /**
-       * An asset class was created. \[ class, creator \]
-       **/
-      Created: AugmentedEvent<ApiType, [u32, AccountId32]>;
-      /**
-       * An asset `instace` was issued. \[ class, instance, owner \]
-       **/
-      Issued: AugmentedEvent<ApiType, [u32, u32, AccountId32]>;
-      /**
-       * An asset `instace` was ready to transfer. \[ class, instance, from, to \]
-       **/
-      ReadyTransfer: AugmentedEvent<ApiType, [u32, u32, AccountId32, AccountId32]>;
-      /**
-       * An asset `instace` was transferred. \[ class, instance, from, to \]
-       **/
-      Transferred: AugmentedEvent<ApiType, [u32, u32, AccountId32, AccountId32]>;
+      TransferredToken: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, AccountId32]>;
       /**
        * Generic event
        **/
@@ -606,13 +586,13 @@ declare module '@polkadot/api/types/events' {
        **/
       CanceledEnglishAuction: AugmentedEvent<ApiType, [AccountId32, u64]>;
       /**
-       * Created ductch auction \[who, auction_id\]
+       * Created ductch auction \[class_id, token_id, quantity, who, auction_id\]
        **/
-      CreatedDutchAuction: AugmentedEvent<ApiType, [AccountId32, u64]>;
+      CreatedDutchAuction: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, u64]>;
       /**
-       * Created ductch auction \[who, auction_id\]
+       * Created ductch auction \[class_id, token_id, quantity, who, auction_id\]
        **/
-      CreatedEnglishAuction: AugmentedEvent<ApiType, [AccountId32, u64]>;
+      CreatedEnglishAuction: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, u64]>;
       /**
        * Redeemed dutch auction \[who, auction_id\]
        **/
@@ -628,17 +608,17 @@ declare module '@polkadot/api/types/events' {
     };
     nftOrder: {
       /**
-       * Make a deal with sell order, \[ class, instance, from, to \]
+       * Make a deal with sell order, \[ class_id, token_id, quantity, from, to \]
        **/
-      Dealed: AugmentedEvent<ApiType, [u32, u32, AccountId32, AccountId32]>;
+      Dealed: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, AccountId32]>;
       /**
-       * Removed an sell order , \[ class, instance, account \]
+       * Removed an sell order , \[ class_id, token_id, quantity, account \]
        **/
-      Removed: AugmentedEvent<ApiType, [u32, u32, AccountId32]>;
+      Removed: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32]>;
       /**
-       * Selling a nft asset, \[ class, instance, account \]
+       * Selling a nft asset, \[ class_id, token_id, quantity, account \]
        **/
-      Selling: AugmentedEvent<ApiType, [u32, u32, AccountId32]>;
+      Selling: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32]>;
       /**
        * Generic event
        **/

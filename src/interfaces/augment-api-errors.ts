@@ -205,16 +205,12 @@ declare module '@polkadot/api/types/errors' {
       [key: string]: AugmentedError<ApiType>;
     };
     bridgeTransfer: {
-      AccountNotExist: AugmentedError<ApiType>;
-      AssetNotRegistered: AugmentedError<ApiType>;
-      BalanceOverflow: AugmentedError<ApiType>;
       FeeOptionsMissing: AugmentedError<ApiType>;
       InsufficientBalance: AugmentedError<ApiType>;
       InvalidCommand: AugmentedError<ApiType>;
       InvalidFeeOption: AugmentedError<ApiType>;
-      InvalidPayload: AugmentedError<ApiType>;
+      InvalidResourceId: AugmentedError<ApiType>;
       InvalidTransfer: AugmentedError<ApiType>;
-      ResourceIdInUse: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -797,49 +793,37 @@ declare module '@polkadot/api/types/errors' {
     };
     nft: {
       /**
-       * The asset class Id or instance ID has already been used for an asset.
+       * Class not found
        **/
-      AlreadyExists: AugmentedError<ApiType>;
+      ClassNotFound: AugmentedError<ApiType>;
       /**
-       * The asset is ready reserved
+       * Quantity is invalid
        **/
-      AlreadyReserved: AugmentedError<ApiType>;
+      InvalidQuantity: AugmentedError<ApiType>;
       /**
-       * The class id is not in (MaxClassId, MaxClassId + T::ClassIdIncLimit]
+       * No available class ID
        **/
-      ClassIdTooLarge: AugmentedError<ApiType>;
+      NoAvailableClassId: AugmentedError<ApiType>;
       /**
-       * The given asset ID is nof found.
+       * No available token ID
        **/
-      NotFound: AugmentedError<ApiType>;
+      NoAvailableTokenId: AugmentedError<ApiType>;
       /**
-       * The asset is not ready to transer
+       * The operator is not the owner of the token and has no permission
        **/
-      NotReadyTransfer: AugmentedError<ApiType>;
+      NoPermission: AugmentedError<ApiType>;
       /**
-       * The asset is not reserved
+       * Num overflow
        **/
-      NotReserved: AugmentedError<ApiType>;
-      /**
-       * The transfer target is not origin
-       **/
-      NotTranserTarget: AugmentedError<ApiType>;
+      NumOverflow: AugmentedError<ApiType>;
       /**
        * Royalty rate great than RoyaltyRateLimit
        **/
       RoyaltyRateTooHigh: AugmentedError<ApiType>;
       /**
-       * Unknown error
+       * Token not found
        **/
-      Unknown: AugmentedError<ApiType>;
-      /**
-       * The owner of class turned out to be different to what was expected.
-       **/
-      WrongClassOwner: AugmentedError<ApiType>;
-      /**
-       * The owner turned out to be different to what was expected.
-       **/
-      WrongOwner: AugmentedError<ApiType>;
+      TokenNotFound: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -856,7 +840,6 @@ declare module '@polkadot/api/types/errors' {
       InvalidBidPrice: AugmentedError<ApiType>;
       InvalidDeadline: AugmentedError<ApiType>;
       InvalidNextAuctionId: AugmentedError<ApiType>;
-      InvalidNFT: AugmentedError<ApiType>;
       InvalidPrice: AugmentedError<ApiType>;
       MissDutchBidPrice: AugmentedError<ApiType>;
       NotBidAccount: AugmentedError<ApiType>;
@@ -876,14 +859,6 @@ declare module '@polkadot/api/types/errors' {
        * Invalid deaeline
        **/
       InvalidDeadline: AugmentedError<ApiType>;
-      /**
-       * Invalid NFt
-       **/
-      InvalidNFT: AugmentedError<ApiType>;
-      /**
-       * Not own the asset
-       **/
-      NotOwn: AugmentedError<ApiType>;
       /**
        * A sell order already expired
        **/

@@ -4,7 +4,7 @@
 import type { ApiTypes } from '@polkadot/api/types';
 import type { BTreeMap, Bytes, Data, Null, Option, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64, u8 } from '@polkadot/types';
 import type { AccountId32, Call, H256, Perbill, Percent } from '@polkadot/types/interfaces/runtime';
-import type { DeerRuntimeSessionKeys, FrameSupportWeightsPerDispatchClassU64, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReleases, PalletBalancesReserveData, PalletBountiesBounty, PalletBridgeBridgeEvent, PalletBridgeProposalVotes, PalletBridgeTransferAssetInfo, PalletCollectiveVotes, PalletDemocracyPreimageStatus, PalletDemocracyReferendumInfo, PalletDemocracyReleases, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletMultisigMultisig, PalletNftAuctionAuctionBid, PalletNftAuctionDutchAuction, PalletNftAuctionEnglishAuction, PalletNftAuctionReleases, PalletNftClassDetails, PalletNftInstanceDetails, PalletNftOrderOrderDetails, PalletNftReleases, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletSchedulerReleases, PalletSchedulerScheduledV2, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingReleases, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletStorageFileOrder, PalletStorageNodeInfo, PalletStorageNodeStats, PalletStorageRegisterInfo, PalletStorageRewardInfo, PalletStorageStashInfo, PalletStorageStoreFile, PalletStorageSummaryStats, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTransactionStorageTransactionInfo, PalletTreasuryProposal, PalletVestingReleases, PalletVestingVestingInfo, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpStakingOffenceOffenceDetails } from '@polkadot/types/lookup';
+import type { DeerRuntimeSessionKeys, FrameSupportWeightsPerDispatchClassU64, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReleases, PalletBalancesReserveData, PalletBountiesBounty, PalletBridgeBridgeEvent, PalletBridgeProposalVotes, PalletCollectiveVotes, PalletDemocracyPreimageStatus, PalletDemocracyReferendumInfo, PalletDemocracyReleases, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletMultisigMultisig, PalletNftAuctionAuctionBid, PalletNftAuctionDutchAuction, PalletNftAuctionEnglishAuction, PalletNftAuctionReleases, PalletNftClassDetails, PalletNftOrderOrderDetails, PalletNftOrderReleases, PalletNftReleases, PalletNftTokenAmount, PalletNftTokenDetails, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletSchedulerReleases, PalletSchedulerScheduledV2, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingReleases, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletStorageFileOrder, PalletStorageNodeInfo, PalletStorageNodeStats, PalletStorageRegisterInfo, PalletStorageRewardInfo, PalletStorageStashInfo, PalletStorageStoreFile, PalletStorageSummaryStats, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTransactionStorageTransactionInfo, PalletTreasuryProposal, PalletVestingReleases, PalletVestingVestingInfo, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpStakingOffenceOffenceDetails } from '@polkadot/types/lookup';
 import type { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
 
 declare module '@polkadot/api/types/storage' {
@@ -218,8 +218,6 @@ declare module '@polkadot/api/types/storage' {
       [key: string]: QueryableStorageEntry<ApiType>;
     };
     bridgeTransfer: {
-      bridgeAssets: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<Option<PalletBridgeTransferAssetInfo>>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
-      bridgeBalances: AugmentedQuery<ApiType, (arg1: U8aFixed | string | Uint8Array, arg2: AccountId32 | string | Uint8Array) => Observable<Option<u128>>, [U8aFixed, AccountId32]> & QueryableStorageEntry<ApiType, [U8aFixed, AccountId32]>;
       bridgeFee: AugmentedQuery<ApiType, (arg: u8 | AnyNumber | Uint8Array) => Observable<ITuple<[u128, u32]>>, [u8]> & QueryableStorageEntry<ApiType, [u8]>;
       /**
        * Generic query
@@ -599,7 +597,7 @@ declare module '@polkadot/api/types/storage' {
        **/
       keys: AugmentedQuery<ApiType, () => Observable<Vec<PalletImOnlineSr25519AppSr25519Public>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * For each session index, we keep a mapping of 'SessionIndex` and `AuthIndex` to
+       * For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
        * `WrapperOpaque<BoundedOpaqueNetworkState>`.
        **/
       receivedHeartbeats: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<WrapperOpaque<PalletImOnlineBoundedOpaqueNetworkState>>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
@@ -631,33 +629,35 @@ declare module '@polkadot/api/types/storage' {
     };
     nft: {
       /**
-       * The assets held by any given account; set out this way so that assets owned by a single
-       * account can be enumerated.
+       * Store class info.
        **/
-      account: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: u32 | AnyNumber | Uint8Array, arg3: u32 | AnyNumber | Uint8Array) => Observable<Option<Null>>, [AccountId32, u32, u32]> & QueryableStorageEntry<ApiType, [AccountId32, u32, u32]>;
+      classes: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftClassDetails>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
       /**
-       * The assets in existence and their ownership details.
+       * Next available class ID.
        **/
-      asset: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftInstanceDetails>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
-      assetTransfer: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: u32 | AnyNumber | Uint8Array, arg3: u32 | AnyNumber | Uint8Array) => Observable<Option<Null>>, [AccountId32, u32, u32]> & QueryableStorageEntry<ApiType, [AccountId32, u32, u32]>;
+      nextClassId: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * Metadata of an asset class.
+       * Next available token ID.
        **/
-      attribute: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: Option<u32> | null | object | string | Uint8Array, arg3: Bytes | string | Uint8Array) => Observable<Option<ITuple<[Bytes, u128]>>>, [u32, Option<u32>, Bytes]> & QueryableStorageEntry<ApiType, [u32, Option<u32>, Bytes]>;
+      nextTokenId: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<u32>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
       /**
-       * Details of an asset class.
+       * An index to query owners by token
        **/
-      class: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftClassDetails>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * Maximum class id in this pallet
-       **/
-      maxClassId: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      ownersByToken: AugmentedQuery<ApiType, (arg1: ITuple<[u32, u32]> | [u32 | AnyNumber | Uint8Array, u32 | AnyNumber | Uint8Array], arg2: AccountId32 | string | Uint8Array) => Observable<Option<Null>>, [ITuple<[u32, u32]>, AccountId32]> & QueryableStorageEntry<ApiType, [ITuple<[u32, u32]>, AccountId32]>;
       /**
        * Storage version of the pallet.
        * 
        * New networks start with last version.
        **/
       storageVersion: AugmentedQuery<ApiType, () => Observable<PalletNftReleases>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Store token info.
+       **/
+      tokens: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftTokenDetails>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * Token existence check by owner and class ID.
+       **/
+      tokensByOwner: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: ITuple<[u32, u32]> | [u32 | AnyNumber | Uint8Array, u32 | AnyNumber | Uint8Array]) => Observable<Option<PalletNftTokenAmount>>, [AccountId32, ITuple<[u32, u32]>]> & QueryableStorageEntry<ApiType, [AccountId32, ITuple<[u32, u32]>]>;
       /**
        * Generic query
        **/
@@ -708,6 +708,12 @@ declare module '@polkadot/api/types/storage' {
        * An index mapping from token to order.
        **/
       orders: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftOrderOrderDetails>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * Storage version of the pallet.
+       * 
+       * New networks start with last version.
+       **/
+      storageVersion: AugmentedQuery<ApiType, () => Observable<PalletNftOrderReleases>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -791,7 +797,9 @@ declare module '@polkadot/api/types/storage' {
       /**
        * Indices of disabled validators.
        * 
-       * The set is cleared when `on_session_ending` returns a new set of identities.
+       * The vec is always kept sorted so that we can find whether a given validator is
+       * disabled using binary search. It gets cleared when `on_session_ending` returns
+       * a new set of identities.
        **/
       disabledValidators: AugmentedQuery<ApiType, () => Observable<Vec<u32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
@@ -988,6 +996,18 @@ declare module '@polkadot/api/types/storage' {
        * All slashing events on nominators, mapped by era to the highest slash value of the era.
        **/
       nominatorSlashInEra: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: AccountId32 | string | Uint8Array) => Observable<Option<u128>>, [u32, AccountId32]> & QueryableStorageEntry<ApiType, [u32, AccountId32]>;
+      /**
+       * Indices of validators that have offended in the active era and whether they are currently
+       * disabled.
+       * 
+       * This value should be a superset of disabled validators since not all offences lead to the
+       * validator being disabled (if there was no slash). This is needed to track the percentage of
+       * validators that have offended in the current era, ensuring a new era is forced if
+       * `OffendingValidatorsThreshold` is reached. The vec is always kept sorted so that we can find
+       * whether a given validator has previously offended using binary search. It gets cleared when
+       * the era ends.
+       **/
+      offendingValidators: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, bool]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Where the reward payment should be made. Keyed by stash.
        **/

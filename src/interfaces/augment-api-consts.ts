@@ -383,6 +383,10 @@ declare module '@polkadot/api/types/consts' {
        **/
       maxFileSize: u64 & AugmentedConst<ApiType>;
       /**
+       * The maximum number of deer the storage mine in each report round
+       **/
+      maxMine: u128 & AugmentedConst<ApiType>;
+      /**
        * The maximum power of node
        **/
       maxPower: u64 & AugmentedConst<ApiType>;
@@ -390,6 +394,10 @@ declare module '@polkadot/api/types/consts' {
        * The maximum number of files in each report
        **/
       maxReportFiles: u32 & AugmentedConst<ApiType>;
+      /**
+       * Mine factor
+       **/
+      mineFactor: Perbill & AugmentedConst<ApiType>;
       /**
        * Number of blocks that node's need report its work
        **/
@@ -509,34 +517,17 @@ declare module '@polkadot/api/types/consts' {
        **/
       classDeposit: u128 & AugmentedConst<ApiType>;
       /**
-       * The new class id must in (MaxClassId, MaxClassId + T::ClassIdIncLimit]
+       * The amount of balance that must be deposited per byte of metadata.
        **/
-      classIdIncLimit: u32 & AugmentedConst<ApiType>;
-      /**
-       * The basic amount of funds that must be reserved when adding an attribute to an asset.
-       **/
-      depositBase: u128 & AugmentedConst<ApiType>;
-      /**
-       * The additional funds that must be reserved for the number of bytes store in metadata,
-       * either "normal" metadata or attribute metadata.
-       **/
-      depositPerByte: u128 & AugmentedConst<ApiType>;
-      /**
-       * The basic amount of funds that must be reserved for an asset instance.
-       **/
-      instanceDeposit: u128 & AugmentedConst<ApiType>;
-      /**
-       * The maximum length of an attribute key.
-       **/
-      keyLimit: u32 & AugmentedConst<ApiType>;
+      metaDataByteDeposit: u128 & AugmentedConst<ApiType>;
       /**
        * The maximum of royalty rate
        **/
       royaltyRateLimit: Perbill & AugmentedConst<ApiType>;
       /**
-       * The maximum length of an attribute value.
+       * The basic amount of funds that must be reserved for an asset instance.
        **/
-      valueLimit: u32 & AugmentedConst<ApiType>;
+      tokenDeposit: u128 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

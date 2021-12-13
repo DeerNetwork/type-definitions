@@ -393,30 +393,17 @@ declare module '@polkadot/api/types/submittable' {
     };
     bridgeTransfer: {
       /**
-       * Do burn operation on specific asset
-       **/
-      burnAsset: AugmentedSubmittable<(asset: U8aFixed | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [U8aFixed, u128]>;
-      /**
        * Change extra bridge transfer fee that user should pay
        **/
       changeFee: AugmentedSubmittable<(minFee: u128 | AnyNumber | Uint8Array, feeScale: u32 | AnyNumber | Uint8Array, destId: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128, u32, u8]>;
       /**
-       * Do mint operation on specific asset
+       * Returns some amount of the native token as proposal rejected
        **/
-      mintAsset: AugmentedSubmittable<(asset: U8aFixed | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [U8aFixed, u128]>;
-      /**
-       * Register an asset.
-       **/
-      registerAsset: AugmentedSubmittable<(assetIdentity: Bytes | string | Uint8Array, destId: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, u8]>;
+      returnTransferNative: AugmentedSubmittable<(amount: u128 | AnyNumber | Uint8Array, to: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128, MultiAddress]>;
       /**
        * Executes a simple currency transfer using the bridge account as the source
        **/
       transfer: AugmentedSubmittable<(to: AccountId32 | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array, rid: U8aFixed | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32, u128, U8aFixed]>;
-      /**
-       * Transfer some amount of specific asset to some recipient on a (whitelisted) distination
-       * chain.
-       **/
-      transferAssets: AugmentedSubmittable<(asset: U8aFixed | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array, recipient: Bytes | string | Uint8Array, destId: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [U8aFixed, u128, Bytes, u8]>;
       /**
        * Transfers some amount of the native token to some recipient on a (whitelisted)
        * destination chain.
@@ -1691,118 +1678,38 @@ declare module '@polkadot/api/types/submittable' {
     };
     nft: {
       /**
-       * Accept transfer
-       * 
-       * Arguments:
-       * - `class`: The class of the asset to be transferred.
-       * - `instance`: The instance of the asset to be transferred.
-       * 
-       * Emits `CancelTransfer`.
-       * 
-       * Weight: `O(1)`
+       * Burn NFT token
        **/
-      acceptTransfer: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
+      burn: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>]>;
       /**
-       * Destroy a single asset instance.
-       * 
-       * Origin must be Signed and the sender should be the Admin of the asset `class`.
-       * 
-       * - `class`: The class of the asset to be burned.
-       * - `instance`: The instance of the asset to be burned.
-       * 
-       * Emits `Burned` with the actual amount burned.
-       * 
-       * Weight: `O(1)`
-       * Modes: `check_owner.is_some()`.
+       * Create NFT(non fungible token) class
        **/
-      burn: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
+      createClass: AugmentedSubmittable<(metadata: Bytes | string | Uint8Array, royaltyRate: Compact<Perbill> | AnyNumber | Uint8Array, permission: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Compact<Perbill>, u8]>;
       /**
-       * Cancel transfer
-       * 
-       * Arguments:
-       * - `class`: The class of the asset to be transferred.
-       * - `instance`: The instance of the asset to be transferred.
-       * 
-       * Emits `CancelTransfer`.
-       * 
-       * Weight: `O(1)`
+       * Mint NFT token anyone else other than class owner
        **/
-      cancelTransfer: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
+      delegateMint: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, metadata: Bytes | string | Uint8Array, royaltyRate: Option<Perbill> | null | object | string | Uint8Array, royaltyBeneficiary: Option<AccountId32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Bytes, Option<Perbill>, Option<AccountId32>]>;
       /**
-       * Clear attribute for an asset class or instance.
-       * 
-       * Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
-       * asset `class`.
-       * 
-       * - `class`: The identifier of the asset class whose instance's metadata to set.
-       * - `instance`: The identifier of the asset instance whose metadata to set.
-       * - `key`: The key of the attribute.
-       * 
-       * Emits `AttributeCleared`.
-       * 
-       * Weight: `O(1)`
+       * Mint NFT token by class owner
        **/
-      clearAttribute: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, maybeInstance: Option<u32> | null | object | string | Uint8Array, key: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Option<u32>, Bytes]>;
+      mint: AugmentedSubmittable<(to: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, classId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, metadata: Bytes | string | Uint8Array, royaltyRate: Option<Perbill> | null | object | string | Uint8Array, royaltyBeneficiary: Option<AccountId32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u32>, Compact<u32>, Bytes, Option<Perbill>, Option<AccountId32>]>;
       /**
-       * Issue a new class of non-fungible assets from a public origin.
+       * Transfer NFT tokens to another account
        * 
-       * This new asset class has no assets initially and its owner is the origin.
-       * 
-       * The origin must be Signed and the sender must have sufficient funds free.
-       * 
-       * `AssetDeposit` funds of sender are reserved.
-       * 
-       * Parameters:
-       * - `class`: The identifier of the new asset class. This must not be currently in use.
-       * 
-       * Emits `Created` event when successful.
-       * 
-       * Weight: `O(1)`
+       * - `to`: the token owner's account
+       * - `class_id`: class id
+       * - `token_id`: token id
+       * - `quantity`: quantity
        **/
-      create: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, royaltyRate: Compact<Perbill> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<Perbill>]>;
+      transfer: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, to: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, MultiAddress]>;
       /**
-       * Mint an asset instance of a particular class.
-       * 
-       * The origin must be Signed and the sender must be the Issuer of the asset `class`.
-       * 
-       * - `class`: The class of the asset to be minted.
-       * - `instance`: The instance value of the asset to be minted.
-       * 
-       * Emits `Issued` event when successful.
-       * 
-       * Weight: `O(1)`
+       * Update token royalty.
        **/
-      mint: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array, royaltyRate: Option<Perbill> | null | object | string | Uint8Array, royaltyBeneficiary: Option<AccountId32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Option<Perbill>, Option<AccountId32>]>;
+      updateTokenRoyalty: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, royaltyRate: Perbill | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Perbill]>;
       /**
-       * Ready to transfer an asset from the sender account to another.
-       * 
-       * Arguments:
-       * - `class`: The class of the asset to be transferred.
-       * - `instance`: The instance of the asset to be transferred.
-       * - `dest`: The account to receive ownership of the asset.
-       * 
-       * Emits `ReadyTransfer`.
-       * 
-       * Weight: `O(1)`
+       * Update token royalty beneficiary.
        **/
-      readyTransfer: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array, dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, MultiAddress]>;
-      /**
-       * Set an attribute for an asset class or instance.
-       * 
-       * If the origin is Signed, then funds of signer are reserved according to the formula:
-       * `DepositBase + DepositPerByte * (key.len + value.len)` taking into
-       * account any already reserved funds.
-       * 
-       * - `class`: The identifier of the asset class whose instance's metadata to set.
-       * - `maybe_instance`: The identifier of the asset instance whose metadata to set.
-       * - `key`: The key of the attribute.
-       * - `value`: The value to which to set the attribute.
-       * 
-       * Emits `AttributeSet`.
-       * 
-       * Weight: `O(1)`
-       **/
-      setAttribute: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, maybeInstance: Option<u32> | null | object | string | Uint8Array, key: Bytes | string | Uint8Array, value: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Option<u32>, Bytes, Bytes]>;
+      updateTokenRoyaltyBeneficiary: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, to: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, MultiAddress]>;
       /**
        * Generic tx
        **/
@@ -1830,11 +1737,11 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Create an dutch auction.
        **/
-      createDutch: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array, minPrice: Compact<u128> | AnyNumber | Uint8Array, maxPrice: Compact<u128> | AnyNumber | Uint8Array, deadline: Compact<u32> | AnyNumber | Uint8Array, openAt: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u128>, Compact<u128>, Compact<u32>, Option<u32>]>;
+      createDutch: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, minPrice: Compact<u128> | AnyNumber | Uint8Array, maxPrice: Compact<u128> | AnyNumber | Uint8Array, deadline: Compact<u32> | AnyNumber | Uint8Array, openAt: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, Compact<u128>, Compact<u128>, Compact<u32>, Option<u32>]>;
       /**
        * Create an english auction.
        **/
-      createEnglish: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array, initPrice: Compact<u128> | AnyNumber | Uint8Array, minRaisePrice: Compact<u128> | AnyNumber | Uint8Array, deadline: Compact<u32> | AnyNumber | Uint8Array, openAt: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u128>, Compact<u128>, Compact<u32>, Option<u32>]>;
+      createEnglish: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, initPrice: Compact<u128> | AnyNumber | Uint8Array, minRaisePrice: Compact<u128> | AnyNumber | Uint8Array, deadline: Compact<u32> | AnyNumber | Uint8Array, openAt: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, Compact<u128>, Compact<u128>, Compact<u32>, Option<u32>]>;
       /**
        * Redeem duction
        **/
@@ -1852,15 +1759,15 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Create a order to buy a non-fungible asset
        **/
-      deal: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
+      deal: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
       /**
        * Remove an order
        **/
-      remove: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
+      remove: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
       /**
        * Create a order to sell a non-fungible asset
        **/
-      sell: AugmentedSubmittable<(clazz: Compact<u32> | AnyNumber | Uint8Array, instance: Compact<u32> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array, deadline: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u128>, Option<u32>]>;
+      sell: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array, deadline: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, Compact<u128>, Option<u32>]>;
       /**
        * Generic tx
        **/
@@ -2141,9 +2048,13 @@ declare module '@polkadot/api/types/submittable' {
     session: {
       /**
        * Removes any session key(s) of the function caller.
+       * 
        * This doesn't take effect until the next session.
        * 
-       * The dispatch origin of this function must be signed.
+       * The dispatch origin of this function must be Signed and the account must be either be
+       * convertible to a validator ID using the chain's typical addressing system (this usually
+       * means being a controller account) or directly convertible into a validator ID (which
+       * usually means being a stash account).
        * 
        * # <weight>
        * - Complexity: `O(1)` in number of key types. Actual cost depends on the number of length
