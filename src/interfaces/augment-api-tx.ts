@@ -1721,11 +1721,11 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * - `price`: bid price. If none, use current reduction price.
        **/
-      bidDutch: AugmentedSubmittable<(auctionId: Compact<u64> | AnyNumber | Uint8Array, price: Option<u128> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u64>, Option<u128>]>;
+      bidDutch: AugmentedSubmittable<(auctionOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, auctionId: Compact<u64> | AnyNumber | Uint8Array, price: Option<u128> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>, Option<u128>]>;
       /**
        * Bid english auction
        **/
-      bidEnglish: AugmentedSubmittable<(auctionId: Compact<u64> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u64>, Compact<u128>]>;
+      bidEnglish: AugmentedSubmittable<(auctionOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, auctionId: Compact<u64> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>, Compact<u128>]>;
       /**
        * Cancel auction, only auction without any bid can be canceled
        **/
@@ -1745,11 +1745,11 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Redeem duction
        **/
-      redeemDutch: AugmentedSubmittable<(auctionId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u64>]>;
+      redeemDutch: AugmentedSubmittable<(auctionOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, auctionId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>]>;
       /**
        * Redeem duction
        **/
-      redeemEnglish: AugmentedSubmittable<(auctionId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u64>]>;
+      redeemEnglish: AugmentedSubmittable<(auctionOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, auctionId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>]>;
       /**
        * Generic tx
        **/
@@ -1757,13 +1757,13 @@ declare module '@polkadot/api/types/submittable' {
     };
     nftOrder: {
       /**
-       * Create a order to buy a non-fungible asset
+       * Deal an order
        **/
-      deal: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
+      deal: AugmentedSubmittable<(orderOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, orderId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>]>;
       /**
        * Remove an order
        **/
-      remove: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
+      remove: AugmentedSubmittable<(orderId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u64>]>;
       /**
        * Create a order to sell a non-fungible asset
        **/

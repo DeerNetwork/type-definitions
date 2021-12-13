@@ -557,10 +557,6 @@ declare module '@polkadot/api/types/consts' {
     };
     nftOrder: {
       /**
-       * The maximum amount of order an account owned
-       **/
-      maxOrders: u32 & AugmentedConst<ApiType>;
-      /**
        * The basic amount of funds that must be reserved for an order.
        **/
       orderDeposit: u128 & AugmentedConst<ApiType>;

@@ -488,9 +488,9 @@ export default {
    **/
   PalletNftOrderEvent: {
     _enum: {
-      Selling: '(u32,u32,u32,AccountId32)',
-      Dealed: '(u32,u32,u32,AccountId32,AccountId32)',
-      Removed: '(u32,u32,u32,AccountId32)'
+      Selling: '(u64,u32,u32,u32,AccountId32)',
+      Dealed: '(u64,u32,u32,u32,AccountId32,AccountId32)',
+      Removed: '(u64,u32,u32,u32,AccountId32)'
     }
   },
   /**
@@ -1838,12 +1838,11 @@ export default {
         deadline: 'Option<u32>',
       },
       deal: {
-        classId: 'Compact<u32>',
-        tokenId: 'Compact<u32>',
+        orderOwner: 'MultiAddress',
+        orderId: 'Compact<u64>',
       },
       remove: {
-        classId: 'Compact<u32>',
-        tokenId: 'Compact<u32>'
+        orderId: 'Compact<u64>'
       }
     }
   },
@@ -1862,10 +1861,12 @@ export default {
         openAt: 'Option<u32>',
       },
       bid_dutch: {
+        auctionOwner: 'MultiAddress',
         auctionId: 'Compact<u64>',
         price: 'Option<u128>',
       },
       redeem_dutch: {
+        auctionOwner: 'MultiAddress',
         auctionId: 'Compact<u64>',
       },
       cancel_dutch: {
@@ -1881,10 +1882,12 @@ export default {
         openAt: 'Option<u32>',
       },
       bid_english: {
+        auctionOwner: 'MultiAddress',
         auctionId: 'Compact<u64>',
         price: 'Compact<u128>',
       },
       redeem_english: {
+        auctionOwner: 'MultiAddress',
         auctionId: 'Compact<u64>',
       },
       cancel_english: {
@@ -2700,11 +2703,12 @@ export default {
     _enum: ['ClassNotFound', 'TokenNotFound', 'NoPermission', 'NoAvailableClassId', 'NoAvailableTokenId', 'RoyaltyRateTooHigh', 'InvalidQuantity', 'NumOverflow']
   },
   /**
-   * Lookup462: pallet_nft_order::OrderDetails<sp_core::crypto::AccountId32, Balance, BlockNumber, TokenId>
+   * Lookup463: pallet_nft_order::OrderDetails<ClassId, TokenId, Balance, BlockNumber>
    **/
   PalletNftOrderOrderDetails: {
-    owner: 'AccountId32',
-    quantity: 'u32',
+    classId: 'Compact<u32>',
+    tokenId: 'Compact<u32>',
+    quantity: 'Compact<u32>',
     price: 'u128',
     deposit: 'u128',
     deadline: 'Option<u32>'
@@ -2719,13 +2723,12 @@ export default {
    * Lookup465: pallet_nft_order::pallet::Error<T, I>
    **/
   PalletNftOrderError: {
-    _enum: ['InvalidDeadline', 'OrderNotFound', 'TooManyOrders', 'OrderExpired', 'InsufficientFunds']
+    _enum: ['InvalidDeadline', 'OrderNotFound', 'TooManyOrders', 'OrderExpired', 'InsufficientFunds', 'NoAvailableOrderId']
   },
   /**
-   * Lookup466: pallet_nft_auction::DutchAuction<sp_core::crypto::AccountId32, ClassId, TokenId, Balance, BlockNumber>
+   * Lookup466: pallet_nft_auction::DutchAuction<ClassId, TokenId, Balance, BlockNumber>
    **/
   PalletNftAuctionDutchAuction: {
-    owner: 'AccountId32',
     classId: 'Compact<u32>',
     tokenId: 'Compact<u32>',
     quantity: 'Compact<u32>',
@@ -2737,10 +2740,9 @@ export default {
     deadline: 'Compact<u32>'
   },
   /**
-   * Lookup467: pallet_nft_auction::EnglishAuction<sp_core::crypto::AccountId32, ClassId, TokenId, Balance, BlockNumber>
+   * Lookup467: pallet_nft_auction::EnglishAuction<ClassId, TokenId, Balance, BlockNumber>
    **/
   PalletNftAuctionEnglishAuction: {
-    owner: 'AccountId32',
     classId: 'Compact<u32>',
     tokenId: 'Compact<u32>',
     quantity: 'Compact<u32>',
@@ -2769,7 +2771,7 @@ export default {
    * Lookup470: pallet_nft_auction::pallet::Error<T, I>
    **/
   PalletNftAuctionError: {
-    _enum: ['InvalidDeadline', 'InvalidPrice', 'InvalidNextAuctionId', 'AuctionNotOpen', 'AuctionNotFound', 'AuctionBidNotFound', 'AuctionClosed', 'SelfBid', 'MissDutchBidPrice', 'InvalidBidPrice', 'InsufficientFunds', 'NotBidAccount', 'NotOwnerAccount', 'CannotRedeemNow', 'CannotRemoveAuction']
+    _enum: ['InvalidDeadline', 'InvalidPrice', 'InvalidNextAuctionId', 'AuctionNotOpen', 'AuctionNotFound', 'AuctionBidNotFound', 'AuctionClosed', 'SelfBid', 'MissDutchBidPrice', 'InvalidBidPrice', 'InsufficientFunds', 'NotBidAccount', 'CannotRedeemNow', 'CannotRemoveAuction']
   },
   /**
    * Lookup471: pallet_storage::StashInfo<sp_core::crypto::AccountId32, Balance>

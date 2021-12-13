@@ -665,21 +665,13 @@ declare module '@polkadot/api/types/storage' {
     };
     nftAuction: {
       /**
-       * An index mapping from token to order.
-       **/
-      auctions: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<u64>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
-      /**
-       * Current auction id, automate incr
-       **/
-      currentAuctionId: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
        * An index mapping from auction_id to dutch auction bid.
        **/
       dutchAuctionBids: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<Option<PalletNftAuctionAuctionBid>>, [u64]> & QueryableStorageEntry<ApiType, [u64]>;
       /**
        * An index mapping from auction_id to dutch auction.
        **/
-      dutchAuctions: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<Option<PalletNftAuctionDutchAuction>>, [u64]> & QueryableStorageEntry<ApiType, [u64]>;
+      dutchAuctions: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: u64 | AnyNumber | Uint8Array) => Observable<Option<PalletNftAuctionDutchAuction>>, [AccountId32, u64]> & QueryableStorageEntry<ApiType, [AccountId32, u64]>;
       /**
        * An index mapping from auction_id to english auction bid.
        **/
@@ -687,7 +679,11 @@ declare module '@polkadot/api/types/storage' {
       /**
        * An index mapping from auction_id to english auction.
        **/
-      englishAuctions: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<Option<PalletNftAuctionEnglishAuction>>, [u64]> & QueryableStorageEntry<ApiType, [u64]>;
+      englishAuctions: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: u64 | AnyNumber | Uint8Array) => Observable<Option<PalletNftAuctionEnglishAuction>>, [AccountId32, u64]> & QueryableStorageEntry<ApiType, [AccountId32, u64]>;
+      /**
+       * Current auction id, automate incr
+       **/
+      nextAuctionId: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Storage version of the pallet.
        * 
@@ -701,13 +697,13 @@ declare module '@polkadot/api/types/storage' {
     };
     nftOrder: {
       /**
-       * The set of account orders.
+       * Next order id
        **/
-      accountOrders: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<ITuple<[u32, u32]>>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      nextOrderId: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * An index mapping from token to order.
        **/
-      orders: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftOrderOrderDetails>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      orders: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: u64 | AnyNumber | Uint8Array) => Observable<Option<PalletNftOrderOrderDetails>>, [AccountId32, u64]> & QueryableStorageEntry<ApiType, [AccountId32, u64]>;
       /**
        * Storage version of the pallet.
        * 

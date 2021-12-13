@@ -541,11 +541,11 @@ declare module '@polkadot/types/lookup' {
   /** @name PalletNftOrderEvent (80) */
   export interface PalletNftOrderEvent extends Enum {
     readonly isSelling: boolean;
-    readonly asSelling: ITuple<[u32, u32, u32, AccountId32]>;
+    readonly asSelling: ITuple<[u64, u32, u32, u32, AccountId32]>;
     readonly isDealed: boolean;
-    readonly asDealed: ITuple<[u32, u32, u32, AccountId32, AccountId32]>;
+    readonly asDealed: ITuple<[u64, u32, u32, u32, AccountId32, AccountId32]>;
     readonly isRemoved: boolean;
-    readonly asRemoved: ITuple<[u32, u32, u32, AccountId32]>;
+    readonly asRemoved: ITuple<[u64, u32, u32, u32, AccountId32]>;
   }
 
   /** @name PalletNftAuctionEvent (81) */
@@ -1927,13 +1927,12 @@ declare module '@polkadot/types/lookup' {
     } & Struct;
     readonly isDeal: boolean;
     readonly asDeal: {
-      readonly classId: Compact<u32>;
-      readonly tokenId: Compact<u32>;
+      readonly orderOwner: MultiAddress;
+      readonly orderId: Compact<u64>;
     } & Struct;
     readonly isRemove: boolean;
     readonly asRemove: {
-      readonly classId: Compact<u32>;
-      readonly tokenId: Compact<u32>;
+      readonly orderId: Compact<u64>;
     } & Struct;
   }
 
@@ -1951,11 +1950,13 @@ declare module '@polkadot/types/lookup' {
     } & Struct;
     readonly isBidDutch: boolean;
     readonly asBidDutch: {
+      readonly auctionOwner: MultiAddress;
       readonly auctionId: Compact<u64>;
       readonly price: Option<u128>;
     } & Struct;
     readonly isRedeemDutch: boolean;
     readonly asRedeemDutch: {
+      readonly auctionOwner: MultiAddress;
       readonly auctionId: Compact<u64>;
     } & Struct;
     readonly isCancelDutch: boolean;
@@ -1974,11 +1975,13 @@ declare module '@polkadot/types/lookup' {
     } & Struct;
     readonly isBidEnglish: boolean;
     readonly asBidEnglish: {
+      readonly auctionOwner: MultiAddress;
       readonly auctionId: Compact<u64>;
       readonly price: Compact<u128>;
     } & Struct;
     readonly isRedeemEnglish: boolean;
     readonly asRedeemEnglish: {
+      readonly auctionOwner: MultiAddress;
       readonly auctionId: Compact<u64>;
     } & Struct;
     readonly isCancelEnglish: boolean;
@@ -2905,10 +2908,11 @@ declare module '@polkadot/types/lookup' {
     readonly isNumOverflow: boolean;
   }
 
-  /** @name PalletNftOrderOrderDetails (462) */
+  /** @name PalletNftOrderOrderDetails (463) */
   export interface PalletNftOrderOrderDetails extends Struct {
-    readonly owner: AccountId32;
-    readonly quantity: u32;
+    readonly classId: Compact<u32>;
+    readonly tokenId: Compact<u32>;
+    readonly quantity: Compact<u32>;
     readonly price: u128;
     readonly deposit: u128;
     readonly deadline: Option<u32>;
@@ -2927,11 +2931,11 @@ declare module '@polkadot/types/lookup' {
     readonly isTooManyOrders: boolean;
     readonly isOrderExpired: boolean;
     readonly isInsufficientFunds: boolean;
+    readonly isNoAvailableOrderId: boolean;
   }
 
   /** @name PalletNftAuctionDutchAuction (466) */
   export interface PalletNftAuctionDutchAuction extends Struct {
-    readonly owner: AccountId32;
     readonly classId: Compact<u32>;
     readonly tokenId: Compact<u32>;
     readonly quantity: Compact<u32>;
@@ -2945,7 +2949,6 @@ declare module '@polkadot/types/lookup' {
 
   /** @name PalletNftAuctionEnglishAuction (467) */
   export interface PalletNftAuctionEnglishAuction extends Struct {
-    readonly owner: AccountId32;
     readonly classId: Compact<u32>;
     readonly tokenId: Compact<u32>;
     readonly quantity: Compact<u32>;
@@ -2985,7 +2988,6 @@ declare module '@polkadot/types/lookup' {
     readonly isInvalidBidPrice: boolean;
     readonly isInsufficientFunds: boolean;
     readonly isNotBidAccount: boolean;
-    readonly isNotOwnerAccount: boolean;
     readonly isCannotRedeemNow: boolean;
     readonly isCannotRemoveAuction: boolean;
   }

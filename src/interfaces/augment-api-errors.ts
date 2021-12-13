@@ -843,7 +843,6 @@ declare module '@polkadot/api/types/errors' {
       InvalidPrice: AugmentedError<ApiType>;
       MissDutchBidPrice: AugmentedError<ApiType>;
       NotBidAccount: AugmentedError<ApiType>;
-      NotOwnerAccount: AugmentedError<ApiType>;
       SelfBid: AugmentedError<ApiType>;
       /**
        * Generic error
@@ -859,6 +858,10 @@ declare module '@polkadot/api/types/errors' {
        * Invalid deaeline
        **/
       InvalidDeadline: AugmentedError<ApiType>;
+      /**
+       * No available order ID
+       **/
+      NoAvailableOrderId: AugmentedError<ApiType>;
       /**
        * A sell order already expired
        **/
