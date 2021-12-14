@@ -1757,13 +1757,25 @@ declare module '@polkadot/api/types/submittable' {
     };
     nftOrder: {
       /**
+       * Create a offer to buy a non-fungible asset
+       **/
+      buy: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array, deadline: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, Compact<u128>, Option<u32>]>;
+      /**
+       * Deal an offer
+       **/
+      dealOffer: AugmentedSubmittable<(offerOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, offerId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>]>;
+      /**
        * Deal an order
        **/
-      deal: AugmentedSubmittable<(orderOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, orderId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>]>;
+      dealOrder: AugmentedSubmittable<(orderOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, orderId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>]>;
+      /**
+       * Remove an offer
+       **/
+      removeOffer: AugmentedSubmittable<(offerId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u64>]>;
       /**
        * Remove an order
        **/
-      remove: AugmentedSubmittable<(orderId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u64>]>;
+      removeOrder: AugmentedSubmittable<(orderId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u64>]>;
       /**
        * Create a order to sell a non-fungible asset
        **/

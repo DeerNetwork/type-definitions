@@ -797,6 +797,10 @@ declare module '@polkadot/api/types/errors' {
        **/
       ClassNotFound: AugmentedError<ApiType>;
       /**
+       * At least one consumer is remaining so the token cannot be burend.
+       **/
+      ConsumerRemaining: AugmentedError<ApiType>;
+      /**
        * Quantity is invalid
        **/
       InvalidQuantity: AugmentedError<ApiType>;
@@ -859,9 +863,21 @@ declare module '@polkadot/api/types/errors' {
        **/
       InvalidDeadline: AugmentedError<ApiType>;
       /**
+       * No available offer ID
+       **/
+      NoAvailableOfferId: AugmentedError<ApiType>;
+      /**
        * No available order ID
        **/
       NoAvailableOrderId: AugmentedError<ApiType>;
+      /**
+       * A buy offer already expired
+       **/
+      OfferExpired: AugmentedError<ApiType>;
+      /**
+       * Offer not found
+       **/
+      OfferNotFound: AugmentedError<ApiType>;
       /**
        * A sell order already expired
        **/
@@ -870,10 +886,6 @@ declare module '@polkadot/api/types/errors' {
        * Order not found
        **/
       OrderNotFound: AugmentedError<ApiType>;
-      /**
-       * To many order exceed T::MaxOrders
-       **/
-      TooManyOrders: AugmentedError<ApiType>;
       /**
        * Generic error
        **/

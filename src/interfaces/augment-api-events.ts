@@ -608,18 +608,31 @@ declare module '@polkadot/api/types/events' {
     };
     nftOrder: {
       /**
+       * Create buy offer, \[ offer_id, class_id, token_id, quantity, buyer \]
+       **/
+      CreatedOffer: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
+      /**
+       * Create sell order, \[ order_id, class_id, token_id, quantity, seller \]
+       **/
+      CreatedOrder: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
+      /**
+       * Make a deal with buy offer, \[ offer_id, class_id, token_id, quantity, buyer, seller
+       * \]
+       **/
+      DealedOffer: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32, AccountId32]>;
+      /**
        * Make a deal with sell order, \[ order_id, class_id, token_id, quantity, seller, buyer
        * \]
        **/
-      Dealed: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32, AccountId32]>;
+      DealedOrder: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32, AccountId32]>;
       /**
-       * Removed an sell order , \[ order_id, class_id, token_id, quantity, seller \]
+       * Remove an buy offer , \[ offer_id, class_id, token_id, quantity, buyer \]
        **/
-      Removed: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
+      RemovedOffer: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
       /**
-       * Selling a nft asset, \[ order_id, class_id, token_id, quantity, seller \]
+       * Remove an sell order , \[ order_id, class_id, token_id, quantity, seller \]
        **/
-      Selling: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
+      RemovedOrder: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
       /**
        * Generic event
        **/
