@@ -6,17 +6,19 @@ export function jsonrpcFromDefs(
     .filter((key) => Object.keys(definitions[key]?.rpc || {}).length !== 0)
     .forEach((section): void => {
       jsonrpc[section] = {};
-      Object.entries(definitions[section].rpc as Record<string, any>).forEach(([method, def]): void => {
-        const isSubscription = !!def.pubsub;
+      Object.entries(definitions[section].rpc as Record<string, any>).forEach(
+        ([method, def]): void => {
+          const isSubscription = !!def.pubsub;
 
-        jsonrpc[section][method] = {
-          ...def,
-          isSubscription,
-          jsonrpc: `${section}_${method}`,
-          method,
-          section,
-        };
-      });
+          jsonrpc[section][method] = {
+            ...def,
+            isSubscription,
+            jsonrpc: `${section}_${method}`,
+            method,
+            section,
+          };
+        }
+      );
     });
 
   return jsonrpc;
