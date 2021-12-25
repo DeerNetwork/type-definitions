@@ -25,7 +25,7 @@ const bundle = {
       types: v299.types,
     },
     {
-      minmax: [300, undefined],
+      minmax: [300, null],
       types,
     },
   ] as OverrideVersionedType[],

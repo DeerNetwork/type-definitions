@@ -9,11 +9,11 @@ In order to use the standard API against Deer you must initialize the API's opti
 ```
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import { ApiOptions } from "@polkadot/api/types";
-import { typesBundleForPolkadot } from "@deernetwork/type-definitions";
+import { typesBundle } from "@deernetwork/type-definitions";
 
 const options: ApiOptions = {
   provider : new WsProvider('ws://localhost:9944'),
-  typesBundle: typesBundleForPolkadot,
+  typesBundle,
 };
 
 const api = new ApiPromise(options);
