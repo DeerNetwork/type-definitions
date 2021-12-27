@@ -1680,7 +1680,7 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Burn NFT token
        **/
-      burn: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>]>;
+      burn: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u64>]>;
       /**
        * Create NFT(non fungible token) class
        **/
@@ -1688,11 +1688,11 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Mint NFT token anyone else other than class owner
        **/
-      delegateMint: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, metadata: Bytes | string | Uint8Array, royaltyRate: Option<Perbill> | null | object | string | Uint8Array, royaltyBeneficiary: Option<AccountId32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Bytes, Option<Perbill>, Option<AccountId32>]>;
+      delegateMint: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array, metadata: Bytes | string | Uint8Array, royaltyRate: Option<Perbill> | null | object | string | Uint8Array, royaltyBeneficiary: Option<AccountId32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u64>, Bytes, Option<Perbill>, Option<AccountId32>]>;
       /**
        * Mint NFT token by class owner
        **/
-      mint: AugmentedSubmittable<(to: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, classId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, metadata: Bytes | string | Uint8Array, royaltyRate: Option<Perbill> | null | object | string | Uint8Array, royaltyBeneficiary: Option<AccountId32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u32>, Compact<u32>, Bytes, Option<Perbill>, Option<AccountId32>]>;
+      mint: AugmentedSubmittable<(to: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, classId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array, metadata: Bytes | string | Uint8Array, royaltyRate: Option<Perbill> | null | object | string | Uint8Array, royaltyBeneficiary: Option<AccountId32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u32>, Compact<u64>, Bytes, Option<Perbill>, Option<AccountId32>]>;
       /**
        * Transfer NFT tokens to another account
        * 
@@ -1701,7 +1701,7 @@ declare module '@polkadot/api/types/submittable' {
        * - `token_id`: token id
        * - `quantity`: quantity
        **/
-      transfer: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, to: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, MultiAddress]>;
+      transfer: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array, to: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u64>, MultiAddress]>;
       /**
        * Update token royalty.
        **/
@@ -1737,11 +1737,11 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Create an dutch auction.
        **/
-      createDutch: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, minPrice: Compact<u128> | AnyNumber | Uint8Array, maxPrice: Compact<u128> | AnyNumber | Uint8Array, deadline: Compact<u32> | AnyNumber | Uint8Array, openAt: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, Compact<u128>, Compact<u128>, Compact<u32>, Option<u32>]>;
+      createDutch: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array, minPrice: Compact<u128> | AnyNumber | Uint8Array, maxPrice: Compact<u128> | AnyNumber | Uint8Array, deadline: Compact<u32> | AnyNumber | Uint8Array, openAt: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u64>, Compact<u128>, Compact<u128>, Compact<u32>, Option<u32>]>;
       /**
        * Create an english auction.
        **/
-      createEnglish: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, initPrice: Compact<u128> | AnyNumber | Uint8Array, minRaisePrice: Compact<u128> | AnyNumber | Uint8Array, deadline: Compact<u32> | AnyNumber | Uint8Array, openAt: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, Compact<u128>, Compact<u128>, Compact<u32>, Option<u32>]>;
+      createEnglish: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array, initPrice: Compact<u128> | AnyNumber | Uint8Array, minRaisePrice: Compact<u128> | AnyNumber | Uint8Array, deadline: Compact<u32> | AnyNumber | Uint8Array, openAt: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u64>, Compact<u128>, Compact<u128>, Compact<u32>, Option<u32>]>;
       /**
        * Redeem duction
        **/
@@ -1759,7 +1759,7 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Create a offer to buy a non-fungible asset
        **/
-      buy: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array, deadline: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, Compact<u128>, Option<u32>]>;
+      buy: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array, deadline: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u64>, Compact<u128>, Option<u32>]>;
       /**
        * Deal an offer
        **/
@@ -1767,7 +1767,7 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Deal an order
        **/
-      dealOrder: AugmentedSubmittable<(orderOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, orderId: Compact<u64> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>, Compact<u32>]>;
+      dealOrder: AugmentedSubmittable<(orderOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, orderId: Compact<u64> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>, Compact<u64>]>;
       /**
        * Remove an offer
        **/
@@ -1779,7 +1779,7 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Create a order to sell a non-fungible asset
        **/
-      sell: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array, deadline: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u32>, Compact<u128>, Option<u32>]>;
+      sell: AugmentedSubmittable<(classId: Compact<u32> | AnyNumber | Uint8Array, tokenId: Compact<u32> | AnyNumber | Uint8Array, quantity: Compact<u64> | AnyNumber | Uint8Array, price: Compact<u128> | AnyNumber | Uint8Array, deadline: Option<u32> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>, Compact<u64>, Compact<u128>, Option<u32>]>;
       /**
        * Generic tx
        **/

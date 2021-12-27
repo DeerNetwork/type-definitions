@@ -478,9 +478,9 @@ export default {
   PalletNftEvent: {
     _enum: {
       CreatedClass: '(u32,AccountId32)',
-      MintedToken: '(u32,u32,u32,AccountId32,AccountId32)',
-      BurnedToken: '(u32,u32,u32,AccountId32)',
-      TransferredToken: '(u32,u32,u32,AccountId32,AccountId32)'
+      MintedToken: '(u32,u32,u64,AccountId32,AccountId32)',
+      BurnedToken: '(u32,u32,u64,AccountId32)',
+      TransferredToken: '(u32,u32,u64,AccountId32,AccountId32)'
     }
   },
   /**
@@ -488,12 +488,12 @@ export default {
    **/
   PalletNftOrderEvent: {
     _enum: {
-      CreatedOrder: '(u64,u32,u32,u32,AccountId32)',
-      DealedOrder: '(u64,u32,u32,u32,AccountId32,AccountId32)',
-      RemovedOrder: '(u64,u32,u32,u32,AccountId32)',
-      CreatedOffer: '(u64,u32,u32,u32,AccountId32)',
-      DealedOffer: '(u64,u32,u32,u32,AccountId32,AccountId32)',
-      RemovedOffer: '(u64,u32,u32,u32,AccountId32)'
+      CreatedOrder: '(u64,u32,u32,u64,AccountId32)',
+      DealedOrder: '(u64,AccountId32,AccountId32)',
+      RemovedOrder: '(u64,AccountId32)',
+      CreatedOffer: '(u64,u32,u32,u64,AccountId32)',
+      DealedOffer: '(u64,AccountId32,AccountId32)',
+      RemovedOffer: '(u64,AccountId32)'
     }
   },
   /**
@@ -501,11 +501,11 @@ export default {
    **/
   PalletNftAuctionEvent: {
     _enum: {
-      CreatedDutchAuction: '(u32,u32,u32,AccountId32,u64)',
+      CreatedDutchAuction: '(u32,u32,u64,AccountId32,u64)',
       BidDutchAuction: '(AccountId32,u64)',
       CanceledDutchAuction: '(AccountId32,u64)',
       RedeemedDutchAuction: '(AccountId32,u64)',
-      CreatedEnglishAuction: '(u32,u32,u32,AccountId32,u64)',
+      CreatedEnglishAuction: '(u32,u32,u64,AccountId32,u64)',
       BidEnglishAuction: '(AccountId32,u64)',
       CanceledEnglishAuction: '(AccountId32,u64)',
       RedeemedEnglishAuction: '(AccountId32,u64)'
@@ -1787,14 +1787,14 @@ export default {
       mint: {
         to: 'MultiAddress',
         classId: 'Compact<u32>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
         metadata: 'Bytes',
         royaltyRate: 'Option<Perbill>',
         royaltyBeneficiary: 'Option<AccountId32>',
       },
       delegate_mint: {
         classId: 'Compact<u32>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
         metadata: 'Bytes',
         royaltyRate: 'Option<Perbill>',
         royaltyBeneficiary: 'Option<AccountId32>',
@@ -1802,7 +1802,7 @@ export default {
       burn: {
         classId: 'Compact<u32>',
         tokenId: 'Compact<u32>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
       },
       update_token_royalty: {
         classId: 'Compact<u32>',
@@ -1817,7 +1817,7 @@ export default {
       transfer: {
         classId: 'Compact<u32>',
         tokenId: 'Compact<u32>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
         to: 'MultiAddress'
       }
     }
@@ -1836,14 +1836,14 @@ export default {
       sell: {
         classId: 'Compact<u32>',
         tokenId: 'Compact<u32>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
         price: 'Compact<u128>',
         deadline: 'Option<u32>',
       },
       deal_order: {
         orderOwner: 'MultiAddress',
         orderId: 'Compact<u64>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
       },
       remove_order: {
         orderId: 'Compact<u64>',
@@ -1851,7 +1851,7 @@ export default {
       buy: {
         classId: 'Compact<u32>',
         tokenId: 'Compact<u32>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
         price: 'Compact<u128>',
         deadline: 'Option<u32>',
       },
@@ -1872,7 +1872,7 @@ export default {
       create_dutch: {
         classId: 'Compact<u32>',
         tokenId: 'Compact<u32>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
         minPrice: 'Compact<u128>',
         maxPrice: 'Compact<u128>',
         deadline: 'Compact<u32>',
@@ -1893,7 +1893,7 @@ export default {
       create_english: {
         classId: 'Compact<u32>',
         tokenId: 'Compact<u32>',
-        quantity: 'Compact<u32>',
+        quantity: 'Compact<u64>',
         initPrice: 'Compact<u128>',
         minRaisePrice: 'Compact<u128>',
         deadline: 'Compact<u32>',
@@ -2680,35 +2680,35 @@ export default {
     _enum: ['ReasonTooBig', 'AlreadyKnown', 'UnknownTip', 'NotFinder', 'StillOpen', 'Premature']
   },
   /**
-   * Lookup455: pallet_nft::ClassDetails<sp_core::crypto::AccountId32, Balance, TokenId>
+   * Lookup455: pallet_nft::ClassDetails<sp_core::crypto::AccountId32, Balance, Quantity>
    **/
   PalletNftClassDetails: {
     owner: 'AccountId32',
     deposit: 'u128',
     permission: 'u8',
     metadata: 'Bytes',
-    totalTokens: 'Compact<u32>',
-    totalIssuance: 'Compact<u32>',
+    totalTokens: 'Compact<u64>',
+    totalIssuance: 'Compact<u64>',
     royaltyRate: 'Compact<Perbill>'
   },
   /**
-   * Lookup456: pallet_nft::TokenDetails<sp_core::crypto::AccountId32, Balance, TokenId>
+   * Lookup456: pallet_nft::TokenDetails<sp_core::crypto::AccountId32, Balance, Quantity>
    **/
   PalletNftTokenDetails: {
     creator: 'AccountId32',
     metadata: 'Bytes',
     deposit: 'u128',
-    quantity: 'Compact<u32>',
+    quantity: 'Compact<u64>',
     consumers: 'u32',
     royaltyRate: 'Compact<Perbill>',
     royaltyBeneficiary: 'AccountId32'
   },
   /**
-   * Lookup458: pallet_nft::TokenAmount<TokenId>
+   * Lookup458: pallet_nft::TokenAmount<Quantity>
    **/
   PalletNftTokenAmount: {
-    free: 'Compact<u32>',
-    reserved: 'Compact<u32>'
+    free: 'Compact<u64>',
+    reserved: 'Compact<u64>'
   },
   /**
    * Lookup460: pallet_nft::Releases
@@ -2723,24 +2723,24 @@ export default {
     _enum: ['ClassNotFound', 'TokenNotFound', 'NoPermission', 'NoAvailableClassId', 'NoAvailableTokenId', 'RoyaltyRateTooHigh', 'InvalidQuantity', 'NumOverflow', 'ConsumerRemaining']
   },
   /**
-   * Lookup463: pallet_nft_order::OrderDetails<ClassId, TokenId, Balance, BlockNumber>
+   * Lookup463: pallet_nft_order::OrderDetails<ClassId, TokenId, Quantity, Balance, BlockNumber>
    **/
   PalletNftOrderOrderDetails: {
     classId: 'Compact<u32>',
     tokenId: 'Compact<u32>',
-    quantity: 'Compact<u32>',
-    totalQuantity: 'Compact<u32>',
+    quantity: 'Compact<u64>',
+    totalQuantity: 'Compact<u64>',
     price: 'u128',
     deposit: 'u128',
     deadline: 'Option<u32>'
   },
   /**
-   * Lookup464: pallet_nft_order::OfferDetails<ClassId, TokenId, Balance, BlockNumber>
+   * Lookup464: pallet_nft_order::OfferDetails<ClassId, TokenId, Quantity, Balance, BlockNumber>
    **/
   PalletNftOrderOfferDetails: {
     classId: 'Compact<u32>',
     tokenId: 'Compact<u32>',
-    quantity: 'Compact<u32>',
+    quantity: 'Compact<u64>',
     price: 'u128',
     deadline: 'Option<u32>'
   },
@@ -2757,12 +2757,12 @@ export default {
     _enum: ['InvalidDeadline', 'InvalidQuantity', 'OrderNotFound', 'OrderExpired', 'InsufficientFunds', 'NoAvailableOrderId', 'OfferNotFound', 'OfferExpired', 'NoAvailableOfferId']
   },
   /**
-   * Lookup467: pallet_nft_auction::DutchAuction<ClassId, TokenId, Balance, BlockNumber>
+   * Lookup467: pallet_nft_auction::DutchAuction<ClassId, TokenId, Quantity, Balance, BlockNumber>
    **/
   PalletNftAuctionDutchAuction: {
     classId: 'Compact<u32>',
     tokenId: 'Compact<u32>',
-    quantity: 'Compact<u32>',
+    quantity: 'Compact<u64>',
     minPrice: 'Compact<u128>',
     maxPrice: 'Compact<u128>',
     deposit: 'Compact<u128>',
@@ -2771,12 +2771,12 @@ export default {
     deadline: 'Compact<u32>'
   },
   /**
-   * Lookup468: pallet_nft_auction::EnglishAuction<ClassId, TokenId, Balance, BlockNumber>
+   * Lookup468: pallet_nft_auction::EnglishAuction<ClassId, TokenId, Quantity, Balance, BlockNumber>
    **/
   PalletNftAuctionEnglishAuction: {
     classId: 'Compact<u32>',
     tokenId: 'Compact<u32>',
-    quantity: 'Compact<u32>',
+    quantity: 'Compact<u64>',
     initPrice: 'Compact<u128>',
     minRaisePrice: 'Compact<u128>',
     deposit: 'Compact<u128>',

@@ -550,7 +550,7 @@ declare module '@polkadot/api/types/events' {
       /**
        * An asset `instance` was burned. \[ class_id, token_id, quantity, owner \]
        **/
-      BurnedToken: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32]>;
+      BurnedToken: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32]>;
       /**
        * An asset class was created. \[ class_id, owner \]
        **/
@@ -558,11 +558,11 @@ declare module '@polkadot/api/types/events' {
       /**
        * An asset `instace` was minted. \[ class_id, token_id, quantity, owner, who \]
        **/
-      MintedToken: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, AccountId32]>;
+      MintedToken: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, AccountId32]>;
       /**
        * An asset `instace` was transferred. \[ class_id, token_id, quantity, from, to \]
        **/
-      TransferredToken: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, AccountId32]>;
+      TransferredToken: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, AccountId32]>;
       /**
        * Generic event
        **/
@@ -588,11 +588,11 @@ declare module '@polkadot/api/types/events' {
       /**
        * Created ductch auction \[class_id, token_id, quantity, who, auction_id\]
        **/
-      CreatedDutchAuction: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, u64]>;
+      CreatedDutchAuction: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, u64]>;
       /**
        * Created ductch auction \[class_id, token_id, quantity, who, auction_id\]
        **/
-      CreatedEnglishAuction: AugmentedEvent<ApiType, [u32, u32, u32, AccountId32, u64]>;
+      CreatedEnglishAuction: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, u64]>;
       /**
        * Redeemed dutch auction \[who, auction_id\]
        **/
@@ -610,29 +610,27 @@ declare module '@polkadot/api/types/events' {
       /**
        * Create buy offer, \[ offer_id, class_id, token_id, quantity, buyer \]
        **/
-      CreatedOffer: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
+      CreatedOffer: AugmentedEvent<ApiType, [u64, u32, u32, u64, AccountId32]>;
       /**
        * Create sell order, \[ order_id, class_id, token_id, quantity, seller \]
        **/
-      CreatedOrder: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
+      CreatedOrder: AugmentedEvent<ApiType, [u64, u32, u32, u64, AccountId32]>;
       /**
-       * Make a deal with buy offer, \[ offer_id, class_id, token_id, quantity, buyer, seller
-       * \]
+       * Make a deal with buy offer, \[ offer_id, buyer, seller \]
        **/
-      DealedOffer: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32, AccountId32]>;
+      DealedOffer: AugmentedEvent<ApiType, [u64, AccountId32, AccountId32]>;
       /**
-       * Make a deal with sell order, \[ order_id, class_id, token_id, quantity, seller, buyer
-       * \]
+       * Make a deal with sell order, \[ order_id, seller, buyer \]
        **/
-      DealedOrder: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32, AccountId32]>;
+      DealedOrder: AugmentedEvent<ApiType, [u64, AccountId32, AccountId32]>;
       /**
-       * Remove an buy offer , \[ offer_id, class_id, token_id, quantity, buyer \]
+       * Remove an buy offer , \[ offer_id, buyer \]
        **/
-      RemovedOffer: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
+      RemovedOffer: AugmentedEvent<ApiType, [u64, AccountId32]>;
       /**
-       * Remove an sell order , \[ order_id, class_id, token_id, quantity, seller \]
+       * Remove an sell order , \[ order_id, seller \]
        **/
-      RemovedOrder: AugmentedEvent<ApiType, [u64, u32, u32, u32, AccountId32]>;
+      RemovedOrder: AugmentedEvent<ApiType, [u64, AccountId32]>;
       /**
        * Generic event
        **/

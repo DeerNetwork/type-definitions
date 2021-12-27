@@ -564,35 +564,35 @@ declare module '@polkadot/types/lookup' {
     readonly isCreatedClass: boolean;
     readonly asCreatedClass: ITuple<[u32, AccountId32]>;
     readonly isMintedToken: boolean;
-    readonly asMintedToken: ITuple<[u32, u32, u32, AccountId32, AccountId32]>;
+    readonly asMintedToken: ITuple<[u32, u32, u64, AccountId32, AccountId32]>;
     readonly isBurnedToken: boolean;
-    readonly asBurnedToken: ITuple<[u32, u32, u32, AccountId32]>;
+    readonly asBurnedToken: ITuple<[u32, u32, u64, AccountId32]>;
     readonly isTransferredToken: boolean;
-    readonly asTransferredToken: ITuple<[u32, u32, u32, AccountId32, AccountId32]>;
+    readonly asTransferredToken: ITuple<[u32, u32, u64, AccountId32, AccountId32]>;
     readonly type: 'CreatedClass' | 'MintedToken' | 'BurnedToken' | 'TransferredToken';
   }
 
   /** @name PalletNftOrderEvent (80) */
   export interface PalletNftOrderEvent extends Enum {
     readonly isCreatedOrder: boolean;
-    readonly asCreatedOrder: ITuple<[u64, u32, u32, u32, AccountId32]>;
+    readonly asCreatedOrder: ITuple<[u64, u32, u32, u64, AccountId32]>;
     readonly isDealedOrder: boolean;
-    readonly asDealedOrder: ITuple<[u64, u32, u32, u32, AccountId32, AccountId32]>;
+    readonly asDealedOrder: ITuple<[u64, AccountId32, AccountId32]>;
     readonly isRemovedOrder: boolean;
-    readonly asRemovedOrder: ITuple<[u64, u32, u32, u32, AccountId32]>;
+    readonly asRemovedOrder: ITuple<[u64, AccountId32]>;
     readonly isCreatedOffer: boolean;
-    readonly asCreatedOffer: ITuple<[u64, u32, u32, u32, AccountId32]>;
+    readonly asCreatedOffer: ITuple<[u64, u32, u32, u64, AccountId32]>;
     readonly isDealedOffer: boolean;
-    readonly asDealedOffer: ITuple<[u64, u32, u32, u32, AccountId32, AccountId32]>;
+    readonly asDealedOffer: ITuple<[u64, AccountId32, AccountId32]>;
     readonly isRemovedOffer: boolean;
-    readonly asRemovedOffer: ITuple<[u64, u32, u32, u32, AccountId32]>;
+    readonly asRemovedOffer: ITuple<[u64, AccountId32]>;
     readonly type: 'CreatedOrder' | 'DealedOrder' | 'RemovedOrder' | 'CreatedOffer' | 'DealedOffer' | 'RemovedOffer';
   }
 
   /** @name PalletNftAuctionEvent (81) */
   export interface PalletNftAuctionEvent extends Enum {
     readonly isCreatedDutchAuction: boolean;
-    readonly asCreatedDutchAuction: ITuple<[u32, u32, u32, AccountId32, u64]>;
+    readonly asCreatedDutchAuction: ITuple<[u32, u32, u64, AccountId32, u64]>;
     readonly isBidDutchAuction: boolean;
     readonly asBidDutchAuction: ITuple<[AccountId32, u64]>;
     readonly isCanceledDutchAuction: boolean;
@@ -600,7 +600,7 @@ declare module '@polkadot/types/lookup' {
     readonly isRedeemedDutchAuction: boolean;
     readonly asRedeemedDutchAuction: ITuple<[AccountId32, u64]>;
     readonly isCreatedEnglishAuction: boolean;
-    readonly asCreatedEnglishAuction: ITuple<[u32, u32, u32, AccountId32, u64]>;
+    readonly asCreatedEnglishAuction: ITuple<[u32, u32, u64, AccountId32, u64]>;
     readonly isBidEnglishAuction: boolean;
     readonly asBidEnglishAuction: ITuple<[AccountId32, u64]>;
     readonly isCanceledEnglishAuction: boolean;
@@ -1951,7 +1951,7 @@ declare module '@polkadot/types/lookup' {
     readonly asMint: {
       readonly to: MultiAddress;
       readonly classId: Compact<u32>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
       readonly metadata: Bytes;
       readonly royaltyRate: Option<Perbill>;
       readonly royaltyBeneficiary: Option<AccountId32>;
@@ -1959,7 +1959,7 @@ declare module '@polkadot/types/lookup' {
     readonly isDelegateMint: boolean;
     readonly asDelegateMint: {
       readonly classId: Compact<u32>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
       readonly metadata: Bytes;
       readonly royaltyRate: Option<Perbill>;
       readonly royaltyBeneficiary: Option<AccountId32>;
@@ -1968,7 +1968,7 @@ declare module '@polkadot/types/lookup' {
     readonly asBurn: {
       readonly classId: Compact<u32>;
       readonly tokenId: Compact<u32>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
     } & Struct;
     readonly isUpdateTokenRoyalty: boolean;
     readonly asUpdateTokenRoyalty: {
@@ -1986,7 +1986,7 @@ declare module '@polkadot/types/lookup' {
     readonly asTransfer: {
       readonly classId: Compact<u32>;
       readonly tokenId: Compact<u32>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
       readonly to: MultiAddress;
     } & Struct;
     readonly type: 'CreateClass' | 'Mint' | 'DelegateMint' | 'Burn' | 'UpdateTokenRoyalty' | 'UpdateTokenRoyaltyBeneficiary' | 'Transfer';
@@ -2006,7 +2006,7 @@ declare module '@polkadot/types/lookup' {
     readonly asSell: {
       readonly classId: Compact<u32>;
       readonly tokenId: Compact<u32>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
       readonly price: Compact<u128>;
       readonly deadline: Option<u32>;
     } & Struct;
@@ -2014,7 +2014,7 @@ declare module '@polkadot/types/lookup' {
     readonly asDealOrder: {
       readonly orderOwner: MultiAddress;
       readonly orderId: Compact<u64>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
     } & Struct;
     readonly isRemoveOrder: boolean;
     readonly asRemoveOrder: {
@@ -2024,7 +2024,7 @@ declare module '@polkadot/types/lookup' {
     readonly asBuy: {
       readonly classId: Compact<u32>;
       readonly tokenId: Compact<u32>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
       readonly price: Compact<u128>;
       readonly deadline: Option<u32>;
     } & Struct;
@@ -2046,7 +2046,7 @@ declare module '@polkadot/types/lookup' {
     readonly asCreateDutch: {
       readonly classId: Compact<u32>;
       readonly tokenId: Compact<u32>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
       readonly minPrice: Compact<u128>;
       readonly maxPrice: Compact<u128>;
       readonly deadline: Compact<u32>;
@@ -2071,7 +2071,7 @@ declare module '@polkadot/types/lookup' {
     readonly asCreateEnglish: {
       readonly classId: Compact<u32>;
       readonly tokenId: Compact<u32>;
-      readonly quantity: Compact<u32>;
+      readonly quantity: Compact<u64>;
       readonly initPrice: Compact<u128>;
       readonly minRaisePrice: Compact<u128>;
       readonly deadline: Compact<u32>;
@@ -3020,8 +3020,8 @@ declare module '@polkadot/types/lookup' {
     readonly deposit: u128;
     readonly permission: u8;
     readonly metadata: Bytes;
-    readonly totalTokens: Compact<u32>;
-    readonly totalIssuance: Compact<u32>;
+    readonly totalTokens: Compact<u64>;
+    readonly totalIssuance: Compact<u64>;
     readonly royaltyRate: Compact<Perbill>;
   }
 
@@ -3030,7 +3030,7 @@ declare module '@polkadot/types/lookup' {
     readonly creator: AccountId32;
     readonly metadata: Bytes;
     readonly deposit: u128;
-    readonly quantity: Compact<u32>;
+    readonly quantity: Compact<u64>;
     readonly consumers: u32;
     readonly royaltyRate: Compact<Perbill>;
     readonly royaltyBeneficiary: AccountId32;
@@ -3038,8 +3038,8 @@ declare module '@polkadot/types/lookup' {
 
   /** @name PalletNftTokenAmount (458) */
   export interface PalletNftTokenAmount extends Struct {
-    readonly free: Compact<u32>;
-    readonly reserved: Compact<u32>;
+    readonly free: Compact<u64>;
+    readonly reserved: Compact<u64>;
   }
 
   /** @name PalletNftReleases (460) */
@@ -3068,8 +3068,8 @@ declare module '@polkadot/types/lookup' {
   export interface PalletNftOrderOrderDetails extends Struct {
     readonly classId: Compact<u32>;
     readonly tokenId: Compact<u32>;
-    readonly quantity: Compact<u32>;
-    readonly totalQuantity: Compact<u32>;
+    readonly quantity: Compact<u64>;
+    readonly totalQuantity: Compact<u64>;
     readonly price: u128;
     readonly deposit: u128;
     readonly deadline: Option<u32>;
@@ -3079,7 +3079,7 @@ declare module '@polkadot/types/lookup' {
   export interface PalletNftOrderOfferDetails extends Struct {
     readonly classId: Compact<u32>;
     readonly tokenId: Compact<u32>;
-    readonly quantity: Compact<u32>;
+    readonly quantity: Compact<u64>;
     readonly price: u128;
     readonly deadline: Option<u32>;
   }
@@ -3109,7 +3109,7 @@ declare module '@polkadot/types/lookup' {
   export interface PalletNftAuctionDutchAuction extends Struct {
     readonly classId: Compact<u32>;
     readonly tokenId: Compact<u32>;
-    readonly quantity: Compact<u32>;
+    readonly quantity: Compact<u64>;
     readonly minPrice: Compact<u128>;
     readonly maxPrice: Compact<u128>;
     readonly deposit: Compact<u128>;
@@ -3122,7 +3122,7 @@ declare module '@polkadot/types/lookup' {
   export interface PalletNftAuctionEnglishAuction extends Struct {
     readonly classId: Compact<u32>;
     readonly tokenId: Compact<u32>;
-    readonly quantity: Compact<u32>;
+    readonly quantity: Compact<u64>;
     readonly initPrice: Compact<u128>;
     readonly minRaisePrice: Compact<u128>;
     readonly deposit: Compact<u128>;
