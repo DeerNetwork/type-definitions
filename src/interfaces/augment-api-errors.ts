@@ -846,7 +846,6 @@ declare module '@polkadot/api/types/errors' {
       InvalidNextAuctionId: AugmentedError<ApiType>;
       InvalidPrice: AugmentedError<ApiType>;
       MissDutchBidPrice: AugmentedError<ApiType>;
-      NotBidAccount: AugmentedError<ApiType>;
       SelfBid: AugmentedError<ApiType>;
       /**
        * Generic error
@@ -862,6 +861,10 @@ declare module '@polkadot/api/types/errors' {
        * Invalid deaeline
        **/
       InvalidDeadline: AugmentedError<ApiType>;
+      /**
+       * Invalid quantity
+       **/
+      InvalidQuantity: AugmentedError<ApiType>;
       /**
        * No available offer ID
        **/

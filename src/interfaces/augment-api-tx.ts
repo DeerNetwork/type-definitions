@@ -1767,7 +1767,7 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Deal an order
        **/
-      dealOrder: AugmentedSubmittable<(orderOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, orderId: Compact<u64> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>]>;
+      dealOrder: AugmentedSubmittable<(orderOwner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, orderId: Compact<u64> | AnyNumber | Uint8Array, quantity: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u64>, Compact<u32>]>;
       /**
        * Remove an offer
        **/

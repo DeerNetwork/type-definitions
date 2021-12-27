@@ -1843,6 +1843,7 @@ export default {
       deal_order: {
         orderOwner: 'MultiAddress',
         orderId: 'Compact<u64>',
+        quantity: 'Compact<u32>',
       },
       remove_order: {
         orderId: 'Compact<u64>',
@@ -2694,6 +2695,7 @@ export default {
    * Lookup456: pallet_nft::TokenDetails<sp_core::crypto::AccountId32, Balance, TokenId>
    **/
   PalletNftTokenDetails: {
+    creator: 'AccountId32',
     metadata: 'Bytes',
     deposit: 'u128',
     quantity: 'Compact<u32>',
@@ -2727,6 +2729,7 @@ export default {
     classId: 'Compact<u32>',
     tokenId: 'Compact<u32>',
     quantity: 'Compact<u32>',
+    totalQuantity: 'Compact<u32>',
     price: 'u128',
     deposit: 'u128',
     deadline: 'Option<u32>'
@@ -2751,7 +2754,7 @@ export default {
    * Lookup466: pallet_nft_order::pallet::Error<T, I>
    **/
   PalletNftOrderError: {
-    _enum: ['InvalidDeadline', 'OrderNotFound', 'OrderExpired', 'InsufficientFunds', 'NoAvailableOrderId', 'OfferNotFound', 'OfferExpired', 'NoAvailableOfferId']
+    _enum: ['InvalidDeadline', 'InvalidQuantity', 'OrderNotFound', 'OrderExpired', 'InsufficientFunds', 'NoAvailableOrderId', 'OfferNotFound', 'OfferExpired', 'NoAvailableOfferId']
   },
   /**
    * Lookup467: pallet_nft_auction::DutchAuction<ClassId, TokenId, Balance, BlockNumber>
@@ -2799,7 +2802,7 @@ export default {
    * Lookup471: pallet_nft_auction::pallet::Error<T, I>
    **/
   PalletNftAuctionError: {
-    _enum: ['InvalidDeadline', 'InvalidPrice', 'InvalidNextAuctionId', 'AuctionNotOpen', 'AuctionNotFound', 'AuctionBidNotFound', 'AuctionClosed', 'SelfBid', 'MissDutchBidPrice', 'InvalidBidPrice', 'InsufficientFunds', 'NotBidAccount', 'CannotRedeemNow', 'CannotRemoveAuction']
+    _enum: ['InvalidDeadline', 'InvalidPrice', 'InvalidNextAuctionId', 'AuctionNotOpen', 'AuctionNotFound', 'AuctionBidNotFound', 'AuctionClosed', 'SelfBid', 'MissDutchBidPrice', 'InvalidBidPrice', 'InsufficientFunds', 'CannotRedeemNow', 'CannotRemoveAuction']
   },
   /**
    * Lookup472: pallet_storage::StashInfo<sp_core::crypto::AccountId32, Balance>

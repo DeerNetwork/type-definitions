@@ -2014,6 +2014,7 @@ declare module '@polkadot/types/lookup' {
     readonly asDealOrder: {
       readonly orderOwner: MultiAddress;
       readonly orderId: Compact<u64>;
+      readonly quantity: Compact<u32>;
     } & Struct;
     readonly isRemoveOrder: boolean;
     readonly asRemoveOrder: {
@@ -3026,6 +3027,7 @@ declare module '@polkadot/types/lookup' {
 
   /** @name PalletNftTokenDetails (456) */
   export interface PalletNftTokenDetails extends Struct {
+    readonly creator: AccountId32;
     readonly metadata: Bytes;
     readonly deposit: u128;
     readonly quantity: Compact<u32>;
@@ -3067,6 +3069,7 @@ declare module '@polkadot/types/lookup' {
     readonly classId: Compact<u32>;
     readonly tokenId: Compact<u32>;
     readonly quantity: Compact<u32>;
+    readonly totalQuantity: Compact<u32>;
     readonly price: u128;
     readonly deposit: u128;
     readonly deadline: Option<u32>;
@@ -3091,6 +3094,7 @@ declare module '@polkadot/types/lookup' {
   /** @name PalletNftOrderError (466) */
   export interface PalletNftOrderError extends Enum {
     readonly isInvalidDeadline: boolean;
+    readonly isInvalidQuantity: boolean;
     readonly isOrderNotFound: boolean;
     readonly isOrderExpired: boolean;
     readonly isInsufficientFunds: boolean;
@@ -3098,7 +3102,7 @@ declare module '@polkadot/types/lookup' {
     readonly isOfferNotFound: boolean;
     readonly isOfferExpired: boolean;
     readonly isNoAvailableOfferId: boolean;
-    readonly type: 'InvalidDeadline' | 'OrderNotFound' | 'OrderExpired' | 'InsufficientFunds' | 'NoAvailableOrderId' | 'OfferNotFound' | 'OfferExpired' | 'NoAvailableOfferId';
+    readonly type: 'InvalidDeadline' | 'InvalidQuantity' | 'OrderNotFound' | 'OrderExpired' | 'InsufficientFunds' | 'NoAvailableOrderId' | 'OfferNotFound' | 'OfferExpired' | 'NoAvailableOfferId';
   }
 
   /** @name PalletNftAuctionDutchAuction (467) */
@@ -3155,10 +3159,9 @@ declare module '@polkadot/types/lookup' {
     readonly isMissDutchBidPrice: boolean;
     readonly isInvalidBidPrice: boolean;
     readonly isInsufficientFunds: boolean;
-    readonly isNotBidAccount: boolean;
     readonly isCannotRedeemNow: boolean;
     readonly isCannotRemoveAuction: boolean;
-    readonly type: 'InvalidDeadline' | 'InvalidPrice' | 'InvalidNextAuctionId' | 'AuctionNotOpen' | 'AuctionNotFound' | 'AuctionBidNotFound' | 'AuctionClosed' | 'SelfBid' | 'MissDutchBidPrice' | 'InvalidBidPrice' | 'InsufficientFunds' | 'NotBidAccount' | 'CannotRedeemNow' | 'CannotRemoveAuction';
+    readonly type: 'InvalidDeadline' | 'InvalidPrice' | 'InvalidNextAuctionId' | 'AuctionNotOpen' | 'AuctionNotFound' | 'AuctionBidNotFound' | 'AuctionClosed' | 'SelfBid' | 'MissDutchBidPrice' | 'InvalidBidPrice' | 'InsufficientFunds' | 'CannotRedeemNow' | 'CannotRemoveAuction';
   }
 
   /** @name PalletStorageStashInfo (472) */
