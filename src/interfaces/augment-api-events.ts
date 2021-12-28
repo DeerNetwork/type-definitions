@@ -553,35 +553,35 @@ declare module '@polkadot/api/types/events' {
       /**
        * Bid dutch auction.
        **/
-      BidDutchAuction: AugmentedEvent<ApiType, [AccountId32, AccountId32, u64, u128]>;
+      BidDutchAuction: AugmentedEvent<ApiType, [u64, AccountId32, AccountId32, u128]>;
       /**
        * Bid english auction.
        **/
-      BidEnglishAuction: AugmentedEvent<ApiType, [AccountId32, AccountId32, u64, u128]>;
+      BidEnglishAuction: AugmentedEvent<ApiType, [u64, AccountId32, AccountId32, u128]>;
       /**
        * Canceled dutch auction.
        **/
-      CanceledDutchAuction: AugmentedEvent<ApiType, [AccountId32, u64]>;
+      CanceledDutchAuction: AugmentedEvent<ApiType, [u64, AccountId32]>;
       /**
        * Canceled english auction.
        **/
-      CanceledEnglishAuction: AugmentedEvent<ApiType, [AccountId32, u64]>;
+      CanceledEnglishAuction: AugmentedEvent<ApiType, [u64, AccountId32]>;
       /**
        * Created ductch auction.
        **/
-      CreatedDutchAuction: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, u64]>;
+      CreatedDutchAuction: AugmentedEvent<ApiType, [u64, u32, u32, u64, AccountId32]>;
       /**
        * Created ductch auction.
        **/
-      CreatedEnglishAuction: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, u64]>;
+      CreatedEnglishAuction: AugmentedEvent<ApiType, [u64, u32, u32, u64, AccountId32]>;
       /**
        * Redeemed dutch auction.
        **/
-      RedeemedDutchAuction: AugmentedEvent<ApiType, [AccountId32, AccountId32, u64, u128]>;
+      RedeemedDutchAuction: AugmentedEvent<ApiType, [u64, AccountId32, AccountId32, u128]>;
       /**
        * Redeemed english auction.
        **/
-      RedeemedEnglishAuction: AugmentedEvent<ApiType, [AccountId32, AccountId32, u64, u128]>;
+      RedeemedEnglishAuction: AugmentedEvent<ApiType, [u64, AccountId32, AccountId32, u128]>;
       /**
        * Generic event
        **/

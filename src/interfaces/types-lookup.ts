@@ -906,56 +906,56 @@ declare module '@polkadot/types/lookup' {
   export interface PalletNftAuctionEvent extends Enum {
     readonly isCreatedDutchAuction: boolean;
     readonly asCreatedDutchAuction: {
+      readonly auctionId: u64;
       readonly classId: u32;
       readonly tokenId: u32;
       readonly quantity: u64;
       readonly owner: AccountId32;
-      readonly auctionId: u64;
     } & Struct;
     readonly isBidDutchAuction: boolean;
     readonly asBidDutchAuction: {
+      readonly auctionId: u64;
       readonly bidder: AccountId32;
       readonly owner: AccountId32;
-      readonly auctionId: u64;
       readonly price: u128;
     } & Struct;
     readonly isCanceledDutchAuction: boolean;
     readonly asCanceledDutchAuction: {
-      readonly owner: AccountId32;
       readonly auctionId: u64;
+      readonly owner: AccountId32;
     } & Struct;
     readonly isRedeemedDutchAuction: boolean;
     readonly asRedeemedDutchAuction: {
+      readonly auctionId: u64;
       readonly bidder: AccountId32;
       readonly owner: AccountId32;
-      readonly auctionId: u64;
       readonly price: u128;
     } & Struct;
     readonly isCreatedEnglishAuction: boolean;
     readonly asCreatedEnglishAuction: {
+      readonly auctionId: u64;
       readonly classId: u32;
       readonly tokenId: u32;
       readonly quantity: u64;
       readonly owner: AccountId32;
-      readonly auctionId: u64;
     } & Struct;
     readonly isBidEnglishAuction: boolean;
     readonly asBidEnglishAuction: {
+      readonly auctionId: u64;
       readonly bidder: AccountId32;
       readonly owner: AccountId32;
-      readonly auctionId: u64;
       readonly price: u128;
     } & Struct;
     readonly isCanceledEnglishAuction: boolean;
     readonly asCanceledEnglishAuction: {
-      readonly owner: AccountId32;
       readonly auctionId: u64;
+      readonly owner: AccountId32;
     } & Struct;
     readonly isRedeemedEnglishAuction: boolean;
     readonly asRedeemedEnglishAuction: {
+      readonly auctionId: u64;
       readonly bidder: AccountId32;
       readonly owner: AccountId32;
-      readonly auctionId: u64;
       readonly price: u128;
     } & Struct;
     readonly type: 'CreatedDutchAuction' | 'BidDutchAuction' | 'CanceledDutchAuction' | 'RedeemedDutchAuction' | 'CreatedEnglishAuction' | 'BidEnglishAuction' | 'CanceledEnglishAuction' | 'RedeemedEnglishAuction';

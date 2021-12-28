@@ -547,10 +547,6 @@ declare module '@polkadot/api/types/consts' {
        **/
       delayOfAuction: u32 & AugmentedConst<ApiType>;
       /**
-       * Minimum deadline of auction
-       **/
-      minDeadline: u32 & AugmentedConst<ApiType>;
-      /**
        * Generic const
        **/
       [key: string]: Codec;

@@ -812,49 +812,49 @@ export default {
   PalletNftAuctionEvent: {
     _enum: {
       CreatedDutchAuction: {
+        auctionId: 'u64',
         classId: 'u32',
         tokenId: 'u32',
         quantity: 'u64',
         owner: 'AccountId32',
-        auctionId: 'u64',
       },
       BidDutchAuction: {
+        auctionId: 'u64',
         bidder: 'AccountId32',
         owner: 'AccountId32',
-        auctionId: 'u64',
         price: 'u128',
       },
       CanceledDutchAuction: {
-        owner: 'AccountId32',
         auctionId: 'u64',
+        owner: 'AccountId32',
       },
       RedeemedDutchAuction: {
+        auctionId: 'u64',
         bidder: 'AccountId32',
         owner: 'AccountId32',
-        auctionId: 'u64',
         price: 'u128',
       },
       CreatedEnglishAuction: {
+        auctionId: 'u64',
         classId: 'u32',
         tokenId: 'u32',
         quantity: 'u64',
         owner: 'AccountId32',
-        auctionId: 'u64',
       },
       BidEnglishAuction: {
+        auctionId: 'u64',
         bidder: 'AccountId32',
         owner: 'AccountId32',
-        auctionId: 'u64',
         price: 'u128',
       },
       CanceledEnglishAuction: {
-        owner: 'AccountId32',
         auctionId: 'u64',
+        owner: 'AccountId32',
       },
       RedeemedEnglishAuction: {
+        auctionId: 'u64',
         bidder: 'AccountId32',
         owner: 'AccountId32',
-        auctionId: 'u64',
         price: 'u128'
       }
     }
