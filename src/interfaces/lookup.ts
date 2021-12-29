@@ -753,7 +753,11 @@ export default {
         quantity: 'u64',
         from: 'AccountId32',
         to: 'AccountId32',
-        reason: 'PalletNftTransferReason'
+        reason: 'PalletNftTransferReason',
+      },
+      UpdatedToken: {
+        classId: 'u32',
+        tokenId: 'u32'
       }
     }
   },
@@ -770,9 +774,6 @@ export default {
     _enum: {
       CreatedOrder: {
         orderId: 'u64',
-        classId: 'u32',
-        tokenId: 'u32',
-        quantity: 'u64',
         seller: 'AccountId32',
       },
       DealedOrder: {
@@ -788,9 +789,6 @@ export default {
       },
       CreatedOffer: {
         offerId: 'u64',
-        classId: 'u32',
-        tokenId: 'u32',
-        quantity: 'u64',
         buyer: 'AccountId32',
       },
       DealedOffer: {
@@ -813,9 +811,6 @@ export default {
     _enum: {
       CreatedDutchAuction: {
         auctionId: 'u64',
-        classId: 'u32',
-        tokenId: 'u32',
-        quantity: 'u64',
         owner: 'AccountId32',
       },
       BidDutchAuction: {
@@ -830,15 +825,10 @@ export default {
       },
       RedeemedDutchAuction: {
         auctionId: 'u64',
-        bidder: 'AccountId32',
         owner: 'AccountId32',
-        price: 'u128',
       },
       CreatedEnglishAuction: {
         auctionId: 'u64',
-        classId: 'u32',
-        tokenId: 'u32',
-        quantity: 'u64',
         owner: 'AccountId32',
       },
       BidEnglishAuction: {
@@ -853,9 +843,7 @@ export default {
       },
       RedeemedEnglishAuction: {
         auctionId: 'u64',
-        bidder: 'AccountId32',
-        owner: 'AccountId32',
-        price: 'u128'
+        owner: 'AccountId32'
       }
     }
   },

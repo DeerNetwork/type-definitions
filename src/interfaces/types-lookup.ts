@@ -842,7 +842,12 @@ declare module '@polkadot/types/lookup' {
       readonly to: AccountId32;
       readonly reason: PalletNftTransferReason;
     } & Struct;
-    readonly type: 'CreatedClass' | 'MintedToken' | 'BurnedToken' | 'TransferredToken';
+    readonly isUpdatedToken: boolean;
+    readonly asUpdatedToken: {
+      readonly classId: u32;
+      readonly tokenId: u32;
+    } & Struct;
+    readonly type: 'CreatedClass' | 'MintedToken' | 'BurnedToken' | 'TransferredToken' | 'UpdatedToken';
   }
 
   /** @name PalletNftTransferReason (77) */
@@ -860,9 +865,6 @@ declare module '@polkadot/types/lookup' {
     readonly isCreatedOrder: boolean;
     readonly asCreatedOrder: {
       readonly orderId: u64;
-      readonly classId: u32;
-      readonly tokenId: u32;
-      readonly quantity: u64;
       readonly seller: AccountId32;
     } & Struct;
     readonly isDealedOrder: boolean;
@@ -881,9 +883,6 @@ declare module '@polkadot/types/lookup' {
     readonly isCreatedOffer: boolean;
     readonly asCreatedOffer: {
       readonly offerId: u64;
-      readonly classId: u32;
-      readonly tokenId: u32;
-      readonly quantity: u64;
       readonly buyer: AccountId32;
     } & Struct;
     readonly isDealedOffer: boolean;
@@ -907,9 +906,6 @@ declare module '@polkadot/types/lookup' {
     readonly isCreatedDutchAuction: boolean;
     readonly asCreatedDutchAuction: {
       readonly auctionId: u64;
-      readonly classId: u32;
-      readonly tokenId: u32;
-      readonly quantity: u64;
       readonly owner: AccountId32;
     } & Struct;
     readonly isBidDutchAuction: boolean;
@@ -927,16 +923,11 @@ declare module '@polkadot/types/lookup' {
     readonly isRedeemedDutchAuction: boolean;
     readonly asRedeemedDutchAuction: {
       readonly auctionId: u64;
-      readonly bidder: AccountId32;
       readonly owner: AccountId32;
-      readonly price: u128;
     } & Struct;
     readonly isCreatedEnglishAuction: boolean;
     readonly asCreatedEnglishAuction: {
       readonly auctionId: u64;
-      readonly classId: u32;
-      readonly tokenId: u32;
-      readonly quantity: u64;
       readonly owner: AccountId32;
     } & Struct;
     readonly isBidEnglishAuction: boolean;
@@ -954,9 +945,7 @@ declare module '@polkadot/types/lookup' {
     readonly isRedeemedEnglishAuction: boolean;
     readonly asRedeemedEnglishAuction: {
       readonly auctionId: u64;
-      readonly bidder: AccountId32;
       readonly owner: AccountId32;
-      readonly price: u128;
     } & Struct;
     readonly type: 'CreatedDutchAuction' | 'BidDutchAuction' | 'CanceledDutchAuction' | 'RedeemedDutchAuction' | 'CreatedEnglishAuction' | 'BidEnglishAuction' | 'CanceledEnglishAuction' | 'RedeemedEnglishAuction';
   }
