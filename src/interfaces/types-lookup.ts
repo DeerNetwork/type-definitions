@@ -998,12 +998,7 @@ declare module '@polkadot/types/lookup' {
       readonly cid: Bytes;
       readonly caller: AccountId32;
       readonly fee: u128;
-    } & Struct;
-    readonly isStoreFileAddedFounds: boolean;
-    readonly asStoreFileAddedFounds: {
-      readonly cid: Bytes;
-      readonly caller: AccountId32;
-      readonly fee: u128;
+      readonly first: bool;
     } & Struct;
     readonly isStoreFileRemoved: boolean;
     readonly asStoreFileRemoved: {
@@ -1018,7 +1013,7 @@ declare module '@polkadot/types/lookup' {
     readonly asFileForceDeleted: {
       readonly cid: Bytes;
     } & Struct;
-    readonly type: 'SetEnclave' | 'Stashed' | 'Withdrawn' | 'NodeRegisted' | 'NodeReported' | 'StoreFileSubmitted' | 'StoreFileAddedFounds' | 'StoreFileRemoved' | 'StoreFileSettledIncomplete' | 'FileForceDeleted';
+    readonly type: 'SetEnclave' | 'Stashed' | 'Withdrawn' | 'NodeRegisted' | 'NodeReported' | 'StoreFileSubmitted' | 'StoreFileRemoved' | 'StoreFileSettledIncomplete' | 'FileForceDeleted';
   }
 
   /** @name PalletTransactionStorageEvent (81) */

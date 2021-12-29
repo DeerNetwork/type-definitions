@@ -1,6 +1,6 @@
 {
   "name": "@deernetwork/type-definitions",
-  "version": "0.4.13",
+  "version": "0.4.14",
   "description": "Polkadot.js type definations for Deer Network",
   "license": "MIT",
   "publishConfig": {
@@ -11,12 +11,13 @@
     "dist"
   ],
   "scripts": {
-    "generate": "npm run generate:defs && npm run generate:meta",
+    "generate": "npm run metadata && npm run generate:defs && npm run generate:meta",
     "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package '.' --endpoint ./deer.json --input ./src/interfaces",
     "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package '.' --endpoint ./deer.json --output ./src/interfaces",
     "lint": "eslint .",
     "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
+    "metadata": "bash scripts/metadata.sh",
     "prepublishOnly": "npm run -s clean && npm run build && node scripts/makeTypesJson.js"
   },
   "devDependencies": {

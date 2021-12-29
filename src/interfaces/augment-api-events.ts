@@ -380,10 +380,6 @@ declare module '@polkadot/api/types/events' {
        **/
       Stashed: AugmentedEvent<ApiType, [AccountId32]>;
       /**
-       * More founds given to a file.
-       **/
-      StoreFileAddedFounds: AugmentedEvent<ApiType, [Bytes, AccountId32, u128]>;
-      /**
        * A file have been removed.
        **/
       StoreFileRemoved: AugmentedEvent<ApiType, [Bytes]>;
@@ -392,9 +388,9 @@ declare module '@polkadot/api/types/events' {
        **/
       StoreFileSettledIncomplete: AugmentedEvent<ApiType, [Bytes, u32]>;
       /**
-       * A file have summitted.
+       * A request to store file was submitted
        **/
-      StoreFileSubmitted: AugmentedEvent<ApiType, [Bytes, AccountId32, u128]>;
+      StoreFileSubmitted: AugmentedEvent<ApiType, [Bytes, AccountId32, u128, bool]>;
       /**
        * A account have withdrawn some founds.
        **/

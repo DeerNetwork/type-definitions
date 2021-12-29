@@ -892,11 +892,7 @@ export default {
         cid: 'Bytes',
         caller: 'AccountId32',
         fee: 'u128',
-      },
-      StoreFileAddedFounds: {
-        cid: 'Bytes',
-        caller: 'AccountId32',
-        fee: 'u128',
+        first: 'bool',
       },
       StoreFileRemoved: {
         cid: 'Bytes',
