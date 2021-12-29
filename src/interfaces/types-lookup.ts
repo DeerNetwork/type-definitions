@@ -947,8 +947,8 @@ declare module '@polkadot/types/lookup' {
     readonly isBidEnglishAuction: boolean;
     readonly asBidEnglishAuction: {
       readonly auctionId: u64;
-      readonly bidder: AccountId32;
       readonly owner: AccountId32;
+      readonly bidder: AccountId32;
       readonly price: u128;
     } & Struct;
     readonly isCanceledEnglishAuction: boolean;

@@ -847,8 +847,8 @@ export default {
       },
       BidEnglishAuction: {
         auctionId: 'u64',
-        bidder: 'AccountId32',
         owner: 'AccountId32',
+        bidder: 'AccountId32',
         price: 'u128',
       },
       CanceledEnglishAuction: {
