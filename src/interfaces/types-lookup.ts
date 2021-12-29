@@ -866,6 +866,9 @@ declare module '@polkadot/types/lookup' {
     readonly asCreatedOrder: {
       readonly orderId: u64;
       readonly seller: AccountId32;
+      readonly classId: u32;
+      readonly tokenId: u32;
+      readonly quantity: u64;
     } & Struct;
     readonly isDealedOrder: boolean;
     readonly asDealedOrder: {
@@ -884,6 +887,9 @@ declare module '@polkadot/types/lookup' {
     readonly asCreatedOffer: {
       readonly offerId: u64;
       readonly buyer: AccountId32;
+      readonly classId: u32;
+      readonly tokenId: u32;
+      readonly quantity: u64;
     } & Struct;
     readonly isDealedOffer: boolean;
     readonly asDealedOffer: {
@@ -907,12 +913,15 @@ declare module '@polkadot/types/lookup' {
     readonly asCreatedDutchAuction: {
       readonly auctionId: u64;
       readonly owner: AccountId32;
+      readonly classId: u32;
+      readonly tokenId: u32;
+      readonly quantity: u64;
     } & Struct;
     readonly isBidDutchAuction: boolean;
     readonly asBidDutchAuction: {
       readonly auctionId: u64;
-      readonly bidder: AccountId32;
       readonly owner: AccountId32;
+      readonly bidder: AccountId32;
       readonly price: u128;
     } & Struct;
     readonly isCanceledDutchAuction: boolean;
@@ -924,11 +933,16 @@ declare module '@polkadot/types/lookup' {
     readonly asRedeemedDutchAuction: {
       readonly auctionId: u64;
       readonly owner: AccountId32;
+      readonly bidder: AccountId32;
+      readonly price: u128;
     } & Struct;
     readonly isCreatedEnglishAuction: boolean;
     readonly asCreatedEnglishAuction: {
       readonly auctionId: u64;
       readonly owner: AccountId32;
+      readonly classId: u32;
+      readonly tokenId: u32;
+      readonly quantity: u64;
     } & Struct;
     readonly isBidEnglishAuction: boolean;
     readonly asBidEnglishAuction: {
@@ -946,6 +960,8 @@ declare module '@polkadot/types/lookup' {
     readonly asRedeemedEnglishAuction: {
       readonly auctionId: u64;
       readonly owner: AccountId32;
+      readonly bidder: AccountId32;
+      readonly price: u128;
     } & Struct;
     readonly type: 'CreatedDutchAuction' | 'BidDutchAuction' | 'CanceledDutchAuction' | 'RedeemedDutchAuction' | 'CreatedEnglishAuction' | 'BidEnglishAuction' | 'CanceledEnglishAuction' | 'RedeemedEnglishAuction';
   }

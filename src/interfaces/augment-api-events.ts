@@ -544,6 +544,9 @@ declare module '@polkadot/api/types/events' {
        * An nft token was transferred.
        **/
       TransferredToken: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, AccountId32, PalletNftTransferReason]>;
+      /**
+       * token info was updated
+       **/
       UpdatedToken: AugmentedEvent<ApiType, [u32, u32]>;
       /**
        * Generic event
@@ -570,19 +573,19 @@ declare module '@polkadot/api/types/events' {
       /**
        * Created ductch auction.
        **/
-      CreatedDutchAuction: AugmentedEvent<ApiType, [u64, AccountId32]>;
+      CreatedDutchAuction: AugmentedEvent<ApiType, [u64, AccountId32, u32, u32, u64]>;
       /**
        * Created ductch auction.
        **/
-      CreatedEnglishAuction: AugmentedEvent<ApiType, [u64, AccountId32]>;
+      CreatedEnglishAuction: AugmentedEvent<ApiType, [u64, AccountId32, u32, u32, u64]>;
       /**
        * Redeemed dutch auction.
        **/
-      RedeemedDutchAuction: AugmentedEvent<ApiType, [u64, AccountId32]>;
+      RedeemedDutchAuction: AugmentedEvent<ApiType, [u64, AccountId32, AccountId32, u128]>;
       /**
        * Redeemed english auction.
        **/
-      RedeemedEnglishAuction: AugmentedEvent<ApiType, [u64, AccountId32]>;
+      RedeemedEnglishAuction: AugmentedEvent<ApiType, [u64, AccountId32, AccountId32, u128]>;
       /**
        * Generic event
        **/
@@ -592,11 +595,11 @@ declare module '@polkadot/api/types/events' {
       /**
        * Create buy offer.
        **/
-      CreatedOffer: AugmentedEvent<ApiType, [u64, AccountId32]>;
+      CreatedOffer: AugmentedEvent<ApiType, [u64, AccountId32, u32, u32, u64]>;
       /**
        * Create sell order.
        **/
-      CreatedOrder: AugmentedEvent<ApiType, [u64, AccountId32]>;
+      CreatedOrder: AugmentedEvent<ApiType, [u64, AccountId32, u32, u32, u64]>;
       /**
        * Make a deal with buy offer.
        **/

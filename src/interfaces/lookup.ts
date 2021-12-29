@@ -775,6 +775,9 @@ export default {
       CreatedOrder: {
         orderId: 'u64',
         seller: 'AccountId32',
+        classId: 'u32',
+        tokenId: 'u32',
+        quantity: 'u64',
       },
       DealedOrder: {
         orderId: 'u64',
@@ -790,6 +793,9 @@ export default {
       CreatedOffer: {
         offerId: 'u64',
         buyer: 'AccountId32',
+        classId: 'u32',
+        tokenId: 'u32',
+        quantity: 'u64',
       },
       DealedOffer: {
         offerId: 'u64',
@@ -812,11 +818,14 @@ export default {
       CreatedDutchAuction: {
         auctionId: 'u64',
         owner: 'AccountId32',
+        classId: 'u32',
+        tokenId: 'u32',
+        quantity: 'u64',
       },
       BidDutchAuction: {
         auctionId: 'u64',
-        bidder: 'AccountId32',
         owner: 'AccountId32',
+        bidder: 'AccountId32',
         price: 'u128',
       },
       CanceledDutchAuction: {
@@ -826,10 +835,15 @@ export default {
       RedeemedDutchAuction: {
         auctionId: 'u64',
         owner: 'AccountId32',
+        bidder: 'AccountId32',
+        price: 'u128',
       },
       CreatedEnglishAuction: {
         auctionId: 'u64',
         owner: 'AccountId32',
+        classId: 'u32',
+        tokenId: 'u32',
+        quantity: 'u64',
       },
       BidEnglishAuction: {
         auctionId: 'u64',
@@ -843,7 +857,9 @@ export default {
       },
       RedeemedEnglishAuction: {
         auctionId: 'u64',
-        owner: 'AccountId32'
+        owner: 'AccountId32',
+        bidder: 'AccountId32',
+        price: 'u128'
       }
     }
   },
