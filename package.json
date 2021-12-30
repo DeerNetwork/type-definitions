@@ -1,6 +1,6 @@
 {
   "name": "@deernetwork/type-definitions",
-  "version": "0.4.14",
+  "version": "0.4.15",
   "description": "Polkadot.js type definations for Deer Network",
   "license": "MIT",
   "publishConfig": {

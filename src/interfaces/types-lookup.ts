@@ -992,6 +992,11 @@ declare module '@polkadot/types/lookup' {
     readonly asNodeReported: {
       readonly node: AccountId32;
       readonly machineId: Bytes;
+      readonly round: u32;
+      readonly slash: u128;
+      readonly mineReward: u128;
+      readonly shareStoreReward: u128;
+      readonly directStoreReward: u128;
     } & Struct;
     readonly isStoreFileSubmitted: boolean;
     readonly asStoreFileSubmitted: {
@@ -1004,8 +1009,8 @@ declare module '@polkadot/types/lookup' {
     readonly asStoreFileRemoved: {
       readonly cid: Bytes;
     } & Struct;
-    readonly isStoreFileSettledIncomplete: boolean;
-    readonly asStoreFileSettledIncomplete: {
+    readonly isStoreFileNewOrder: boolean;
+    readonly asStoreFileNewOrder: {
       readonly cid: Bytes;
       readonly replicas: u32;
     } & Struct;
@@ -1013,7 +1018,12 @@ declare module '@polkadot/types/lookup' {
     readonly asFileForceDeleted: {
       readonly cid: Bytes;
     } & Struct;
-    readonly type: 'SetEnclave' | 'Stashed' | 'Withdrawn' | 'NodeRegisted' | 'NodeReported' | 'StoreFileSubmitted' | 'StoreFileRemoved' | 'StoreFileSettledIncomplete' | 'FileForceDeleted';
+    readonly isRoundEnded: boolean;
+    readonly asRoundEnded: {
+      readonly round: u32;
+      readonly unpaid: u128;
+    } & Struct;
+    readonly type: 'SetEnclave' | 'Stashed' | 'Withdrawn' | 'NodeRegisted' | 'NodeReported' | 'StoreFileSubmitted' | 'StoreFileRemoved' | 'StoreFileNewOrder' | 'FileForceDeleted' | 'RoundEnded';
   }
 
   /** @name PalletTransactionStorageEvent (81) */

@@ -370,7 +370,11 @@ declare module '@polkadot/api/types/events' {
       /**
        * A node reported its work.
        **/
-      NodeReported: AugmentedEvent<ApiType, [AccountId32, Bytes]>;
+      NodeReported: AugmentedEvent<ApiType, [AccountId32, Bytes, u32, u128, u128, u128, u128]>;
+      /**
+       * A round was ended.
+       **/
+      RoundEnded: AugmentedEvent<ApiType, [u32, u128]>;
       /**
        * Add or change enclave.
        **/
@@ -380,15 +384,15 @@ declare module '@polkadot/api/types/events' {
        **/
       Stashed: AugmentedEvent<ApiType, [AccountId32]>;
       /**
+       * A file order was created or renewed
+       **/
+      StoreFileNewOrder: AugmentedEvent<ApiType, [Bytes, u32]>;
+      /**
        * A file have been removed.
        **/
       StoreFileRemoved: AugmentedEvent<ApiType, [Bytes]>;
       /**
-       * A file was renewed and can accepte more replicas.
-       **/
-      StoreFileSettledIncomplete: AugmentedEvent<ApiType, [Bytes, u32]>;
-      /**
-       * A request to store file was submitted
+       * A request to store file was submitted.
        **/
       StoreFileSubmitted: AugmentedEvent<ApiType, [Bytes, AccountId32, u128, bool]>;
       /**

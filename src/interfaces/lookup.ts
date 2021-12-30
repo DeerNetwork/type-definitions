@@ -887,6 +887,11 @@ export default {
       NodeReported: {
         node: 'AccountId32',
         machineId: 'Bytes',
+        round: 'u32',
+        slash: 'u128',
+        mineReward: 'u128',
+        shareStoreReward: 'u128',
+        directStoreReward: 'u128',
       },
       StoreFileSubmitted: {
         cid: 'Bytes',
@@ -897,12 +902,16 @@ export default {
       StoreFileRemoved: {
         cid: 'Bytes',
       },
-      StoreFileSettledIncomplete: {
+      StoreFileNewOrder: {
         cid: 'Bytes',
         replicas: 'u32',
       },
       FileForceDeleted: {
-        cid: 'Bytes'
+        cid: 'Bytes',
+      },
+      RoundEnded: {
+        round: 'u32',
+        unpaid: 'u128'
       }
     }
   },
