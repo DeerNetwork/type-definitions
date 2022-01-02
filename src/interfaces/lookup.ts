@@ -873,38 +873,37 @@ export default {
         expireAt: 'u32',
       },
       Stashed: {
-        node: 'AccountId32',
+        controller: 'AccountId32',
+        amount: 'u128',
       },
       Withdrawn: {
-        node: 'AccountId32',
+        controller: 'AccountId32',
         stasher: 'AccountId32',
         amount: 'u128',
       },
-      NodeRegisted: {
-        node: 'AccountId32',
+      NodeRegistered: {
+        controller: 'AccountId32',
         machineId: 'Bytes',
       },
       NodeReported: {
-        node: 'AccountId32',
+        controller: 'AccountId32',
         machineId: 'Bytes',
-        round: 'u32',
-        slash: 'u128',
         mineReward: 'u128',
         shareStoreReward: 'u128',
         directStoreReward: 'u128',
+        slash: 'u128',
       },
-      StoreFileSubmitted: {
+      FileAdded: {
         cid: 'Bytes',
         caller: 'AccountId32',
         fee: 'u128',
         first: 'bool',
       },
-      StoreFileRemoved: {
+      FileDeleted: {
         cid: 'Bytes',
       },
-      StoreFileNewOrder: {
+      FileStored: {
         cid: 'Bytes',
-        replicas: 'u32',
       },
       FileForceDeleted: {
         cid: 'Bytes',
@@ -2365,7 +2364,7 @@ export default {
         expireAt: 'u32',
       },
       stash: {
-        node: 'MultiAddress',
+        controller: 'MultiAddress',
       },
       withdraw: 'Null',
       register: {
@@ -3260,6 +3259,7 @@ export default {
   PalletStorageNodeInfo: {
     rid: 'u64',
     used: 'u64',
+    slashUsed: 'u64',
     power: 'u64',
     reportedAt: 'u32'
   },
@@ -3312,13 +3312,19 @@ export default {
     replicas: 'Vec<AccountId32>'
   },
   /**
-   * Lookup482: pallet_storage::pallet::Error<T>
+   * Lookup482: pallet_storage::Releases
    **/
-  PalletStorageError: {
-    _enum: ['InvalidEnclaveExpire', 'InvalidStashPair', 'NoEnoughToWithdraw', 'UnstashNode', 'MismatchMacheId', 'MachineAlreadyRegistered', 'InvalidIASSign', 'InvalidIASSigningCert', 'InvalidIASBody', 'InvalidEnclave', 'DuplicateReport', 'InvalidVerifyP256Sig', 'ReportExceedLimit', 'UnregisterNode', 'NotEnoughFee', 'InvalidFileSize', 'UnableToDeleteFile', 'InsufficientStash']
+  PalletStorageReleases: {
+    _enum: ['V0', 'V1']
   },
   /**
-   * Lookup484: pallet_transaction_storage::TransactionInfo
+   * Lookup483: pallet_storage::pallet::Error<T>
+   **/
+  PalletStorageError: {
+    _enum: ['EnclaveExpired', 'InvalidStashPair', 'NoEnoughToWithdraw', 'NodeNotStashed', 'MismatchMacheId', 'MachineAlreadyRegistered', 'InvalidIASSign', 'InvalidIASSigningCert', 'InvalidIASBody', 'InvalidEnclave', 'DuplicateReport', 'InvalidVerifyP256Sig', 'ReportExceedLimit', 'UnregisterNode', 'NotEnoughFee', 'InvalidFileSize', 'UnableToDeleteFile', 'InsufficientStash']
+  },
+  /**
+   * Lookup485: pallet_transaction_storage::TransactionInfo
    **/
   PalletTransactionStorageTransactionInfo: {
     _alias: {
@@ -3330,13 +3336,13 @@ export default {
     blockChunks: 'u32'
   },
   /**
-   * Lookup485: pallet_transaction_storage::pallet::Error<T>
+   * Lookup486: pallet_transaction_storage::pallet::Error<T>
    **/
   PalletTransactionStorageError: {
     _enum: ['InsufficientFunds', 'NotConfigured', 'RenewedNotFound', 'EmptyTransaction', 'UnexpectedProof', 'InvalidProof', 'MissingProof', 'MissingStateData', 'DoubleCheck', 'ProofNotChecked', 'TransactionTooLarge', 'TooManyTransactions', 'BadContext']
   },
   /**
-   * Lookup486: pallet_bags_list::list::Node<T>
+   * Lookup487: pallet_bags_list::list::Node<T>
    **/
   PalletBagsListListNode: {
     id: 'AccountId32',
@@ -3345,14 +3351,14 @@ export default {
     bagUpper: 'u64'
   },
   /**
-   * Lookup487: pallet_bags_list::list::Bag<T>
+   * Lookup488: pallet_bags_list::list::Bag<T>
    **/
   PalletBagsListListBag: {
     head: 'Option<AccountId32>',
     tail: 'Option<AccountId32>'
   },
   /**
-   * Lookup491: pallet_bridge::pallet::ProposalVotes<sp_core::crypto::AccountId32, BlockNumber>
+   * Lookup492: pallet_bridge::pallet::ProposalVotes<sp_core::crypto::AccountId32, BlockNumber>
    **/
   PalletBridgeProposalVotes: {
     votesFor: 'Vec<AccountId32>',
@@ -3361,13 +3367,13 @@ export default {
     expiry: 'u32'
   },
   /**
-   * Lookup492: pallet_bridge::pallet::ProposalStatus
+   * Lookup493: pallet_bridge::pallet::ProposalStatus
    **/
   PalletBridgeProposalStatus: {
     _enum: ['Initiated', 'Approved', 'Rejected']
   },
   /**
-   * Lookup494: pallet_bridge::pallet::BridgeEvent
+   * Lookup495: pallet_bridge::pallet::BridgeEvent
    **/
   PalletBridgeBridgeEvent: {
     _enum: {
@@ -3377,19 +3383,19 @@ export default {
     }
   },
   /**
-   * Lookup495: pallet_bridge::pallet::Error<T>
+   * Lookup496: pallet_bridge::pallet::Error<T>
    **/
   PalletBridgeError: {
     _enum: ['ThresholdNotSet', 'InvalidChainId', 'InvalidThreshold', 'ChainNotWhitelisted', 'ChainAlreadyWhitelisted', 'ResourceDoesNotExist', 'RelayerAlreadyExists', 'RelayerInvalid', 'MustBeRelayer', 'RelayerAlreadyVoted', 'ProposalAlreadyExists', 'ProposalDoesNotExist', 'ProposalNotComplete', 'ProposalAlreadyComplete', 'ProposalExpired']
   },
   /**
-   * Lookup497: pallet_bridge_transfer::pallet::Error<T>
+   * Lookup498: pallet_bridge_transfer::pallet::Error<T>
    **/
   PalletBridgeTransferError: {
     _enum: ['InvalidTransfer', 'InvalidCommand', 'InvalidFeeOption', 'FeeOptionsMissing', 'InsufficientBalance', 'InvalidResourceId']
   },
   /**
-   * Lookup499: sp_runtime::MultiSignature
+   * Lookup500: sp_runtime::MultiSignature
    **/
   SpRuntimeMultiSignature: {
     _enum: {
@@ -3399,35 +3405,35 @@ export default {
     }
   },
   /**
-   * Lookup500: sp_core::ecdsa::Signature
+   * Lookup501: sp_core::ecdsa::Signature
    **/
   SpCoreEcdsaSignature: '[u8;65]',
   /**
-   * Lookup503: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
+   * Lookup504: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
    **/
   FrameSystemExtensionsCheckSpecVersion: 'Null',
   /**
-   * Lookup504: frame_system::extensions::check_tx_version::CheckTxVersion<T>
+   * Lookup505: frame_system::extensions::check_tx_version::CheckTxVersion<T>
    **/
   FrameSystemExtensionsCheckTxVersion: 'Null',
   /**
-   * Lookup505: frame_system::extensions::check_genesis::CheckGenesis<T>
+   * Lookup506: frame_system::extensions::check_genesis::CheckGenesis<T>
    **/
   FrameSystemExtensionsCheckGenesis: 'Null',
   /**
-   * Lookup508: frame_system::extensions::check_nonce::CheckNonce<T>
+   * Lookup509: frame_system::extensions::check_nonce::CheckNonce<T>
    **/
   FrameSystemExtensionsCheckNonce: 'Compact<u32>',
   /**
-   * Lookup509: frame_system::extensions::check_weight::CheckWeight<T>
+   * Lookup510: frame_system::extensions::check_weight::CheckWeight<T>
    **/
   FrameSystemExtensionsCheckWeight: 'Null',
   /**
-   * Lookup510: pallet_transaction_payment::ChargeTransactionPayment<T>
+   * Lookup511: pallet_transaction_payment::ChargeTransactionPayment<T>
    **/
   PalletTransactionPaymentChargeTransactionPayment: 'Compact<u128>',
   /**
-   * Lookup511: deer_runtime::Runtime
+   * Lookup512: deer_runtime::Runtime
    **/
   DeerRuntimeRuntime: 'Null'
 };

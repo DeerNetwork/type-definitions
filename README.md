@@ -6,7 +6,11 @@ This repo contains Typescript bindings for custom deer-node modules.
 
 In order to use the standard API against Deer you must initialize the API's options object as follows:
 
-```
+```ts
+// We need to import the augmented definitions "somewhere" in our projec
+import "@deernetwork/type-definitions/dist/interfaces/augment-api";
+import "@deernetwork/type-definitions/dist/interfaces/augment-types";
+
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import { ApiOptions } from "@polkadot/api/types";
 import { typesBundle } from "@deernetwork/type-definitions";
@@ -26,8 +30,6 @@ You will also need to update the `tsconfig.json` of your project to include the 
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@polkadot/api/augment": ["../node_modules/@deernetwork/type-definitions/dist/interfaces/augment-api.d.ts"],
-      "@polkadot/types/augment": ["../node_modules/@deernetwork/type-definitions/dist/interfaces/augment-types.d.ts"],
       "@polkadot/types/lookup": ["../node_modules/@deernetwork/type-definitions/dist/interfaces/types-lookup.d.ts"],
     }
   }

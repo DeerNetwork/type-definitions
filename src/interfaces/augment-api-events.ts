@@ -1,13 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-declare module '@polkadot/api/types/events' {
-  import type { ApiTypes, AugmentedEvent, ModuleEvents } from '@polkadot/api/types';
-  import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types';
-  import type { AccountId32, H256 } from '@polkadot/types/interfaces/runtime';
-  import type { DeerRuntimeProxyType, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftTransferReason, PalletStakingExposure, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError } from '@polkadot/types/lookup';
-  import type { ITuple } from '@polkadot/types/types';
+import type { ApiTypes } from '@polkadot/api-base/types';
+import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
+import type { ITuple } from '@polkadot/types-codec/types';
+import type { AccountId32, H256 } from '@polkadot/types/interfaces/runtime';
+import type { DeerRuntimeProxyType, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftTransferReason, PalletStakingExposure, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError } from '@polkadot/types/lookup';
 
+declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {
     bagsList: {
       /**
@@ -360,17 +360,29 @@ declare module '@polkadot/api/types/events' {
     };
     fileStorage: {
       /**
+       * A request to store file.
+       **/
+      FileAdded: AugmentedEvent<ApiType, [Bytes, AccountId32, u128, bool]>;
+      /**
+       * A file have been removed.
+       **/
+      FileDeleted: AugmentedEvent<ApiType, [Bytes]>;
+      /**
        * A file was deleted by admin.
        **/
       FileForceDeleted: AugmentedEvent<ApiType, [Bytes]>;
       /**
+       * A node have stored file
+       **/
+      FileStored: AugmentedEvent<ApiType, [Bytes]>;
+      /**
        * A node was registerd.
        **/
-      NodeRegisted: AugmentedEvent<ApiType, [AccountId32, Bytes]>;
+      NodeRegistered: AugmentedEvent<ApiType, [AccountId32, Bytes]>;
       /**
        * A node reported its work.
        **/
-      NodeReported: AugmentedEvent<ApiType, [AccountId32, Bytes, u32, u128, u128, u128, u128]>;
+      NodeReported: AugmentedEvent<ApiType, [AccountId32, Bytes, u128, u128, u128, u128]>;
       /**
        * A round was ended.
        **/
@@ -382,19 +394,7 @@ declare module '@polkadot/api/types/events' {
       /**
        * A account have been stashed.
        **/
-      Stashed: AugmentedEvent<ApiType, [AccountId32]>;
-      /**
-       * A file order was created or renewed
-       **/
-      StoreFileNewOrder: AugmentedEvent<ApiType, [Bytes, u32]>;
-      /**
-       * A file have been removed.
-       **/
-      StoreFileRemoved: AugmentedEvent<ApiType, [Bytes]>;
-      /**
-       * A request to store file was submitted.
-       **/
-      StoreFileSubmitted: AugmentedEvent<ApiType, [Bytes, AccountId32, u128, bool]>;
+      Stashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * A account have withdrawn some founds.
        **/
@@ -980,9 +980,4 @@ declare module '@polkadot/api/types/events' {
       [key: string]: AugmentedEvent<ApiType>;
     };
   } // AugmentedEvents
-
-  export interface DecoratedEvents<ApiType extends ApiTypes> extends AugmentedEvents<ApiType> {
-    [key: string]: ModuleEvents<ApiType>;
-  } // DecoratedEvents
-
 } // declare module

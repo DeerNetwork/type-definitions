@@ -1,6 +1,6 @@
 {
   "name": "@deernetwork/type-definitions",
-  "version": "0.4.15",
+  "version": "0.4.30",
   "description": "Polkadot.js type definations for Deer Network",
   "license": "MIT",
   "publishConfig": {
@@ -21,8 +21,8 @@
     "prepublishOnly": "npm run -s clean && npm run build && node scripts/makeTypesJson.js"
   },
   "devDependencies": {
-    "@polkadot/api": "^6",
-    "@polkadot/typegen": "^6",
+    "@polkadot/api": "^7",
+    "@polkadot/typegen": "^7",
     "@types/node": "^16.11.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

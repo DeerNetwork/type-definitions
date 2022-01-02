@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-declare module '@polkadot/api/types/errors' {
-  import type { ApiTypes, AugmentedError, ModuleErrors } from '@polkadot/api/types';
+import type { ApiTypes } from '@polkadot/api-base/types';
 
+declare module '@polkadot/api-base/types/errors' {
   export interface AugmentedErrors<ApiType extends ApiTypes> {
     authorship: {
       /**
@@ -511,6 +511,10 @@ declare module '@polkadot/api/types/errors' {
        **/
       DuplicateReport: AugmentedError<ApiType>;
       /**
+       * Enclave's expire time should not great than current
+       **/
+      EnclaveExpired: AugmentedError<ApiType>;
+      /**
        * Insufficient stash
        **/
       InsufficientStash: AugmentedError<ApiType>;
@@ -518,10 +522,6 @@ declare module '@polkadot/api/types/errors' {
        * Enclave id incorrenct
        **/
       InvalidEnclave: AugmentedError<ApiType>;
-      /**
-       * Enclave's expire time should not great than current
-       **/
-      InvalidEnclaveExpire: AugmentedError<ApiType>;
       /**
        * File size incorrenct
        **/
@@ -555,6 +555,10 @@ declare module '@polkadot/api/types/errors' {
        **/
       MismatchMacheId: AugmentedError<ApiType>;
       /**
+       * Node Have not stashed
+       **/
+      NodeNotStashed: AugmentedError<ApiType>;
+      /**
        * Node's deposit is not enough to withdraw
        **/
       NoEnoughToWithdraw: AugmentedError<ApiType>;
@@ -574,10 +578,6 @@ declare module '@polkadot/api/types/errors' {
        * Node is unregisterd
        **/
       UnregisterNode: AugmentedError<ApiType>;
-      /**
-       * Have not stashed node
-       **/
-      UnstashNode: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1330,9 +1330,4 @@ declare module '@polkadot/api/types/errors' {
       [key: string]: AugmentedError<ApiType>;
     };
   } // AugmentedErrors
-
-  export interface DecoratedErrors<ApiType extends ApiTypes> extends AugmentedErrors<ApiType> {
-    [key: string]: ModuleErrors<ApiType>;
-  } // DecoratedErrors
-
 } // declare module

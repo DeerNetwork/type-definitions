@@ -36,8 +36,3 @@ export const typesBundle = {
     deer: bundle,
   },
 };
-
-/**
- * @deprecated use typesBundle instend
- */
-export const typesBundleForPolkadot = typesBundle;
