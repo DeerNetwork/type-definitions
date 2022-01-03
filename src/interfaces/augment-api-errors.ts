@@ -517,7 +517,7 @@ declare module '@polkadot/api-base/types/errors' {
       /**
        * Insufficient stash
        **/
-      InsufficientStash: AugmentedError<ApiType>;
+      InsufficientDeposit: AugmentedError<ApiType>;
       /**
        * Enclave id incorrenct
        **/
@@ -538,10 +538,6 @@ declare module '@polkadot/api-base/types/errors' {
        * IAS cert incorrenct
        **/
       InvalidIASSigningCert: AugmentedError<ApiType>;
-      /**
-       * Node have been stashed with another account
-       **/
-      InvalidStashPair: AugmentedError<ApiType>;
       /**
        * Fail to verify signature
        **/
@@ -566,6 +562,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Not enough fee
        **/
       NotEnoughFee: AugmentedError<ApiType>;
+      /**
+       * Node have been stashed with another account
+       **/
+      NotPair: AugmentedError<ApiType>;
       /**
        * Report files or power exceed limit
        **/

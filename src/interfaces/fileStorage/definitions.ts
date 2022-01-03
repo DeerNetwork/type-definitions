@@ -32,7 +32,7 @@ export default {
     NodeDepositInfo: {
       currentDeposit: "Balance",
       slashDeposit: "Balance",
-      slashUsedDeposit: "Balance",
+      usedDeposit: "Balance",
     },
   },
 };

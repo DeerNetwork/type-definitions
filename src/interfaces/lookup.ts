@@ -878,7 +878,7 @@ export default {
       },
       Withdrawn: {
         controller: 'AccountId32',
-        stasher: 'AccountId32',
+        stash: 'AccountId32',
         amount: 'u128',
       },
       NodeRegistered: {
@@ -910,7 +910,7 @@ export default {
       },
       RoundEnded: {
         round: 'u32',
-        unpaid: 'u128'
+        mine: 'u128'
       }
     }
   },
@@ -3246,46 +3246,42 @@ export default {
     _enum: ['InvalidDeadline', 'InvalidPrice', 'InvalidNextAuctionId', 'AuctionNotOpen', 'AuctionNotFound', 'AuctionBidNotFound', 'AuctionClosed', 'SelfBid', 'MissDutchBidPrice', 'InvalidBidPrice', 'InsufficientFunds', 'CannotRedeemNow', 'CannotRemoveAuction']
   },
   /**
-   * Lookup474: pallet_storage::StashInfo<sp_core::crypto::AccountId32, Balance>
-   **/
-  PalletStorageStashInfo: {
-    stasher: 'AccountId32',
-    deposit: 'u128',
-    machineId: 'Option<Bytes>'
-  },
-  /**
-   * Lookup475: pallet_storage::NodeInfo<BlockNumber>
+   * Lookup474: pallet_storage::NodeInfo<sp_core::crypto::AccountId32, Balance, BlockNumber>
    **/
   PalletStorageNodeInfo: {
+    stash: 'AccountId32',
+    deposit: 'u128',
+    machineId: 'Option<Bytes>',
     rid: 'u64',
     used: 'u64',
     slashUsed: 'u64',
+    reward: 'u128',
     power: 'u64',
     reportedAt: 'u32'
   },
   /**
-   * Lookup476: pallet_storage::RegisterInfo
+   * Lookup475: pallet_storage::RegisterInfo
    **/
   PalletStorageRegisterInfo: {
     key: 'Bytes',
     enclave: 'Bytes'
   },
   /**
-   * Lookup477: pallet_storage::NodeStats
+   * Lookup476: pallet_storage::NodeStats
    **/
   PalletStorageNodeStats: {
     power: 'u64',
     used: 'u64'
   },
   /**
-   * Lookup478: pallet_storage::SummaryStats
+   * Lookup477: pallet_storage::SummaryStats
    **/
   PalletStorageSummaryStats: {
     power: 'u128',
     used: 'u128'
   },
   /**
-   * Lookup479: pallet_storage::RewardInfo<Balance>
+   * Lookup478: pallet_storage::RewardInfo<Balance>
    **/
   PalletStorageRewardInfo: {
     mineReward: 'u128',
@@ -3294,7 +3290,7 @@ export default {
     paidStoreReward: 'u128'
   },
   /**
-   * Lookup480: pallet_storage::StoreFile<Balance, BlockNumber>
+   * Lookup479: pallet_storage::StoreFile<Balance, BlockNumber>
    **/
   PalletStorageStoreFile: {
     reserved: 'u128',
@@ -3303,7 +3299,7 @@ export default {
     addedAt: 'u32'
   },
   /**
-   * Lookup481: pallet_storage::FileOrder<sp_core::crypto::AccountId32, Balance, BlockNumber>
+   * Lookup480: pallet_storage::FileOrder<sp_core::crypto::AccountId32, Balance, BlockNumber>
    **/
   PalletStorageFileOrder: {
     fee: 'u128',
@@ -3312,19 +3308,19 @@ export default {
     replicas: 'Vec<AccountId32>'
   },
   /**
-   * Lookup482: pallet_storage::Releases
+   * Lookup481: pallet_storage::Releases
    **/
   PalletStorageReleases: {
     _enum: ['V0', 'V1']
   },
   /**
-   * Lookup483: pallet_storage::pallet::Error<T>
+   * Lookup482: pallet_storage::pallet::Error<T>
    **/
   PalletStorageError: {
-    _enum: ['EnclaveExpired', 'InvalidStashPair', 'NoEnoughToWithdraw', 'NodeNotStashed', 'MismatchMacheId', 'MachineAlreadyRegistered', 'InvalidIASSign', 'InvalidIASSigningCert', 'InvalidIASBody', 'InvalidEnclave', 'DuplicateReport', 'InvalidVerifyP256Sig', 'ReportExceedLimit', 'UnregisterNode', 'NotEnoughFee', 'InvalidFileSize', 'UnableToDeleteFile', 'InsufficientStash']
+    _enum: ['EnclaveExpired', 'NotPair', 'NoEnoughToWithdraw', 'NodeNotStashed', 'MismatchMacheId', 'MachineAlreadyRegistered', 'InvalidIASSign', 'InvalidIASSigningCert', 'InvalidIASBody', 'InvalidEnclave', 'DuplicateReport', 'InvalidVerifyP256Sig', 'ReportExceedLimit', 'UnregisterNode', 'NotEnoughFee', 'InvalidFileSize', 'UnableToDeleteFile', 'InsufficientDeposit']
   },
   /**
-   * Lookup485: pallet_transaction_storage::TransactionInfo
+   * Lookup484: pallet_transaction_storage::TransactionInfo
    **/
   PalletTransactionStorageTransactionInfo: {
     _alias: {
@@ -3336,13 +3332,13 @@ export default {
     blockChunks: 'u32'
   },
   /**
-   * Lookup486: pallet_transaction_storage::pallet::Error<T>
+   * Lookup485: pallet_transaction_storage::pallet::Error<T>
    **/
   PalletTransactionStorageError: {
     _enum: ['InsufficientFunds', 'NotConfigured', 'RenewedNotFound', 'EmptyTransaction', 'UnexpectedProof', 'InvalidProof', 'MissingProof', 'MissingStateData', 'DoubleCheck', 'ProofNotChecked', 'TransactionTooLarge', 'TooManyTransactions', 'BadContext']
   },
   /**
-   * Lookup487: pallet_bags_list::list::Node<T>
+   * Lookup486: pallet_bags_list::list::Node<T>
    **/
   PalletBagsListListNode: {
     id: 'AccountId32',
@@ -3351,14 +3347,14 @@ export default {
     bagUpper: 'u64'
   },
   /**
-   * Lookup488: pallet_bags_list::list::Bag<T>
+   * Lookup487: pallet_bags_list::list::Bag<T>
    **/
   PalletBagsListListBag: {
     head: 'Option<AccountId32>',
     tail: 'Option<AccountId32>'
   },
   /**
-   * Lookup492: pallet_bridge::pallet::ProposalVotes<sp_core::crypto::AccountId32, BlockNumber>
+   * Lookup491: pallet_bridge::pallet::ProposalVotes<sp_core::crypto::AccountId32, BlockNumber>
    **/
   PalletBridgeProposalVotes: {
     votesFor: 'Vec<AccountId32>',
@@ -3367,13 +3363,13 @@ export default {
     expiry: 'u32'
   },
   /**
-   * Lookup493: pallet_bridge::pallet::ProposalStatus
+   * Lookup492: pallet_bridge::pallet::ProposalStatus
    **/
   PalletBridgeProposalStatus: {
     _enum: ['Initiated', 'Approved', 'Rejected']
   },
   /**
-   * Lookup495: pallet_bridge::pallet::BridgeEvent
+   * Lookup494: pallet_bridge::pallet::BridgeEvent
    **/
   PalletBridgeBridgeEvent: {
     _enum: {
@@ -3383,19 +3379,19 @@ export default {
     }
   },
   /**
-   * Lookup496: pallet_bridge::pallet::Error<T>
+   * Lookup495: pallet_bridge::pallet::Error<T>
    **/
   PalletBridgeError: {
     _enum: ['ThresholdNotSet', 'InvalidChainId', 'InvalidThreshold', 'ChainNotWhitelisted', 'ChainAlreadyWhitelisted', 'ResourceDoesNotExist', 'RelayerAlreadyExists', 'RelayerInvalid', 'MustBeRelayer', 'RelayerAlreadyVoted', 'ProposalAlreadyExists', 'ProposalDoesNotExist', 'ProposalNotComplete', 'ProposalAlreadyComplete', 'ProposalExpired']
   },
   /**
-   * Lookup498: pallet_bridge_transfer::pallet::Error<T>
+   * Lookup497: pallet_bridge_transfer::pallet::Error<T>
    **/
   PalletBridgeTransferError: {
     _enum: ['InvalidTransfer', 'InvalidCommand', 'InvalidFeeOption', 'FeeOptionsMissing', 'InsufficientBalance', 'InvalidResourceId']
   },
   /**
-   * Lookup500: sp_runtime::MultiSignature
+   * Lookup499: sp_runtime::MultiSignature
    **/
   SpRuntimeMultiSignature: {
     _enum: {
@@ -3405,35 +3401,35 @@ export default {
     }
   },
   /**
-   * Lookup501: sp_core::ecdsa::Signature
+   * Lookup500: sp_core::ecdsa::Signature
    **/
   SpCoreEcdsaSignature: '[u8;65]',
   /**
-   * Lookup504: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
+   * Lookup503: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
    **/
   FrameSystemExtensionsCheckSpecVersion: 'Null',
   /**
-   * Lookup505: frame_system::extensions::check_tx_version::CheckTxVersion<T>
+   * Lookup504: frame_system::extensions::check_tx_version::CheckTxVersion<T>
    **/
   FrameSystemExtensionsCheckTxVersion: 'Null',
   /**
-   * Lookup506: frame_system::extensions::check_genesis::CheckGenesis<T>
+   * Lookup505: frame_system::extensions::check_genesis::CheckGenesis<T>
    **/
   FrameSystemExtensionsCheckGenesis: 'Null',
   /**
-   * Lookup509: frame_system::extensions::check_nonce::CheckNonce<T>
+   * Lookup508: frame_system::extensions::check_nonce::CheckNonce<T>
    **/
   FrameSystemExtensionsCheckNonce: 'Compact<u32>',
   /**
-   * Lookup510: frame_system::extensions::check_weight::CheckWeight<T>
+   * Lookup509: frame_system::extensions::check_weight::CheckWeight<T>
    **/
   FrameSystemExtensionsCheckWeight: 'Null',
   /**
-   * Lookup511: pallet_transaction_payment::ChargeTransactionPayment<T>
+   * Lookup510: pallet_transaction_payment::ChargeTransactionPayment<T>
    **/
   PalletTransactionPaymentChargeTransactionPayment: 'Compact<u128>',
   /**
-   * Lookup512: deer_runtime::Runtime
+   * Lookup511: deer_runtime::Runtime
    **/
   DeerRuntimeRuntime: 'Null'
 };

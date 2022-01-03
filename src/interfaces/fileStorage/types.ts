@@ -8,7 +8,7 @@ import type { Balance } from '@polkadot/types/interfaces/runtime';
 export interface NodeDepositInfo extends Struct {
   readonly currentDeposit: Balance;
   readonly slashDeposit: Balance;
-  readonly slashUsedDeposit: Balance;
+  readonly usedDeposit: Balance;
 }
 
 /** @name StoreFeeInfo */
