@@ -908,7 +908,7 @@ export default {
       FileForceDeleted: {
         cid: 'Bytes',
       },
-      SessionEnd: {
+      NewSession: {
         index: 'u32',
         mine: 'u128'
       }

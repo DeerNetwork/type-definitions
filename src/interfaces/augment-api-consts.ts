@@ -371,6 +371,10 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       fileSizePrice: u128 & AugmentedConst<ApiType>;
       /**
+       * Number of blocks to liquidate a file
+       **/
+      liquidateDuration: u32 & AugmentedConst<ApiType>;
+      /**
        * The maximum number of replicas order included
        **/
       maxFileReplicas: u32 & AugmentedConst<ApiType>;
@@ -394,10 +398,6 @@ declare module '@polkadot/api-base/types/consts' {
        * Mine factor
        **/
       mineFactor: Perbill & AugmentedConst<ApiType>;
-      /**
-       * Number of sessions that file need to pay reporters
-       **/
-      paySessions: u32 & AugmentedConst<ApiType>;
       /**
        * Number of blocks that node's need report its work
        **/

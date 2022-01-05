@@ -1018,12 +1018,12 @@ declare module '@polkadot/types/lookup' {
     readonly asFileForceDeleted: {
       readonly cid: Bytes;
     } & Struct;
-    readonly isSessionEnd: boolean;
-    readonly asSessionEnd: {
+    readonly isNewSession: boolean;
+    readonly asNewSession: {
       readonly index: u32;
       readonly mine: u128;
     } & Struct;
-    readonly type: 'SetEnclave' | 'Stashed' | 'Withdrawn' | 'NodeRegistered' | 'NodeReported' | 'FileAdded' | 'FileDeleted' | 'FileStored' | 'FileForceDeleted' | 'SessionEnd';
+    readonly type: 'SetEnclave' | 'Stashed' | 'Withdrawn' | 'NodeRegistered' | 'NodeReported' | 'FileAdded' | 'FileDeleted' | 'FileStored' | 'FileForceDeleted' | 'NewSession';
   }
 
   /** @name PalletTransactionStorageEvent (81) */

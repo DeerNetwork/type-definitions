@@ -376,6 +376,10 @@ declare module '@polkadot/api-base/types/events' {
        **/
       FileStored: AugmentedEvent<ApiType, [Bytes]>;
       /**
+       * A session end
+       **/
+      NewSession: AugmentedEvent<ApiType, [u32, u128]>;
+      /**
        * A node was registerd.
        **/
       NodeRegistered: AugmentedEvent<ApiType, [AccountId32, Bytes]>;
@@ -383,10 +387,6 @@ declare module '@polkadot/api-base/types/events' {
        * A node reported its work.
        **/
       NodeReported: AugmentedEvent<ApiType, [AccountId32, Bytes, u128, u128, u128, u128]>;
-      /**
-       * A session end
-       **/
-      SessionEnd: AugmentedEvent<ApiType, [u32, u128]>;
       /**
        * Add or change enclave.
        **/
