@@ -507,7 +507,7 @@ declare module '@polkadot/api-base/types/errors' {
     };
     fileStorage: {
       /**
-       * Already reported in current round
+       * Already reported in current session
        **/
       DuplicateReport: AugmentedError<ApiType>;
       /**

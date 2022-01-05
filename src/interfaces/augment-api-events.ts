@@ -384,9 +384,9 @@ declare module '@polkadot/api-base/types/events' {
        **/
       NodeReported: AugmentedEvent<ApiType, [AccountId32, Bytes, u128, u128, u128, u128]>;
       /**
-       * A round was ended.
+       * A session end
        **/
-      RoundEnded: AugmentedEvent<ApiType, [u32, u128]>;
+      SessionEnd: AugmentedEvent<ApiType, [u32, u128]>;
       /**
        * Add or change enclave.
        **/

@@ -6,7 +6,7 @@ import type { Data } from '@polkadot/types';
 import type { BTreeMap, Bytes, Null, Option, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, Call, H256, Perbill, Percent } from '@polkadot/types/interfaces/runtime';
-import type { DeerRuntimeSessionKeys, FrameSupportWeightsPerDispatchClassU64, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReleases, PalletBalancesReserveData, PalletBountiesBounty, PalletBridgeBridgeEvent, PalletBridgeProposalVotes, PalletCollectiveVotes, PalletDemocracyPreimageStatus, PalletDemocracyReferendumInfo, PalletDemocracyReleases, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletMultisigMultisig, PalletNftAuctionAuctionBid, PalletNftAuctionDutchAuction, PalletNftAuctionEnglishAuction, PalletNftAuctionReleases, PalletNftClassDetails, PalletNftOrderOfferDetails, PalletNftOrderOrderDetails, PalletNftOrderReleases, PalletNftReleases, PalletNftTokenAmount, PalletNftTokenDetails, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletSchedulerReleases, PalletSchedulerScheduledV2, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingReleases, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletStorageFileOrder, PalletStorageNodeInfo, PalletStorageNodeStats, PalletStorageRegisterInfo, PalletStorageReleases, PalletStorageRewardInfo, PalletStorageStoreFile, PalletStorageSummaryStats, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTransactionStorageTransactionInfo, PalletTreasuryProposal, PalletVestingReleases, PalletVestingVestingInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpStakingOffenceOffenceDetails } from '@polkadot/types/lookup';
+import type { DeerRuntimeSessionKeys, FrameSupportWeightsPerDispatchClassU64, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReleases, PalletBalancesReserveData, PalletBountiesBounty, PalletBridgeBridgeEvent, PalletBridgeProposalVotes, PalletCollectiveVotes, PalletDemocracyPreimageStatus, PalletDemocracyReferendumInfo, PalletDemocracyReleases, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletMultisigMultisig, PalletNftAuctionAuctionBid, PalletNftAuctionDutchAuction, PalletNftAuctionEnglishAuction, PalletNftAuctionReleases, PalletNftClassDetails, PalletNftOrderOfferDetails, PalletNftOrderOrderDetails, PalletNftOrderReleases, PalletNftReleases, PalletNftTokenAmount, PalletNftTokenDetails, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletSchedulerReleases, PalletSchedulerScheduledV2, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingReleases, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletStorageFileInfo, PalletStorageNodeInfo, PalletStorageRegisterInfo, PalletStorageReleases, PalletStorageSessionState, PalletStorageSummaryInfo, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTransactionStorageTransactionInfo, PalletTreasuryProposal, PalletVestingReleases, PalletVestingVestingInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpStakingOffenceOffenceDetails } from '@polkadot/types/lookup';
 import type { Observable } from '@polkadot/types/types';
 
 declare module '@polkadot/api-base/types/storage' {
@@ -470,21 +470,13 @@ declare module '@polkadot/api-base/types/storage' {
     };
     fileStorage: {
       /**
-       * Record current round
-       **/
-      currentRound: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
        * The Tee enclaves
        **/
       enclaves: AugmentedQuery<ApiType, (arg: Bytes | string | Uint8Array) => Observable<Option<u32>>, [Bytes]> & QueryableStorageEntry<ApiType, [Bytes]>;
       /**
        * Information for file orders
        **/
-      fileOrders: AugmentedQuery<ApiType, (arg: Bytes | string | Uint8Array) => Observable<Option<PalletStorageFileOrder>>, [Bytes]> & QueryableStorageEntry<ApiType, [Bytes]>;
-      /**
-       * Record the block number next round starts
-       **/
-      nextRoundAt: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      files: AugmentedQuery<ApiType, (arg: Bytes | string | Uint8Array) => Observable<Option<PalletStorageFileInfo>>, [Bytes]> & QueryableStorageEntry<ApiType, [Bytes]>;
       /**
        * Node information
        **/
@@ -494,19 +486,11 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       registers: AugmentedQuery<ApiType, (arg: Bytes | string | Uint8Array) => Observable<Option<PalletStorageRegisterInfo>>, [Bytes]> & QueryableStorageEntry<ApiType, [Bytes]>;
       /**
-       * Node stats in a round
+       * Current session state
        **/
-      roundsReport: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: AccountId32 | string | Uint8Array) => Observable<Option<PalletStorageNodeStats>>, [u32, AccountId32]> & QueryableStorageEntry<ApiType, [u32, AccountId32]>;
+      session: AugmentedQuery<ApiType, () => Observable<PalletStorageSessionState>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * Information round rewards
-       **/
-      roundsReward: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<PalletStorageRewardInfo>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * Network stats in a round
-       **/
-      roundsSummary: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<PalletStorageSummaryStats>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * Number of rounds that reserved to storage pot
+       * Number of balance reserved to storage pot
        **/
       storagePotReserved: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
       /**
@@ -516,9 +500,9 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       storageVersion: AugmentedQuery<ApiType, () => Observable<PalletStorageReleases>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * Information for stored files
+       * Summary info of earch session
        **/
-      storeFiles: AugmentedQuery<ApiType, (arg: Bytes | string | Uint8Array) => Observable<Option<PalletStorageStoreFile>>, [Bytes]> & QueryableStorageEntry<ApiType, [Bytes]>;
+      summarys: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<PalletStorageSummaryInfo>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
       /**
        * Generic query
        **/

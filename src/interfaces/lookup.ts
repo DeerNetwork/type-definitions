@@ -908,8 +908,8 @@ export default {
       FileForceDeleted: {
         cid: 'Bytes',
       },
-      RoundEnded: {
-        round: 'u32',
+      SessionEnd: {
+        index: 'u32',
         mine: 'u128'
       }
     }
@@ -3254,10 +3254,11 @@ export default {
     machineId: 'Option<Bytes>',
     rid: 'u64',
     used: 'u64',
+    power: 'u64',
     slashUsed: 'u64',
     reward: 'u128',
-    power: 'u64',
-    reportedAt: 'u32'
+    reportedAt: 'u32',
+    prevReportedAt: 'u32'
   },
   /**
    * Lookup475: pallet_storage::RegisterInfo
@@ -3267,60 +3268,52 @@ export default {
     enclave: 'Bytes'
   },
   /**
-   * Lookup476: pallet_storage::NodeStats
+   * Lookup476: pallet_storage::SessionState<BlockNumber>
    **/
-  PalletStorageNodeStats: {
-    power: 'u64',
-    used: 'u64'
+  PalletStorageSessionState: {
+    current: 'u32',
+    prevBeginAt: 'u32',
+    beginAt: 'u32',
+    endAt: 'u32'
   },
   /**
-   * Lookup477: pallet_storage::SummaryStats
+   * Lookup477: pallet_storage::SummaryInfo<Balance>
    **/
-  PalletStorageSummaryStats: {
-    power: 'u128',
-    used: 'u128'
-  },
-  /**
-   * Lookup478: pallet_storage::RewardInfo<Balance>
-   **/
-  PalletStorageRewardInfo: {
+  PalletStorageSummaryInfo: {
+    count: 'u32',
+    power: 'Compact<u128>',
+    used: 'Compact<u128>',
     mineReward: 'u128',
     storeReward: 'u128',
     paidMineReward: 'u128',
     paidStoreReward: 'u128'
   },
   /**
-   * Lookup479: pallet_storage::StoreFile<Balance, BlockNumber>
+   * Lookup478: pallet_storage::FileInfo<sp_core::crypto::AccountId32, Balance, BlockNumber>
    **/
-  PalletStorageStoreFile: {
+  PalletStorageFileInfo: {
     reserved: 'u128',
     baseFee: 'u128',
     fileSize: 'u64',
-    addedAt: 'u32'
-  },
-  /**
-   * Lookup480: pallet_storage::FileOrder<sp_core::crypto::AccountId32, Balance, BlockNumber>
-   **/
-  PalletStorageFileOrder: {
+    addedAt: 'u32',
     fee: 'u128',
-    fileSize: 'u64',
     expireAt: 'u32',
     replicas: 'Vec<AccountId32>'
   },
   /**
-   * Lookup481: pallet_storage::Releases
+   * Lookup479: pallet_storage::Releases
    **/
   PalletStorageReleases: {
     _enum: ['V0', 'V1']
   },
   /**
-   * Lookup482: pallet_storage::pallet::Error<T>
+   * Lookup480: pallet_storage::pallet::Error<T>
    **/
   PalletStorageError: {
     _enum: ['EnclaveExpired', 'NotPair', 'NoEnoughToWithdraw', 'NodeNotStashed', 'MismatchMacheId', 'MachineAlreadyRegistered', 'InvalidIASSign', 'InvalidIASSigningCert', 'InvalidIASBody', 'InvalidEnclave', 'DuplicateReport', 'InvalidVerifyP256Sig', 'ReportExceedLimit', 'UnregisterNode', 'NotEnoughFee', 'InvalidFileSize', 'UnableToDeleteFile', 'InsufficientDeposit']
   },
   /**
-   * Lookup484: pallet_transaction_storage::TransactionInfo
+   * Lookup482: pallet_transaction_storage::TransactionInfo
    **/
   PalletTransactionStorageTransactionInfo: {
     _alias: {
@@ -3332,13 +3325,13 @@ export default {
     blockChunks: 'u32'
   },
   /**
-   * Lookup485: pallet_transaction_storage::pallet::Error<T>
+   * Lookup483: pallet_transaction_storage::pallet::Error<T>
    **/
   PalletTransactionStorageError: {
     _enum: ['InsufficientFunds', 'NotConfigured', 'RenewedNotFound', 'EmptyTransaction', 'UnexpectedProof', 'InvalidProof', 'MissingProof', 'MissingStateData', 'DoubleCheck', 'ProofNotChecked', 'TransactionTooLarge', 'TooManyTransactions', 'BadContext']
   },
   /**
-   * Lookup486: pallet_bags_list::list::Node<T>
+   * Lookup484: pallet_bags_list::list::Node<T>
    **/
   PalletBagsListListNode: {
     id: 'AccountId32',
@@ -3347,14 +3340,14 @@ export default {
     bagUpper: 'u64'
   },
   /**
-   * Lookup487: pallet_bags_list::list::Bag<T>
+   * Lookup485: pallet_bags_list::list::Bag<T>
    **/
   PalletBagsListListBag: {
     head: 'Option<AccountId32>',
     tail: 'Option<AccountId32>'
   },
   /**
-   * Lookup491: pallet_bridge::pallet::ProposalVotes<sp_core::crypto::AccountId32, BlockNumber>
+   * Lookup489: pallet_bridge::pallet::ProposalVotes<sp_core::crypto::AccountId32, BlockNumber>
    **/
   PalletBridgeProposalVotes: {
     votesFor: 'Vec<AccountId32>',
@@ -3363,13 +3356,13 @@ export default {
     expiry: 'u32'
   },
   /**
-   * Lookup492: pallet_bridge::pallet::ProposalStatus
+   * Lookup490: pallet_bridge::pallet::ProposalStatus
    **/
   PalletBridgeProposalStatus: {
     _enum: ['Initiated', 'Approved', 'Rejected']
   },
   /**
-   * Lookup494: pallet_bridge::pallet::BridgeEvent
+   * Lookup492: pallet_bridge::pallet::BridgeEvent
    **/
   PalletBridgeBridgeEvent: {
     _enum: {
@@ -3379,19 +3372,19 @@ export default {
     }
   },
   /**
-   * Lookup495: pallet_bridge::pallet::Error<T>
+   * Lookup493: pallet_bridge::pallet::Error<T>
    **/
   PalletBridgeError: {
     _enum: ['ThresholdNotSet', 'InvalidChainId', 'InvalidThreshold', 'ChainNotWhitelisted', 'ChainAlreadyWhitelisted', 'ResourceDoesNotExist', 'RelayerAlreadyExists', 'RelayerInvalid', 'MustBeRelayer', 'RelayerAlreadyVoted', 'ProposalAlreadyExists', 'ProposalDoesNotExist', 'ProposalNotComplete', 'ProposalAlreadyComplete', 'ProposalExpired']
   },
   /**
-   * Lookup497: pallet_bridge_transfer::pallet::Error<T>
+   * Lookup495: pallet_bridge_transfer::pallet::Error<T>
    **/
   PalletBridgeTransferError: {
     _enum: ['InvalidTransfer', 'InvalidCommand', 'InvalidFeeOption', 'FeeOptionsMissing', 'InsufficientBalance', 'InvalidResourceId']
   },
   /**
-   * Lookup499: sp_runtime::MultiSignature
+   * Lookup497: sp_runtime::MultiSignature
    **/
   SpRuntimeMultiSignature: {
     _enum: {
@@ -3401,35 +3394,35 @@ export default {
     }
   },
   /**
-   * Lookup500: sp_core::ecdsa::Signature
+   * Lookup498: sp_core::ecdsa::Signature
    **/
   SpCoreEcdsaSignature: '[u8;65]',
   /**
-   * Lookup503: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
+   * Lookup501: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
    **/
   FrameSystemExtensionsCheckSpecVersion: 'Null',
   /**
-   * Lookup504: frame_system::extensions::check_tx_version::CheckTxVersion<T>
+   * Lookup502: frame_system::extensions::check_tx_version::CheckTxVersion<T>
    **/
   FrameSystemExtensionsCheckTxVersion: 'Null',
   /**
-   * Lookup505: frame_system::extensions::check_genesis::CheckGenesis<T>
+   * Lookup503: frame_system::extensions::check_genesis::CheckGenesis<T>
    **/
   FrameSystemExtensionsCheckGenesis: 'Null',
   /**
-   * Lookup508: frame_system::extensions::check_nonce::CheckNonce<T>
+   * Lookup506: frame_system::extensions::check_nonce::CheckNonce<T>
    **/
   FrameSystemExtensionsCheckNonce: 'Compact<u32>',
   /**
-   * Lookup509: frame_system::extensions::check_weight::CheckWeight<T>
+   * Lookup507: frame_system::extensions::check_weight::CheckWeight<T>
    **/
   FrameSystemExtensionsCheckWeight: 'Null',
   /**
-   * Lookup510: pallet_transaction_payment::ChargeTransactionPayment<T>
+   * Lookup508: pallet_transaction_payment::ChargeTransactionPayment<T>
    **/
   PalletTransactionPaymentChargeTransactionPayment: 'Compact<u128>',
   /**
-   * Lookup511: deer_runtime::Runtime
+   * Lookup509: deer_runtime::Runtime
    **/
   DeerRuntimeRuntime: 'Null'
 };

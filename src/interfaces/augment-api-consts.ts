@@ -367,10 +367,6 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       fileBaseFee: u128 & AugmentedConst<ApiType>;
       /**
-       * Number of rounds that file order is expired and need to renew or close
-       **/
-      fileOrderRounds: u32 & AugmentedConst<ApiType>;
-      /**
        * The additional funds that must be spent for the number of bytes of the file
        **/
       fileSizePrice: u128 & AugmentedConst<ApiType>;
@@ -383,9 +379,9 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       maxFileSize: u64 & AugmentedConst<ApiType>;
       /**
-       * The maximum number of deer the storage mine in each report round
+       * The maximum amount of  mine reward in each session
        **/
-      maxMine: u128 & AugmentedConst<ApiType>;
+      maxMineReward: u128 & AugmentedConst<ApiType>;
       /**
        * The maximum power of node
        **/
@@ -399,9 +395,13 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       mineFactor: Perbill & AugmentedConst<ApiType>;
       /**
+       * Number of sessions that file need to pay reporters
+       **/
+      paySessions: u32 & AugmentedConst<ApiType>;
+      /**
        * Number of blocks that node's need report its work
        **/
-      roundDuration: u32 & AugmentedConst<ApiType>;
+      sessionDuration: u32 & AugmentedConst<ApiType>;
       /**
        * The basic amount of funds that slashed when node is offline or misbehavier
        **/
@@ -411,7 +411,7 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       stashBalance: u128 & AugmentedConst<ApiType>;
       /**
-       * The ratio for divide store reward to node's have replicas and round store reward.
+       * The ratio for divide direct store reward and share store reward
        **/
       storeRewardRatio: Perbill & AugmentedConst<ApiType>;
       /**
