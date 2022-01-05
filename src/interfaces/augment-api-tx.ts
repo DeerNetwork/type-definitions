@@ -1067,7 +1067,7 @@ declare module '@polkadot/api-base/types/submittable' {
       /**
        * Report storage work.
        **/
-      report: AugmentedSubmittable<(rid: Compact<u64> | AnyNumber | Uint8Array, power: Compact<u64> | AnyNumber | Uint8Array, sig: Bytes | string | Uint8Array, addFiles: Vec<ITuple<[Bytes, u64]>> | ([Bytes | string | Uint8Array, u64 | AnyNumber | Uint8Array])[], delFiles: Vec<Bytes> | (Bytes | string | Uint8Array)[], settleFiles: Vec<Bytes> | (Bytes | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Compact<u64>, Compact<u64>, Bytes, Vec<ITuple<[Bytes, u64]>>, Vec<Bytes>, Vec<Bytes>]>;
+      report: AugmentedSubmittable<(rid: Compact<u64> | AnyNumber | Uint8Array, power: Compact<u64> | AnyNumber | Uint8Array, sig: Bytes | string | Uint8Array, addFiles: Vec<ITuple<[Bytes, u64]>> | ([Bytes | string | Uint8Array, u64 | AnyNumber | Uint8Array])[], delFiles: Vec<Bytes> | (Bytes | string | Uint8Array)[], liquidateFils: Vec<Bytes> | (Bytes | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Compact<u64>, Compact<u64>, Bytes, Vec<ITuple<[Bytes, u64]>>, Vec<Bytes>, Vec<Bytes>]>;
       /**
        * Add or change expire of TEE enclave
        **/

@@ -2569,7 +2569,7 @@ declare module '@polkadot/types/lookup' {
       readonly sig: Bytes;
       readonly addFiles: Vec<ITuple<[Bytes, u64]>>;
       readonly delFiles: Vec<Bytes>;
-      readonly settleFiles: Vec<Bytes>;
+      readonly liquidateFils: Vec<Bytes>;
     } & Struct;
     readonly isStore: boolean;
     readonly asStore: {
@@ -3655,9 +3655,9 @@ declare module '@polkadot/types/lookup' {
     readonly reserved: u128;
     readonly baseFee: u128;
     readonly fileSize: u64;
-    readonly addedAt: u32;
+    readonly addAt: u32;
     readonly fee: u128;
-    readonly expireAt: u32;
+    readonly liquidateAt: u32;
     readonly replicas: Vec<AccountId32>;
   }
 

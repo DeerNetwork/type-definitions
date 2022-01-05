@@ -2380,7 +2380,7 @@ export default {
         sig: 'Bytes',
         addFiles: 'Vec<(Bytes,u64)>',
         delFiles: 'Vec<Bytes>',
-        settleFiles: 'Vec<Bytes>',
+        liquidateFils: 'Vec<Bytes>',
       },
       store: {
         cid: 'Bytes',
@@ -3295,9 +3295,9 @@ export default {
     reserved: 'u128',
     baseFee: 'u128',
     fileSize: 'u64',
-    addedAt: 'u32',
+    addAt: 'u32',
     fee: 'u128',
-    expireAt: 'u32',
+    liquidateAt: 'u32',
     replicas: 'Vec<AccountId32>'
   },
   /**
