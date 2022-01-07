@@ -4,7 +4,7 @@
     "project": "./tsconfig.json"
   },
   "ignorePatterns": [
-    "dist/",
+    "pkg/",
     "node_modules/"
   ],
   "extends": [

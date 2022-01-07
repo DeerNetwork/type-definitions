@@ -1,10 +1,9 @@
 *.log
 node_modules
-dist
 yarn.lock
+package-lock.json
 .npmrc
-types.json
-tmp
-deer.json
-type.js
 .vscode
+/deer.json
+/pkg
+/dist

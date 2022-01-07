@@ -8,8 +8,8 @@ In order to use the standard API against Deer you must initialize the API's opti
 
 ```ts
 // We need to import the augmented definitions "somewhere" in our projec
-import "@deernetwork/type-definitions/dist/interfaces/augment-api";
-import "@deernetwork/type-definitions/dist/interfaces/augment-types";
+import "@deernetwork/type-definitions/interfaces/augment-api";
+import "@deernetwork/type-definitions/interfaces/augment-types";
 
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import { ApiOptions } from "@polkadot/api/types";
@@ -30,7 +30,7 @@ You will also need to update the `tsconfig.json` of your project to include the 
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@polkadot/types/lookup": ["../node_modules/@deernetwork/type-definitions/dist/interfaces/types-lookup.d.ts"],
+      "@polkadot/types/lookup": ["../node_modules/@deernetwork/type-definitions/interfaces/types-lookup.d.ts"],
     }
   }
 }
@@ -55,13 +55,11 @@ The Deer-specific version is as follows:
 - Once you have an `deer.json` file, you can rebuild the types with:
 
     ```
-    $ yarn generate
-    $ yarn lint
+    $ npm run generate
+    $ npm run lint
     ```
 - Upgrade all [spec files](src/spec) with any changes necessary as per the [@polkadot-js changelog](https://github.com/polkadot-js/api/blob/master/CHANGELOG.md) and the underlying Substrate version of the chain.
 
-- To compile the Typescript to Javascript for npm publication, run `yarn build`. This command should not produce any errors and will output build files to the [dist](dist/) directory.
+- To compile the Typescript to Javascript for npm publication, run `node scripts/build.js`. This command should not produce any errors and will output build files to the [pkg](pkg/) directory.
 
-- Run a simple test of the newly-built API against a live deer node with `yarn verify [mainnet | dev]`.
-
-- Publish the new version with `npm publish`.
+- Publish the new version with `node scripts/publish.js`.

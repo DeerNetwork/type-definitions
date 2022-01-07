@@ -1,24 +1,15 @@
 {
   "name": "@deernetwork/type-definitions",
-  "version": "0.4.42",
+  "version": "0.4.43",
   "description": "Polkadot.js type definations for Deer Network",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/index.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "generate": "npm run metadata && npm run generate:defs && npm run generate:meta",
-    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package '.' --endpoint ./deer.json --input ./src/interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package '.' --endpoint ./deer.json --output ./src/interfaces",
-    "lint": "eslint .",
-    "build": "tsc -p tsconfig.build.json",
-    "clean": "rimraf dist",
-    "metadata": "bash scripts/metadata.sh",
-    "prepublishOnly": "npm run -s clean && npm run build && node scripts/makeTypesJson.js"
+    "build": "node scripts/build.js",
+    "prepublishOnly": "exit 1",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@polkadot/api": "^7",
@@ -30,6 +21,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.4.1",
+    "shelljs": "^0.8.4",
     "typescript": "^4.5.2"
   }
 }
