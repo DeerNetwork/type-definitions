@@ -543,7 +543,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * An nft token was transferred.
        **/
-      TransferredToken: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, AccountId32, PalletNftTransferReason]>;
+      TransferredToken: AugmentedEvent<ApiType, [u32, u32, u64, AccountId32, AccountId32, PalletNftTransferReason, u128]>;
       /**
        * token info was updated
        **/

@@ -754,6 +754,7 @@ export default {
         from: 'AccountId32',
         to: 'AccountId32',
         reason: 'PalletNftTransferReason',
+        price: 'u128',
       },
       UpdatedToken: {
         classId: 'u32',

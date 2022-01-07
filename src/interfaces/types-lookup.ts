@@ -842,6 +842,7 @@ declare module '@polkadot/types/lookup' {
       readonly from: AccountId32;
       readonly to: AccountId32;
       readonly reason: PalletNftTransferReason;
+      readonly price: u128;
     } & Struct;
     readonly isUpdatedToken: boolean;
     readonly asUpdatedToken: {
